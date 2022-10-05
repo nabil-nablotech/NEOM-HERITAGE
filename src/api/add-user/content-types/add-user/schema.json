@@ -1,0 +1,42 @@
+{
+  "kind": "singleType",
+  "collectionName": "add_users",
+  "info": {
+    "singularName": "add-user",
+    "pluralName": "add-users",
+    "displayName": "addUser",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "input": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.input",
+      "required": true
+    },
+    "button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.button",
+      "required": true
+    },
+    "role": {
+      "type": "enumeration",
+      "enum": [
+        "Admin",
+        "Editor",
+        "Customer"
+      ],
+      "required": true,
+      "default": "Customer"
+    }
+  }
+}

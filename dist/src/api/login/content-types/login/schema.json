@@ -1,0 +1,53 @@
+{
+    "kind": "singleType",
+    "collectionName": "logins",
+    "info": {
+        "singularName": "login",
+        "pluralName": "logins",
+        "displayName": "login",
+        "description": ""
+    },
+    "options": {
+        "draftAndPublish": true
+    },
+    "pluginOptions": {},
+    "attributes": {
+        "title": {
+            "type": "string",
+            "required": true
+        },
+        "label": {
+            "type": "string",
+            "required": true
+        },
+        "button": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.button"
+        },
+        "input": {
+            "displayName": "input",
+            "type": "component",
+            "repeatable": true,
+            "component": "shared.input"
+        },
+        "bottomText": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.support"
+        },
+        "backgroundImage": {
+            "type": "media",
+            "multiple": false,
+            "required": true,
+            "allowedTypes": [
+                "images"
+            ]
+        },
+        "logo": {
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.logo"
+        }
+    }
+}
