@@ -48,6 +48,22 @@
             "type": "component",
             "repeatable": false,
             "component": "shared.logo"
+        },
+        "emailRegex": {
+            "type": "string",
+            "required": true,
+            "default": "/^(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$/"
+        },
+        "emailErrorMsg": {
+            "type": "string"
+        },
+        "passwordRegex": {
+            "type": "string",
+            "required": true,
+            "default": "/^(?=.*\\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/"
+        },
+        "passwordErrorMsg": {
+            "type": "string"
         }
     }
 }

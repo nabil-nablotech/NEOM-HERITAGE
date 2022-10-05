@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2022-10-05T10:40:23.173Z"
+    "x-generation-date": "2022-10-05T12:35:00.546Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3569,7 +3569,9 @@
             "required": [
               "title",
               "label",
-              "backgroundImage"
+              "backgroundImage",
+              "emailRegex",
+              "passwordRegex"
             ],
             "type": "object",
             "properties": {
@@ -3604,6 +3606,18 @@
               },
               "logo": {
                 "$ref": "#/components/schemas/SharedLogoComponent"
+              },
+              "emailRegex": {
+                "type": "string"
+              },
+              "emailErrorMsg": {
+                "type": "string"
+              },
+              "passwordRegex": {
+                "type": "string"
+              },
+              "passwordErrorMsg": {
+                "type": "string"
               }
             }
           }
@@ -4259,6 +4273,18 @@
               },
               "logo": {
                 "$ref": "#/components/schemas/SharedLogoComponent"
+              },
+              "emailRegex": {
+                "type": "string"
+              },
+              "emailErrorMsg": {
+                "type": "string"
+              },
+              "passwordRegex": {
+                "type": "string"
+              },
+              "passwordErrorMsg": {
+                "type": "string"
               },
               "createdAt": {
                 "type": "string",
@@ -5211,6 +5237,18 @@
               },
               "logo": {
                 "$ref": "#/components/schemas/SharedLogoComponent"
+              },
+              "emailRegex": {
+                "type": "string"
+              },
+              "emailErrorMsg": {
+                "type": "string"
+              },
+              "passwordRegex": {
+                "type": "string"
+              },
+              "passwordErrorMsg": {
+                "type": "string"
               },
               "createdAt": {
                 "type": "string",
@@ -6197,6 +6235,18 @@
               "logo": {
                 "$ref": "#/components/schemas/SharedLogoComponent"
               },
+              "emailRegex": {
+                "type": "string"
+              },
+              "emailErrorMsg": {
+                "type": "string"
+              },
+              "passwordRegex": {
+                "type": "string"
+              },
+              "passwordErrorMsg": {
+                "type": "string"
+              },
               "createdAt": {
                 "type": "string",
                 "format": "date-time"
@@ -7149,6 +7199,18 @@
               "logo": {
                 "$ref": "#/components/schemas/SharedLogoComponent"
               },
+              "emailRegex": {
+                "type": "string"
+              },
+              "emailErrorMsg": {
+                "type": "string"
+              },
+              "passwordRegex": {
+                "type": "string"
+              },
+              "passwordErrorMsg": {
+                "type": "string"
+              },
               "createdAt": {
                 "type": "string",
                 "format": "date-time"
@@ -7485,8 +7547,7 @@
         "properties": {
           "data": {
             "required": [
-              "title",
-              "header"
+              "title"
             ],
             "type": "object",
             "properties": {
@@ -7500,7 +7561,7 @@
                 "type": "string"
               },
               "header": {
-                "type": "string"
+                "$ref": "#/components/schemas/SharedHeaderComponent"
               }
             }
           }
@@ -7525,7 +7586,7 @@
                 "type": "string"
               },
               "header": {
-                "type": "string"
+                "$ref": "#/components/schemas/SharedHeaderComponent"
               },
               "createdAt": {
                 "type": "string",
@@ -7847,7 +7908,7 @@
                 "type": "string"
               },
               "header": {
-                "type": "string"
+                "$ref": "#/components/schemas/SharedHeaderComponent"
               },
               "createdAt": {
                 "type": "string",
@@ -8202,7 +8263,7 @@
                 "type": "string"
               },
               "header": {
-                "type": "string"
+                "$ref": "#/components/schemas/SharedHeaderComponent"
               },
               "createdAt": {
                 "type": "string",
@@ -8524,7 +8585,7 @@
                 "type": "string"
               },
               "header": {
-                "type": "string"
+                "$ref": "#/components/schemas/SharedHeaderComponent"
               },
               "createdAt": {
                 "type": "string",

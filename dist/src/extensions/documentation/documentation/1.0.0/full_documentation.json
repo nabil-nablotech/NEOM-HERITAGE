@@ -14,7 +14,7 @@
             "name": "Apache 2.0",
             "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
         },
-        "x-generation-date": "2022-10-05T10:38:39.678Z"
+        "x-generation-date": "2022-10-05T10:51:33.668Z"
     },
     "x-strapi-config": {
         "path": "/documentation",
@@ -3548,6 +3548,14 @@
                     },
                     "showSettings": {
                         "type": "boolean"
+                    },
+                    "theme": {
+                        "type": "string",
+                        "enum": [
+                            "primary",
+                            "secondary",
+                            "muted"
+                        ]
                     }
                 }
             },
@@ -7477,8 +7485,7 @@
                 "properties": {
                     "data": {
                         "required": [
-                            "title",
-                            "header"
+                            "title"
                         ],
                         "type": "object",
                         "properties": {
@@ -7492,7 +7499,7 @@
                                 "type": "string"
                             },
                             "header": {
-                                "type": "string"
+                                "$ref": "#/components/schemas/SharedHeaderComponent"
                             }
                         }
                     }
@@ -7517,7 +7524,7 @@
                                 "type": "string"
                             },
                             "header": {
-                                "type": "string"
+                                "$ref": "#/components/schemas/SharedHeaderComponent"
                             },
                             "createdAt": {
                                 "type": "string",
@@ -7839,7 +7846,7 @@
                                 "type": "string"
                             },
                             "header": {
-                                "type": "string"
+                                "$ref": "#/components/schemas/SharedHeaderComponent"
                             },
                             "createdAt": {
                                 "type": "string",
@@ -8194,7 +8201,7 @@
                                 "type": "string"
                             },
                             "header": {
-                                "type": "string"
+                                "$ref": "#/components/schemas/SharedHeaderComponent"
                             },
                             "createdAt": {
                                 "type": "string",
@@ -8516,7 +8523,7 @@
                                 "type": "string"
                             },
                             "header": {
-                                "type": "string"
+                                "$ref": "#/components/schemas/SharedHeaderComponent"
                             },
                             "createdAt": {
                                 "type": "string",
