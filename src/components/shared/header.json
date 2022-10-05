@@ -1,0 +1,47 @@
+{
+  "collectionName": "components_shared_headers",
+  "info": {
+    "displayName": "header",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "showTitle": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "search": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.input"
+    },
+    "showSearch": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "showPlus": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "showSettings": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "muted"
+      ]
+    }
+  }
+}

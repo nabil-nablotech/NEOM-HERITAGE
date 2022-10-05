@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2022-10-05T08:53:35.794Z"
+    "x-generation-date": "2022-10-05T10:40:23.173Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1552,6 +1552,9 @@
               },
               "input": {
                 "$ref": "#/components/schemas/SharedInputComponent"
+              },
+              "header": {
+                "$ref": "#/components/schemas/SharedHeaderComponent"
               }
             }
           }
@@ -1571,6 +1574,9 @@
               },
               "input": {
                 "$ref": "#/components/schemas/SharedInputComponent"
+              },
+              "header": {
+                "$ref": "#/components/schemas/SharedHeaderComponent"
               },
               "createdAt": {
                 "type": "string",
@@ -1887,6 +1893,9 @@
               },
               "input": {
                 "$ref": "#/components/schemas/SharedInputComponent"
+              },
+              "header": {
+                "$ref": "#/components/schemas/SharedHeaderComponent"
               },
               "createdAt": {
                 "type": "string",
@@ -2237,6 +2246,9 @@
               "input": {
                 "$ref": "#/components/schemas/SharedInputComponent"
               },
+              "header": {
+                "$ref": "#/components/schemas/SharedHeaderComponent"
+              },
               "createdAt": {
                 "type": "string",
                 "format": "date-time"
@@ -2552,6 +2564,9 @@
               },
               "input": {
                 "$ref": "#/components/schemas/SharedInputComponent"
+              },
+              "header": {
+                "$ref": "#/components/schemas/SharedHeaderComponent"
               },
               "createdAt": {
                 "type": "string",
@@ -3490,6 +3505,57 @@
                 }
               }
             }
+          }
+        }
+      },
+      "SharedHeaderComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "title": {
+            "type": "string"
+          },
+          "showTitle": {
+            "type": "boolean"
+          },
+          "search": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "number"
+              },
+              "placeholder": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "value": {
+                "type": "string"
+              }
+            }
+          },
+          "showSearch": {
+            "type": "boolean"
+          },
+          "showPlus": {
+            "type": "boolean"
+          },
+          "showSettings": {
+            "type": "boolean"
+          },
+          "theme": {
+            "type": "string",
+            "enum": [
+              "primary",
+              "secondary",
+              "muted"
+            ]
           }
         }
       },
