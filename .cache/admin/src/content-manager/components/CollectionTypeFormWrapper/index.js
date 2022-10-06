@@ -40,8 +40,13 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
   const { push, replace } = useHistory();
   const [{ rawQuery }] = useQueryParams();
   const dispatch = useDispatch();
-  const { componentsDataStructure, contentTypeDataStructure, data, isLoading, status } =
-    useSelector(selectCrudReducer);
+  const {
+    componentsDataStructure,
+    contentTypeDataStructure,
+    data,
+    isLoading,
+    status,
+  } = useSelector(selectCrudReducer);
   const redirectionLink = useFindRedirectionLink(slug);
 
   const isMounted = useRef(true);
@@ -60,7 +65,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
   }, [slug, id, isCreatingEntry, origin]);
 
   const cleanClonedData = useCallback(
-    (data) => {
+    data => {
       if (!origin) {
         return data;
       }
@@ -76,7 +81,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
     [origin]
   );
 
-  const cleanReceivedData = useCallback((data) => {
+  const cleanReceivedData = useCallback(data => {
     const cleaned = removePasswordFieldsFromData(
       data,
       allLayoutDataRef.current.contentType,
@@ -131,7 +136,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
     const CancelToken = axios.CancelToken;
     const source = CancelToken.source();
 
-    const fetchData = async (source) => {
+    const fetchData = async source => {
       dispatch(getData());
 
       try {
@@ -196,7 +201,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
   ]);
 
   const displayErrors = useCallback(
-    (err) => {
+    err => {
       const errorPayload = err.response.data;
       let errorMessage = get(errorPayload, ['error', 'message'], 'Bad Request');
 
@@ -213,7 +218,7 @@ const CollectionTypeFormWrapper = ({ allLayoutData, children, slug, id, origin }
   );
 
   const onDelete = useCallback(
-    async (trackerProperty) => {
+    async trackerProperty => {
       try {
         trackUsageRef.current('willDeleteEntry', trackerProperty);
 
