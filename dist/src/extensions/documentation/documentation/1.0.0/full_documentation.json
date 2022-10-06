@@ -14,7 +14,7 @@
             "name": "Apache 2.0",
             "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
         },
-        "x-generation-date": "2022-10-05T10:51:33.668Z"
+        "x-generation-date": "2022-10-06T07:36:25.900Z"
     },
     "x-strapi-config": {
         "path": "/documentation",
@@ -96,31 +96,15 @@
                     "data": {
                         "required": [
                             "title",
-                            "input",
-                            "button",
-                            "role"
+                            "profile"
                         ],
                         "type": "object",
                         "properties": {
                             "title": {
                                 "type": "string"
                             },
-                            "input": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/components/schemas/SharedInputComponent"
-                                }
-                            },
-                            "button": {
-                                "$ref": "#/components/schemas/SharedButtonComponent"
-                            },
-                            "role": {
-                                "type": "string",
-                                "enum": [
-                                    "Admin",
-                                    "Editor",
-                                    "Customer"
-                                ]
+                            "profile": {
+                                "$ref": "#/components/schemas/BlocksUserProfileComponent"
                             }
                         }
                     }
@@ -138,22 +122,8 @@
                             "title": {
                                 "type": "string"
                             },
-                            "input": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/components/schemas/SharedInputComponent"
-                                }
-                            },
-                            "button": {
-                                "$ref": "#/components/schemas/SharedButtonComponent"
-                            },
-                            "role": {
-                                "type": "string",
-                                "enum": [
-                                    "Admin",
-                                    "Editor",
-                                    "Customer"
-                                ]
+                            "profile": {
+                                "$ref": "#/components/schemas/BlocksUserProfileComponent"
                             },
                             "createdAt": {
                                 "type": "string",
@@ -468,22 +438,8 @@
                             "title": {
                                 "type": "string"
                             },
-                            "input": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/components/schemas/SharedInputComponent"
-                                }
-                            },
-                            "button": {
-                                "$ref": "#/components/schemas/SharedButtonComponent"
-                            },
-                            "role": {
-                                "type": "string",
-                                "enum": [
-                                    "Admin",
-                                    "Editor",
-                                    "Customer"
-                                ]
+                            "profile": {
+                                "$ref": "#/components/schemas/BlocksUserProfileComponent"
                             },
                             "createdAt": {
                                 "type": "string",
@@ -831,22 +787,8 @@
                             "title": {
                                 "type": "string"
                             },
-                            "input": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/components/schemas/SharedInputComponent"
-                                }
-                            },
-                            "button": {
-                                "$ref": "#/components/schemas/SharedButtonComponent"
-                            },
-                            "role": {
-                                "type": "string",
-                                "enum": [
-                                    "Admin",
-                                    "Editor",
-                                    "Customer"
-                                ]
+                            "profile": {
+                                "$ref": "#/components/schemas/BlocksUserProfileComponent"
                             },
                             "createdAt": {
                                 "type": "string",
@@ -1161,22 +1103,8 @@
                             "title": {
                                 "type": "string"
                             },
-                            "input": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/components/schemas/SharedInputComponent"
-                                }
-                            },
-                            "button": {
-                                "$ref": "#/components/schemas/SharedButtonComponent"
-                            },
-                            "role": {
-                                "type": "string",
-                                "enum": [
-                                    "Admin",
-                                    "Editor",
-                                    "Customer"
-                                ]
+                            "profile": {
+                                "$ref": "#/components/schemas/BlocksUserProfileComponent"
                             },
                             "createdAt": {
                                 "type": "string",
@@ -1489,51 +1417,85 @@
                     }
                 }
             },
-            "SharedInputComponent": {
+            "BlocksUserProfileComponent": {
                 "type": "object",
                 "properties": {
                     "id": {
                         "type": "number"
                     },
-                    "placeholder": {
-                        "type": "string"
+                    "input": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number"
+                                },
+                                "placeholder": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "type": "string"
+                                }
+                            }
+                        }
                     },
-                    "name": {
-                        "type": "string"
-                    },
-                    "type": {
-                        "type": "string"
-                    },
-                    "value": {
-                        "type": "string"
-                    }
-                }
-            },
-            "SharedButtonComponent": {
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "number"
-                    },
-                    "theme": {
+                    "role": {
                         "type": "string",
                         "enum": [
-                            "primary",
-                            "secondary",
-                            "muted"
+                            "Admin",
+                            "Editor",
+                            "Customer"
                         ]
                     },
-                    "href": {
+                    "button": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "number"
+                                },
+                                "theme": {
+                                    "type": "string",
+                                    "enum": [
+                                        "primary",
+                                        "secondary",
+                                        "muted"
+                                    ]
+                                },
+                                "href": {
+                                    "type": "string"
+                                },
+                                "label": {
+                                    "type": "string"
+                                },
+                                "target": {
+                                    "type": "string",
+                                    "enum": [
+                                        "_blank"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "bottomText": {
                         "type": "string"
                     },
-                    "label": {
-                        "type": "string"
+                    "showBottomText": {
+                        "type": "boolean"
                     },
-                    "target": {
-                        "type": "string",
-                        "enum": [
-                            "_blank"
-                        ]
+                    "status": {
+                        "type": "boolean"
+                    },
+                    "showStatus": {
+                        "type": "boolean"
                     }
                 }
             },
@@ -3508,6 +3470,26 @@
                     }
                 }
             },
+            "SharedInputComponent": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "placeholder": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "value": {
+                        "type": "string"
+                    }
+                }
+            },
             "SharedHeaderComponent": {
                 "type": "object",
                 "properties": {
@@ -3569,7 +3551,9 @@
                         "required": [
                             "title",
                             "label",
-                            "backgroundImage"
+                            "backgroundImage",
+                            "emailRegex",
+                            "passwordRegex"
                         ],
                         "type": "object",
                         "properties": {
@@ -3604,6 +3588,18 @@
                             },
                             "logo": {
                                 "$ref": "#/components/schemas/SharedLogoComponent"
+                            },
+                            "emailRegex": {
+                                "type": "string"
+                            },
+                            "emailErrorMsg": {
+                                "type": "string"
+                            },
+                            "passwordRegex": {
+                                "type": "string"
+                            },
+                            "passwordErrorMsg": {
+                                "type": "string"
                             }
                         }
                     }
@@ -4259,6 +4255,18 @@
                             },
                             "logo": {
                                 "$ref": "#/components/schemas/SharedLogoComponent"
+                            },
+                            "emailRegex": {
+                                "type": "string"
+                            },
+                            "emailErrorMsg": {
+                                "type": "string"
+                            },
+                            "passwordRegex": {
+                                "type": "string"
+                            },
+                            "passwordErrorMsg": {
+                                "type": "string"
                             },
                             "createdAt": {
                                 "type": "string",
@@ -5211,6 +5219,18 @@
                             },
                             "logo": {
                                 "$ref": "#/components/schemas/SharedLogoComponent"
+                            },
+                            "emailRegex": {
+                                "type": "string"
+                            },
+                            "emailErrorMsg": {
+                                "type": "string"
+                            },
+                            "passwordRegex": {
+                                "type": "string"
+                            },
+                            "passwordErrorMsg": {
+                                "type": "string"
                             },
                             "createdAt": {
                                 "type": "string",
@@ -6197,6 +6217,18 @@
                             "logo": {
                                 "$ref": "#/components/schemas/SharedLogoComponent"
                             },
+                            "emailRegex": {
+                                "type": "string"
+                            },
+                            "emailErrorMsg": {
+                                "type": "string"
+                            },
+                            "passwordRegex": {
+                                "type": "string"
+                            },
+                            "passwordErrorMsg": {
+                                "type": "string"
+                            },
                             "createdAt": {
                                 "type": "string",
                                 "format": "date-time"
@@ -7149,6 +7181,18 @@
                             "logo": {
                                 "$ref": "#/components/schemas/SharedLogoComponent"
                             },
+                            "emailRegex": {
+                                "type": "string"
+                            },
+                            "emailErrorMsg": {
+                                "type": "string"
+                            },
+                            "passwordRegex": {
+                                "type": "string"
+                            },
+                            "passwordErrorMsg": {
+                                "type": "string"
+                            },
                             "createdAt": {
                                 "type": "string",
                                 "format": "date-time"
@@ -7457,6 +7501,34 @@
                     },
                     "meta": {
                         "type": "object"
+                    }
+                }
+            },
+            "SharedButtonComponent": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number"
+                    },
+                    "theme": {
+                        "type": "string",
+                        "enum": [
+                            "primary",
+                            "secondary",
+                            "muted"
+                        ]
+                    },
+                    "href": {
+                        "type": "string"
+                    },
+                    "label": {
+                        "type": "string"
+                    },
+                    "target": {
+                        "type": "string",
+                        "enum": [
+                            "_blank"
+                        ]
                     }
                 }
             },
