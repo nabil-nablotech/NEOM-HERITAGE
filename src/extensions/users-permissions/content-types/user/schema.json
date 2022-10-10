@@ -70,6 +70,11 @@
     "lastName": {
       "type": "string",
       "required": true
+    },
+    "lastLogin": {
+      "type": "datetime",
+      "default": "2022-10-06T18:30:00.000Z",
+      "unique": false
     }
   }
 }

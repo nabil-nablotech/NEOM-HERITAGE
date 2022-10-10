@@ -27,8 +27,9 @@
             "required": true
         },
         "header": {
-            "type": "string",
-            "required": true
+            "type": "component",
+            "repeatable": false,
+            "component": "shared.header"
         }
     }
 }

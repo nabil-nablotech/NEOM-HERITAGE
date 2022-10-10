@@ -1,11 +1,10 @@
 {
     "kind": "singleType",
-    "collectionName": "add_users",
+    "collectionName": "edit_users",
     "info": {
-        "singularName": "add-user",
-        "pluralName": "add-users",
-        "displayName": "addUser",
-        "description": ""
+        "singularName": "edit-user",
+        "pluralName": "edit-users",
+        "displayName": "editUser"
     },
     "options": {
         "draftAndPublish": true
@@ -18,9 +17,8 @@
         },
         "profile": {
             "type": "component",
-            "repeatable": false,
-            "component": "blocks.user-profile",
-            "required": true
+            "repeatable": true,
+            "component": "blocks.user-profile"
         }
     }
 }
