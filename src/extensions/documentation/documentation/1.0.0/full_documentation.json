@@ -15780,9 +15780,6 @@
                                     "attributes": {
                                       "type": "object",
                                       "properties": {
-                                        "username": {
-                                          "type": "string"
-                                        },
                                         "email": {
                                           "type": "string",
                                           "format": "email"
@@ -15819,10 +15816,16 @@
                                             }
                                           }
                                         },
+                                        "username": {
+                                          "type": "string"
+                                        },
                                         "firstName": {
                                           "type": "string"
                                         },
                                         "lastName": {
+                                          "type": "string"
+                                        },
+                                        "recoveryToken": {
                                           "type": "string"
                                         },
                                         "createdAt": {
@@ -16349,9 +16352,6 @@
                                     "attributes": {
                                       "type": "object",
                                       "properties": {
-                                        "username": {
-                                          "type": "string"
-                                        },
                                         "email": {
                                           "type": "string",
                                           "format": "email"
@@ -16388,10 +16388,16 @@
                                             }
                                           }
                                         },
+                                        "username": {
+                                          "type": "string"
+                                        },
                                         "firstName": {
                                           "type": "string"
                                         },
                                         "lastName": {
+                                          "type": "string"
+                                        },
+                                        "recoveryToken": {
                                           "type": "string"
                                         },
                                         "createdAt": {
@@ -16951,9 +16957,6 @@
                                     "attributes": {
                                       "type": "object",
                                       "properties": {
-                                        "username": {
-                                          "type": "string"
-                                        },
                                         "email": {
                                           "type": "string",
                                           "format": "email"
@@ -16990,10 +16993,16 @@
                                             }
                                           }
                                         },
+                                        "username": {
+                                          "type": "string"
+                                        },
                                         "firstName": {
                                           "type": "string"
                                         },
                                         "lastName": {
+                                          "type": "string"
+                                        },
+                                        "recoveryToken": {
                                           "type": "string"
                                         },
                                         "createdAt": {
@@ -17520,9 +17529,6 @@
                                     "attributes": {
                                       "type": "object",
                                       "properties": {
-                                        "username": {
-                                          "type": "string"
-                                        },
                                         "email": {
                                           "type": "string",
                                           "format": "email"
@@ -17559,10 +17565,16 @@
                                             }
                                           }
                                         },
+                                        "username": {
+                                          "type": "string"
+                                        },
                                         "firstName": {
                                           "type": "string"
                                         },
                                         "lastName": {
+                                          "type": "string"
+                                        },
+                                        "recoveryToken": {
                                           "type": "string"
                                         },
                                         "createdAt": {
@@ -17861,9 +17873,6 @@
                                                   "attributes": {
                                                     "type": "object",
                                                     "properties": {
-                                                      "username": {
-                                                        "type": "string"
-                                                      },
                                                       "email": {
                                                         "type": "string",
                                                         "format": "email"
@@ -17900,10 +17909,16 @@
                                                           }
                                                         }
                                                       },
+                                                      "username": {
+                                                        "type": "string"
+                                                      },
                                                       "firstName": {
                                                         "type": "string"
                                                       },
                                                       "lastName": {
+                                                        "type": "string"
+                                                      },
+                                                      "recoveryToken": {
                                                         "type": "string"
                                                       },
                                                       "createdAt": {
@@ -18459,9 +18474,6 @@
                                                   "attributes": {
                                                     "type": "object",
                                                     "properties": {
-                                                      "username": {
-                                                        "type": "string"
-                                                      },
                                                       "email": {
                                                         "type": "string",
                                                         "format": "email"
@@ -18498,10 +18510,16 @@
                                                           }
                                                         }
                                                       },
+                                                      "username": {
+                                                        "type": "string"
+                                                      },
                                                       "firstName": {
                                                         "type": "string"
                                                       },
                                                       "lastName": {
+                                                        "type": "string"
+                                                      },
+                                                      "recoveryToken": {
                                                         "type": "string"
                                                       },
                                                       "createdAt": {
@@ -19090,9 +19108,6 @@
                                                   "attributes": {
                                                     "type": "object",
                                                     "properties": {
-                                                      "username": {
-                                                        "type": "string"
-                                                      },
                                                       "email": {
                                                         "type": "string",
                                                         "format": "email"
@@ -19129,10 +19144,16 @@
                                                           }
                                                         }
                                                       },
+                                                      "username": {
+                                                        "type": "string"
+                                                      },
                                                       "firstName": {
                                                         "type": "string"
                                                       },
                                                       "lastName": {
+                                                        "type": "string"
+                                                      },
+                                                      "recoveryToken": {
                                                         "type": "string"
                                                       },
                                                       "createdAt": {
@@ -19688,9 +19709,6 @@
                                                   "attributes": {
                                                     "type": "object",
                                                     "properties": {
-                                                      "username": {
-                                                        "type": "string"
-                                                      },
                                                       "email": {
                                                         "type": "string",
                                                         "format": "email"
@@ -19727,10 +19745,16 @@
                                                           }
                                                         }
                                                       },
+                                                      "username": {
+                                                        "type": "string"
+                                                      },
                                                       "firstName": {
                                                         "type": "string"
                                                       },
                                                       "lastName": {
+                                                        "type": "string"
+                                                      },
+                                                      "recoveryToken": {
                                                         "type": "string"
                                                       },
                                                       "createdAt": {
@@ -20220,9 +20244,6 @@
             ],
             "type": "object",
             "properties": {
-              "username": {
-                "type": "string"
-              },
               "email": {
                 "type": "string",
                 "format": "email"
@@ -20258,10 +20279,16 @@
                 ],
                 "example": "string or id"
               },
+              "username": {
+                "type": "string"
+              },
               "firstName": {
                 "type": "string"
               },
               "lastName": {
+                "type": "string"
+              },
+              "recoveryToken": {
                 "type": "string"
               }
             }
@@ -20277,9 +20304,6 @@
           "attributes": {
             "type": "object",
             "properties": {
-              "username": {
-                "type": "string"
-              },
               "email": {
                 "type": "string",
                 "format": "email"
@@ -20668,9 +20692,6 @@
                                     "attributes": {
                                       "type": "object",
                                       "properties": {
-                                        "username": {
-                                          "type": "string"
-                                        },
                                         "email": {
                                           "type": "string",
                                           "format": "email"
@@ -20707,10 +20728,16 @@
                                             }
                                           }
                                         },
+                                        "username": {
+                                          "type": "string"
+                                        },
                                         "firstName": {
                                           "type": "string"
                                         },
                                         "lastName": {
+                                          "type": "string"
+                                        },
+                                        "recoveryToken": {
                                           "type": "string"
                                         },
                                         "createdAt": {
@@ -20810,10 +20837,16 @@
                   }
                 }
               },
+              "username": {
+                "type": "string"
+              },
               "firstName": {
                 "type": "string"
               },
               "lastName": {
+                "type": "string"
+              },
+              "recoveryToken": {
                 "type": "string"
               },
               "createdAt": {
@@ -20871,9 +20904,6 @@
           "attributes": {
             "type": "object",
             "properties": {
-              "username": {
-                "type": "string"
-              },
               "email": {
                 "type": "string",
                 "format": "email"
@@ -21262,9 +21292,6 @@
                                     "attributes": {
                                       "type": "object",
                                       "properties": {
-                                        "username": {
-                                          "type": "string"
-                                        },
                                         "email": {
                                           "type": "string",
                                           "format": "email"
@@ -21301,10 +21328,16 @@
                                             }
                                           }
                                         },
+                                        "username": {
+                                          "type": "string"
+                                        },
                                         "firstName": {
                                           "type": "string"
                                         },
                                         "lastName": {
+                                          "type": "string"
+                                        },
+                                        "recoveryToken": {
                                           "type": "string"
                                         },
                                         "createdAt": {
@@ -21404,10 +21437,16 @@
                   }
                 }
               },
+              "username": {
+                "type": "string"
+              },
               "firstName": {
                 "type": "string"
               },
               "lastName": {
+                "type": "string"
+              },
+              "recoveryToken": {
                 "type": "string"
               },
               "createdAt": {
@@ -21498,9 +21537,6 @@
           "attributes": {
             "type": "object",
             "properties": {
-              "username": {
-                "type": "string"
-              },
               "email": {
                 "type": "string",
                 "format": "email"
@@ -21889,9 +21925,6 @@
                                     "attributes": {
                                       "type": "object",
                                       "properties": {
-                                        "username": {
-                                          "type": "string"
-                                        },
                                         "email": {
                                           "type": "string",
                                           "format": "email"
@@ -21928,10 +21961,16 @@
                                             }
                                           }
                                         },
+                                        "username": {
+                                          "type": "string"
+                                        },
                                         "firstName": {
                                           "type": "string"
                                         },
                                         "lastName": {
+                                          "type": "string"
+                                        },
+                                        "recoveryToken": {
                                           "type": "string"
                                         },
                                         "createdAt": {
@@ -22031,10 +22070,16 @@
                   }
                 }
               },
+              "username": {
+                "type": "string"
+              },
               "firstName": {
                 "type": "string"
               },
               "lastName": {
+                "type": "string"
+              },
+              "recoveryToken": {
                 "type": "string"
               },
               "createdAt": {
@@ -22092,9 +22137,6 @@
           "attributes": {
             "type": "object",
             "properties": {
-              "username": {
-                "type": "string"
-              },
               "email": {
                 "type": "string",
                 "format": "email"
@@ -22483,9 +22525,6 @@
                                     "attributes": {
                                       "type": "object",
                                       "properties": {
-                                        "username": {
-                                          "type": "string"
-                                        },
                                         "email": {
                                           "type": "string",
                                           "format": "email"
@@ -22522,10 +22561,16 @@
                                             }
                                           }
                                         },
+                                        "username": {
+                                          "type": "string"
+                                        },
                                         "firstName": {
                                           "type": "string"
                                         },
                                         "lastName": {
+                                          "type": "string"
+                                        },
+                                        "recoveryToken": {
                                           "type": "string"
                                         },
                                         "createdAt": {
@@ -22625,10 +22670,16 @@
                   }
                 }
               },
+              "username": {
+                "type": "string"
+              },
               "firstName": {
                 "type": "string"
               },
               "lastName": {
+                "type": "string"
+              },
+              "recoveryToken": {
                 "type": "string"
               },
               "createdAt": {
