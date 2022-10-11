@@ -12,7 +12,8 @@ exports.default = {
                 data: {
                     password: ctx.query.password,
                     blocked: false,
-                    confirmed: true
+                    confirmed: true,
+                    recoveryToken: ''
                 }
             });
             ctx.body = data;
