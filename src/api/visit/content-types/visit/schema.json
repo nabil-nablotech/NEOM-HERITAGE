@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "visits",
+  "info": {
+    "singularName": "visit",
+    "pluralName": "visits",
+    "displayName": "visit",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "visitDate": {
+      "type": "date"
+    },
+    "recordingTeam": {
+      "type": "string"
+    },
+    "visitNumber": {
+      "type": "integer"
+    },
+    "fieldNarrative": {
+      "type": "string"
+    },
+    "assessmentType": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "string"
+    },
+    "fields": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.common-fields"
+    }
+  }
+}

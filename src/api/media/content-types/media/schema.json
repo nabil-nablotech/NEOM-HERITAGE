@@ -1,0 +1,77 @@
+{
+  "kind": "collectionType",
+  "collectionName": "medias",
+  "info": {
+    "singularName": "media",
+    "pluralName": "medias",
+    "displayName": "media"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "uniqueId": {
+      "type": "string"
+    },
+    "bearing": {
+      "type": "text"
+    },
+    "zone": {
+      "type": "string"
+    },
+    "easting": {
+      "type": "string"
+    },
+    "northing": {
+      "type": "string"
+    },
+    "by": {
+      "type": "text"
+    },
+    "initials": {
+      "type": "text"
+    },
+    "featuredImage": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "private": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "title": {
+      "type": "string"
+    },
+    "photographedBy": {
+      "type": "string"
+    },
+    "actionType": {
+      "type": "string"
+    },
+    "fileName": {
+      "type": "string"
+    },
+    "longitude": {
+      "type": "float"
+    },
+    "latitude": {
+      "type": "float"
+    },
+    "depth": {
+      "type": "string"
+    },
+    "dimension": {
+      "type": "string"
+    },
+    "make": {
+      "type": "string"
+    },
+    "model": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "collectionName": "components_blocks_common_fields",
+  "info": {
+    "displayName": "commonFields",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "uniqueId": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "researchValue": {
+      "type": "string"
+    },
+    "tourismValue": {
+      "type": "string"
+    },
+    "stateOfConservation": {
+      "type": "string"
+    },
+    "recommendation": {
+      "type": "string"
+    },
+    "siteDescription": {
+      "type": "string"
+    },
+    "Risk": {
+      "type": "string"
+    },
+    "Period": {
+      "type": "string"
+    },
+    "Latitude": {
+      "type": "float"
+    },
+    "Longitude": {
+      "type": "float"
+    },
+    "Type": {
+      "type": "string"
+    },
+    "siteTypes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::site-type.site-type"
+    }
+  }
+}
