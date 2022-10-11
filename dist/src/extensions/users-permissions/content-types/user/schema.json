@@ -13,13 +13,6 @@
         "timestamps": true
     },
     "attributes": {
-        "username": {
-            "type": "string",
-            "minLength": 3,
-            "unique": true,
-            "configurable": false,
-            "required": false
-        },
         "email": {
             "type": "email",
             "minLength": 6,
@@ -48,13 +41,13 @@
         },
         "confirmed": {
             "type": "boolean",
-            "default": true,
-            "configurable": false
+            "default": false,
+            "configurable": true
         },
         "blocked": {
             "type": "boolean",
-            "default": false,
-            "configurable": false
+            "default": true,
+            "configurable": true
         },
         "role": {
             "type": "relation",
@@ -62,6 +55,12 @@
             "target": "plugin::users-permissions.role",
             "inversedBy": "users",
             "configurable": false
+        },
+        "username": {
+            "type": "string",
+            "minLength": 3,
+            "unique": true,
+            "required": false
         },
         "firstName": {
             "type": "string",
@@ -71,10 +70,9 @@
             "type": "string",
             "required": true
         },
-        "lastLogin": {
-            "type": "datetime",
-            "default": "2022-10-06T18:30:00.000Z",
-            "unique": false
+        "recoveryToken": {
+            "type": "text",
+            "default": "null"
         }
     }
 }

@@ -14,7 +14,7 @@
             "name": "Apache 2.0",
             "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
         },
-        "x-generation-date": "2022-10-07T09:03:38.391Z"
+        "x-generation-date": "2022-10-10T17:32:48.416Z"
     },
     "x-strapi-config": {
         "path": "/documentation",
@@ -15780,9 +15780,6 @@
                                                                         "attributes": {
                                                                             "type": "object",
                                                                             "properties": {
-                                                                                "username": {
-                                                                                    "type": "string"
-                                                                                },
                                                                                 "email": {
                                                                                     "type": "string",
                                                                                     "format": "email"
@@ -15819,15 +15816,17 @@
                                                                                         }
                                                                                     }
                                                                                 },
+                                                                                "username": {
+                                                                                    "type": "string"
+                                                                                },
                                                                                 "firstName": {
                                                                                     "type": "string"
                                                                                 },
                                                                                 "lastName": {
                                                                                     "type": "string"
                                                                                 },
-                                                                                "lastLogin": {
-                                                                                    "type": "string",
-                                                                                    "format": "date-time"
+                                                                                "recoveryToken": {
+                                                                                    "type": "string"
                                                                                 },
                                                                                 "createdAt": {
                                                                                     "type": "string",
@@ -16353,9 +16352,6 @@
                                                                         "attributes": {
                                                                             "type": "object",
                                                                             "properties": {
-                                                                                "username": {
-                                                                                    "type": "string"
-                                                                                },
                                                                                 "email": {
                                                                                     "type": "string",
                                                                                     "format": "email"
@@ -16392,15 +16388,17 @@
                                                                                         }
                                                                                     }
                                                                                 },
+                                                                                "username": {
+                                                                                    "type": "string"
+                                                                                },
                                                                                 "firstName": {
                                                                                     "type": "string"
                                                                                 },
                                                                                 "lastName": {
                                                                                     "type": "string"
                                                                                 },
-                                                                                "lastLogin": {
-                                                                                    "type": "string",
-                                                                                    "format": "date-time"
+                                                                                "recoveryToken": {
+                                                                                    "type": "string"
                                                                                 },
                                                                                 "createdAt": {
                                                                                     "type": "string",
@@ -16959,9 +16957,6 @@
                                                                         "attributes": {
                                                                             "type": "object",
                                                                             "properties": {
-                                                                                "username": {
-                                                                                    "type": "string"
-                                                                                },
                                                                                 "email": {
                                                                                     "type": "string",
                                                                                     "format": "email"
@@ -16998,15 +16993,17 @@
                                                                                         }
                                                                                     }
                                                                                 },
+                                                                                "username": {
+                                                                                    "type": "string"
+                                                                                },
                                                                                 "firstName": {
                                                                                     "type": "string"
                                                                                 },
                                                                                 "lastName": {
                                                                                     "type": "string"
                                                                                 },
-                                                                                "lastLogin": {
-                                                                                    "type": "string",
-                                                                                    "format": "date-time"
+                                                                                "recoveryToken": {
+                                                                                    "type": "string"
                                                                                 },
                                                                                 "createdAt": {
                                                                                     "type": "string",
@@ -17532,9 +17529,6 @@
                                                                         "attributes": {
                                                                             "type": "object",
                                                                             "properties": {
-                                                                                "username": {
-                                                                                    "type": "string"
-                                                                                },
                                                                                 "email": {
                                                                                     "type": "string",
                                                                                     "format": "email"
@@ -17571,15 +17565,17 @@
                                                                                         }
                                                                                     }
                                                                                 },
+                                                                                "username": {
+                                                                                    "type": "string"
+                                                                                },
                                                                                 "firstName": {
                                                                                     "type": "string"
                                                                                 },
                                                                                 "lastName": {
                                                                                     "type": "string"
                                                                                 },
-                                                                                "lastLogin": {
-                                                                                    "type": "string",
-                                                                                    "format": "date-time"
+                                                                                "recoveryToken": {
+                                                                                    "type": "string"
                                                                                 },
                                                                                 "createdAt": {
                                                                                     "type": "string",
@@ -17877,9 +17873,6 @@
                                                                                                     "attributes": {
                                                                                                         "type": "object",
                                                                                                         "properties": {
-                                                                                                            "username": {
-                                                                                                                "type": "string"
-                                                                                                            },
                                                                                                             "email": {
                                                                                                                 "type": "string",
                                                                                                                 "format": "email"
@@ -17916,15 +17909,17 @@
                                                                                                                     }
                                                                                                                 }
                                                                                                             },
+                                                                                                            "username": {
+                                                                                                                "type": "string"
+                                                                                                            },
                                                                                                             "firstName": {
                                                                                                                 "type": "string"
                                                                                                             },
                                                                                                             "lastName": {
                                                                                                                 "type": "string"
                                                                                                             },
-                                                                                                            "lastLogin": {
-                                                                                                                "type": "string",
-                                                                                                                "format": "date-time"
+                                                                                                            "recoveryToken": {
+                                                                                                                "type": "string"
                                                                                                             },
                                                                                                             "createdAt": {
                                                                                                                 "type": "string",
@@ -18479,9 +18474,6 @@
                                                                                                     "attributes": {
                                                                                                         "type": "object",
                                                                                                         "properties": {
-                                                                                                            "username": {
-                                                                                                                "type": "string"
-                                                                                                            },
                                                                                                             "email": {
                                                                                                                 "type": "string",
                                                                                                                 "format": "email"
@@ -18518,15 +18510,17 @@
                                                                                                                     }
                                                                                                                 }
                                                                                                             },
+                                                                                                            "username": {
+                                                                                                                "type": "string"
+                                                                                                            },
                                                                                                             "firstName": {
                                                                                                                 "type": "string"
                                                                                                             },
                                                                                                             "lastName": {
                                                                                                                 "type": "string"
                                                                                                             },
-                                                                                                            "lastLogin": {
-                                                                                                                "type": "string",
-                                                                                                                "format": "date-time"
+                                                                                                            "recoveryToken": {
+                                                                                                                "type": "string"
                                                                                                             },
                                                                                                             "createdAt": {
                                                                                                                 "type": "string",
@@ -19114,9 +19108,6 @@
                                                                                                     "attributes": {
                                                                                                         "type": "object",
                                                                                                         "properties": {
-                                                                                                            "username": {
-                                                                                                                "type": "string"
-                                                                                                            },
                                                                                                             "email": {
                                                                                                                 "type": "string",
                                                                                                                 "format": "email"
@@ -19153,15 +19144,17 @@
                                                                                                                     }
                                                                                                                 }
                                                                                                             },
+                                                                                                            "username": {
+                                                                                                                "type": "string"
+                                                                                                            },
                                                                                                             "firstName": {
                                                                                                                 "type": "string"
                                                                                                             },
                                                                                                             "lastName": {
                                                                                                                 "type": "string"
                                                                                                             },
-                                                                                                            "lastLogin": {
-                                                                                                                "type": "string",
-                                                                                                                "format": "date-time"
+                                                                                                            "recoveryToken": {
+                                                                                                                "type": "string"
                                                                                                             },
                                                                                                             "createdAt": {
                                                                                                                 "type": "string",
@@ -19716,9 +19709,6 @@
                                                                                                     "attributes": {
                                                                                                         "type": "object",
                                                                                                         "properties": {
-                                                                                                            "username": {
-                                                                                                                "type": "string"
-                                                                                                            },
                                                                                                             "email": {
                                                                                                                 "type": "string",
                                                                                                                 "format": "email"
@@ -19755,15 +19745,17 @@
                                                                                                                     }
                                                                                                                 }
                                                                                                             },
+                                                                                                            "username": {
+                                                                                                                "type": "string"
+                                                                                                            },
                                                                                                             "firstName": {
                                                                                                                 "type": "string"
                                                                                                             },
                                                                                                             "lastName": {
                                                                                                                 "type": "string"
                                                                                                             },
-                                                                                                            "lastLogin": {
-                                                                                                                "type": "string",
-                                                                                                                "format": "date-time"
+                                                                                                            "recoveryToken": {
+                                                                                                                "type": "string"
                                                                                                             },
                                                                                                             "createdAt": {
                                                                                                                 "type": "string",
@@ -20252,9 +20244,6 @@
                         ],
                         "type": "object",
                         "properties": {
-                            "username": {
-                                "type": "string"
-                            },
                             "email": {
                                 "type": "string",
                                 "format": "email"
@@ -20290,15 +20279,17 @@
                                 ],
                                 "example": "string or id"
                             },
+                            "username": {
+                                "type": "string"
+                            },
                             "firstName": {
                                 "type": "string"
                             },
                             "lastName": {
                                 "type": "string"
                             },
-                            "lastLogin": {
-                                "type": "string",
-                                "format": "date-time"
+                            "recoveryToken": {
+                                "type": "string"
                             }
                         }
                     }
@@ -20313,9 +20304,6 @@
                     "attributes": {
                         "type": "object",
                         "properties": {
-                            "username": {
-                                "type": "string"
-                            },
                             "email": {
                                 "type": "string",
                                 "format": "email"
@@ -20704,9 +20692,6 @@
                                                                         "attributes": {
                                                                             "type": "object",
                                                                             "properties": {
-                                                                                "username": {
-                                                                                    "type": "string"
-                                                                                },
                                                                                 "email": {
                                                                                     "type": "string",
                                                                                     "format": "email"
@@ -20743,15 +20728,17 @@
                                                                                         }
                                                                                     }
                                                                                 },
+                                                                                "username": {
+                                                                                    "type": "string"
+                                                                                },
                                                                                 "firstName": {
                                                                                     "type": "string"
                                                                                 },
                                                                                 "lastName": {
                                                                                     "type": "string"
                                                                                 },
-                                                                                "lastLogin": {
-                                                                                    "type": "string",
-                                                                                    "format": "date-time"
+                                                                                "recoveryToken": {
+                                                                                    "type": "string"
                                                                                 },
                                                                                 "createdAt": {
                                                                                     "type": "string",
@@ -20850,15 +20837,17 @@
                                     }
                                 }
                             },
+                            "username": {
+                                "type": "string"
+                            },
                             "firstName": {
                                 "type": "string"
                             },
                             "lastName": {
                                 "type": "string"
                             },
-                            "lastLogin": {
-                                "type": "string",
-                                "format": "date-time"
+                            "recoveryToken": {
+                                "type": "string"
                             },
                             "createdAt": {
                                 "type": "string",
@@ -20915,9 +20904,6 @@
                     "attributes": {
                         "type": "object",
                         "properties": {
-                            "username": {
-                                "type": "string"
-                            },
                             "email": {
                                 "type": "string",
                                 "format": "email"
@@ -21306,9 +21292,6 @@
                                                                         "attributes": {
                                                                             "type": "object",
                                                                             "properties": {
-                                                                                "username": {
-                                                                                    "type": "string"
-                                                                                },
                                                                                 "email": {
                                                                                     "type": "string",
                                                                                     "format": "email"
@@ -21345,15 +21328,17 @@
                                                                                         }
                                                                                     }
                                                                                 },
+                                                                                "username": {
+                                                                                    "type": "string"
+                                                                                },
                                                                                 "firstName": {
                                                                                     "type": "string"
                                                                                 },
                                                                                 "lastName": {
                                                                                     "type": "string"
                                                                                 },
-                                                                                "lastLogin": {
-                                                                                    "type": "string",
-                                                                                    "format": "date-time"
+                                                                                "recoveryToken": {
+                                                                                    "type": "string"
                                                                                 },
                                                                                 "createdAt": {
                                                                                     "type": "string",
@@ -21452,15 +21437,17 @@
                                     }
                                 }
                             },
+                            "username": {
+                                "type": "string"
+                            },
                             "firstName": {
                                 "type": "string"
                             },
                             "lastName": {
                                 "type": "string"
                             },
-                            "lastLogin": {
-                                "type": "string",
-                                "format": "date-time"
+                            "recoveryToken": {
+                                "type": "string"
                             },
                             "createdAt": {
                                 "type": "string",
@@ -21550,9 +21537,6 @@
                     "attributes": {
                         "type": "object",
                         "properties": {
-                            "username": {
-                                "type": "string"
-                            },
                             "email": {
                                 "type": "string",
                                 "format": "email"
@@ -21941,9 +21925,6 @@
                                                                         "attributes": {
                                                                             "type": "object",
                                                                             "properties": {
-                                                                                "username": {
-                                                                                    "type": "string"
-                                                                                },
                                                                                 "email": {
                                                                                     "type": "string",
                                                                                     "format": "email"
@@ -21980,15 +21961,17 @@
                                                                                         }
                                                                                     }
                                                                                 },
+                                                                                "username": {
+                                                                                    "type": "string"
+                                                                                },
                                                                                 "firstName": {
                                                                                     "type": "string"
                                                                                 },
                                                                                 "lastName": {
                                                                                     "type": "string"
                                                                                 },
-                                                                                "lastLogin": {
-                                                                                    "type": "string",
-                                                                                    "format": "date-time"
+                                                                                "recoveryToken": {
+                                                                                    "type": "string"
                                                                                 },
                                                                                 "createdAt": {
                                                                                     "type": "string",
@@ -22087,15 +22070,17 @@
                                     }
                                 }
                             },
+                            "username": {
+                                "type": "string"
+                            },
                             "firstName": {
                                 "type": "string"
                             },
                             "lastName": {
                                 "type": "string"
                             },
-                            "lastLogin": {
-                                "type": "string",
-                                "format": "date-time"
+                            "recoveryToken": {
+                                "type": "string"
                             },
                             "createdAt": {
                                 "type": "string",
@@ -22152,9 +22137,6 @@
                     "attributes": {
                         "type": "object",
                         "properties": {
-                            "username": {
-                                "type": "string"
-                            },
                             "email": {
                                 "type": "string",
                                 "format": "email"
@@ -22543,9 +22525,6 @@
                                                                         "attributes": {
                                                                             "type": "object",
                                                                             "properties": {
-                                                                                "username": {
-                                                                                    "type": "string"
-                                                                                },
                                                                                 "email": {
                                                                                     "type": "string",
                                                                                     "format": "email"
@@ -22582,15 +22561,17 @@
                                                                                         }
                                                                                     }
                                                                                 },
+                                                                                "username": {
+                                                                                    "type": "string"
+                                                                                },
                                                                                 "firstName": {
                                                                                     "type": "string"
                                                                                 },
                                                                                 "lastName": {
                                                                                     "type": "string"
                                                                                 },
-                                                                                "lastLogin": {
-                                                                                    "type": "string",
-                                                                                    "format": "date-time"
+                                                                                "recoveryToken": {
+                                                                                    "type": "string"
                                                                                 },
                                                                                 "createdAt": {
                                                                                     "type": "string",
@@ -22689,15 +22670,17 @@
                                     }
                                 }
                             },
+                            "username": {
+                                "type": "string"
+                            },
                             "firstName": {
                                 "type": "string"
                             },
                             "lastName": {
                                 "type": "string"
                             },
-                            "lastLogin": {
-                                "type": "string",
-                                "format": "date-time"
+                            "recoveryToken": {
+                                "type": "string"
                             },
                             "createdAt": {
                                 "type": "string",
