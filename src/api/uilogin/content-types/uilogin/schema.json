@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "uilogins",
+  "info": {
+    "singularName": "uilogin",
+    "pluralName": "uilogins",
+    "displayName": "uilogin",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "input": {
+      "type": "component",
+      "repeatable": true,
+      "component": "shared.input-locale"
+    },
+    "button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.button-locale"
+    }
+  }
+}
