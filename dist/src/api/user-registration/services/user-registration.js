@@ -8,7 +8,8 @@ module.exports = {
                 data: {
                     password,
                     blocked: false,
-                    confirmed: true
+                    confirmed: true,
+                    recoveryToken: ""
                 }
             });
             return entry;
