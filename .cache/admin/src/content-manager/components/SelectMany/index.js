@@ -17,7 +17,6 @@ function SelectMany({
   name,
   isDisabled,
   isLoading,
-  loadingMessage,
   onInputChange,
   onMenuClose,
   onMenuOpen,
@@ -47,7 +46,7 @@ function SelectMany({
         id={name}
         filterOption={(candidate, input) => {
           if (!isEmpty(value)) {
-            const isSelected = value.findIndex((item) => item.id === candidate.value.id) !== -1;
+            const isSelected = value.findIndex(item => item.id === candidate.value.id) !== -1;
 
             if (isSelected) {
               return false;
@@ -62,7 +61,6 @@ function SelectMany({
         }}
         mainField={mainField}
         isLoading={isLoading}
-        loadingMessage={loadingMessage}
         isMulti
         isSearchable
         options={options}
@@ -121,7 +119,6 @@ SelectMany.propTypes = {
   displayNavigationLink: PropTypes.bool.isRequired,
   isDisabled: PropTypes.bool.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  loadingMessage: PropTypes.func.isRequired,
   mainField: PropTypes.shape({
     name: PropTypes.string.isRequired,
     schema: PropTypes.shape({

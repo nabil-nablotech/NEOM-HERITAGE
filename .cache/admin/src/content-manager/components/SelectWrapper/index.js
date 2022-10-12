@@ -64,8 +64,13 @@ function SelectWrapper({
   const [{ query }] = useQueryParams();
   // Disable the input in case of a polymorphic relation
   const isMorph = useMemo(() => relationType.toLowerCase().includes('morph'), [relationType]);
-  const { addRelation, modifiedData, moveRelation, onChange, onRemoveRelation } =
-    useCMEditViewDataManager();
+  const {
+    addRelation,
+    modifiedData,
+    moveRelation,
+    onChange,
+    onRemoveRelation,
+  } = useCMEditViewDataManager();
   const { pathname } = useLocation();
 
   const value = get(modifiedData, name, null);
@@ -75,11 +80,11 @@ function SelectWrapper({
   const [isOpen, setIsOpen] = useState(false);
 
   const filteredOptions = useMemo(() => {
-    return options.filter((option) => {
+    return options.filter(option => {
       if (!isEmpty(value)) {
         // SelectMany
         if (Array.isArray(value)) {
-          return findIndex(value, (o) => o.id === option.value.id) === -1;
+          return findIndex(value, o => o.id === option.value.id) === -1;
         }
 
         // SelectOne
@@ -90,8 +95,13 @@ function SelectWrapper({
     });
   }, [options, value]);
 
-  const { endPoint, containsKey, defaultParams, shouldDisplayRelationLink, paramsToKeep } =
-    queryInfos;
+  const {
+    endPoint,
+    containsKey,
+    defaultParams,
+    shouldDisplayRelationLink,
+    paramsToKeep,
+  } = queryInfos;
 
   const isSingle = ['oneWay', 'oneToOne', 'manyToOne', 'oneToManyMorph', 'oneToOneMorph'].includes(
     relationType
@@ -106,11 +116,11 @@ function SelectWrapper({
       return [value.id];
     }
 
-    return value.map((val) => val.id);
+    return value.map(val => val.id);
   }, [isSingle, value]);
 
   const getData = useCallback(
-    async (source) => {
+    async source => {
       // Currently polymorphic relations are not handled
       if (isMorph) {
         setIsLoading(false);
@@ -139,19 +149,19 @@ function SelectWrapper({
           { params, cancelToken: source.token }
         );
 
-        const formattedData = data.map((obj) => {
+        const formattedData = data.map(obj => {
           return { value: obj, label: obj[mainField.name] };
         });
 
-        setOptions((prevState) =>
+        setOptions(prevState =>
           prevState.concat(formattedData).filter((obj, index) => {
-            const objIndex = prevState.findIndex((el) => el.value.id === obj.value.id);
+            const objIndex = prevState.findIndex(el => el.value.id === obj.value.id);
 
             if (objIndex === -1) {
               return true;
             }
 
-            return prevState.findIndex((el) => el.value.id === obj.value.id) === index;
+            return prevState.findIndex(el => el.value.id === obj.value.id) === index;
           })
         );
         setIsLoading(false);
@@ -187,7 +197,7 @@ function SelectWrapper({
 
   const handleInputChange = (inputValue, { action }) => {
     if (action === 'input-change') {
-      setState((prevState) => {
+      setState(prevState => {
         if (prevState.contains === inputValue) {
           return prevState;
         }
@@ -200,7 +210,7 @@ function SelectWrapper({
   };
 
   const handleMenuScrollToBottom = () => {
-    setState((prevState) => ({
+    setState(prevState => ({
       ...prevState,
       start: prevState.start + 20,
     }));
@@ -211,11 +221,11 @@ function SelectWrapper({
     setIsOpen(false);
   };
 
-  const handleChange = (value) => {
+  const handleChange = value => {
     onChange({ target: { name, value: value ? value.value : value } });
   };
 
-  const handleAddRelation = (value) => {
+  const handleAddRelation = value => {
     if (!isEmpty(value)) {
       addRelation({ target: { name, value } });
     }
@@ -282,12 +292,6 @@ function SelectWrapper({
         isDisabled={isDisabled}
         isLoading={isLoading}
         isClearable
-        loadingMessage={() =>
-          formatMessage({
-            id: getTrad('DynamicTable.relation-loading'),
-            defaultMessage: 'Relations are loading',
-          })
-        }
         mainField={mainField}
         move={moveRelation}
         name={name}

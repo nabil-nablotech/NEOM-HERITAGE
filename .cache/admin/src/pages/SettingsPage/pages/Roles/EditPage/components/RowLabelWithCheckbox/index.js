@@ -37,14 +37,13 @@ const RowLabelWithCheckbox = ({
           )}
           disabled={isFormDisabled}
           // Keep same signature as packages/core/admin/admin/src/components/Roles/Permissions/index.js l.91
-          onValueChange={(value) =>
+          onValueChange={value =>
             onChange({
               target: {
                 name: checkboxName,
                 value,
               },
-            })
-          }
+            })}
           indeterminate={someChecked}
           value={value}
         />
@@ -77,7 +76,7 @@ const RowLabelWithCheckbox = ({
 RowLabelWithCheckbox.defaultProps = {
   children: null,
   checkboxName: '',
-  onChange() {},
+  onChange: () => {},
   value: false,
   someChecked: false,
   isCollapsable: false,
