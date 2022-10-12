@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_blocks_locales",
+  "info": {
+    "displayName": "locale"
+  },
+  "options": {},
+  "attributes": {
+    "languages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::language.language"
+    },
+    "value": {
+      "type": "text"
+    }
+  }
+}
