@@ -81,8 +81,14 @@ const DraggedItem = ({
       const dragPath = item.originalPath;
       const hoverPath = componentFieldName;
       const fullPathToComponentArray = dragPath.split('.');
-      const dragIndexString = fullPathToComponentArray.slice().splice(-1).join('');
-      const hoverIndexString = hoverPath.split('.').splice(-1).join('');
+      const dragIndexString = fullPathToComponentArray
+        .slice()
+        .splice(-1)
+        .join('');
+      const hoverIndexString = hoverPath
+        .split('.')
+        .splice(-1)
+        .join('');
       const pathToComponentArray = fullPathToComponentArray.slice(
         0,
         fullPathToComponentArray.length - 1
@@ -127,7 +133,7 @@ const DraggedItem = ({
   });
   const [{ isDragging }, drag, preview] = useDrag({
     type: ItemTypes.COMPONENT,
-    item() {
+    item: () => {
       // Close all collapses
       toggleCollapses(-1);
 
@@ -136,12 +142,12 @@ const DraggedItem = ({
         originalPath: componentFieldName,
       };
     },
-    end() {
+    end: () => {
       // Update the errors
       triggerFormValidation();
       setIsDraggingSibling(false);
     },
-    collect: (monitor) => ({
+    collect: monitor => ({
       isDragging: monitor.isDragging(),
     }),
   });
@@ -161,7 +167,7 @@ const DraggedItem = ({
   // anymore, this hack forces a rerender in order to apply the dragRef
   useEffect(() => {
     if (!isDraggingSibling) {
-      forceRerenderAfterDnd((prev) => !prev);
+      forceRerenderAfterDnd(prev => !prev);
     }
   }, [isDraggingSibling]);
 
@@ -220,7 +226,7 @@ const DraggedItem = ({
                       role="button"
                       tabIndex={-1}
                       ref={refs.dragRef}
-                      onClick={(e) => e.stopPropagation()}
+                      onClick={e => e.stopPropagation()}
                     >
                       <Drag />
                     </DragButton>
@@ -288,8 +294,8 @@ const DraggedItem = ({
 DraggedItem.defaultProps = {
   isDraggingSibling: false,
   isOpen: false,
-  setIsDraggingSibling() {},
-  toggleCollapses() {},
+  setIsDraggingSibling: () => {},
+  toggleCollapses: () => {},
 };
 
 DraggedItem.propTypes = {

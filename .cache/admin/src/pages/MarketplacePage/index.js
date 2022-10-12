@@ -72,11 +72,15 @@ const MarketPlacePage = () => {
     );
   };
 
-  const { status: marketplacePluginsStatus, data: marketplacePluginsResponse } =
-    useFetchMarketplacePlugins(notifyMarketplaceLoad);
+  const {
+    status: marketplacePluginsStatus,
+    data: marketplacePluginsResponse,
+  } = useFetchMarketplacePlugins(notifyMarketplaceLoad);
 
-  const { status: marketplaceProvidersStatus, data: marketplaceProvidersResponse } =
-    useFetchMarketplaceProviders(notifyMarketplaceLoad);
+  const {
+    status: marketplaceProvidersStatus,
+    data: marketplaceProvidersResponse,
+  } = useFetchMarketplaceProviders(notifyMarketplaceLoad);
 
   const isLoading = [marketplacePluginsStatus, marketplaceProvidersStatus].includes('loading');
 
@@ -168,7 +172,7 @@ const MarketPlacePage = () => {
     { target: searchQuery }
   );
 
-  const handleTabChange = (selected) => {
+  const handleTabChange = selected => {
     const packageType = selected === 0 ? 'plugin' : 'provider';
     setNpmPackageType(packageType);
   };
@@ -192,7 +196,7 @@ const MarketPlacePage = () => {
               name="searchbar"
               onClear={() => setSearchQuery('')}
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={e => setSearchQuery(e.target.value)}
               clearLabel={formatMessage({
                 id: 'admin.pages.MarketPlacePage.search.clear',
                 defaultMessage: 'Clear the search',
