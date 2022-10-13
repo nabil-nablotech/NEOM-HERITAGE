@@ -4,7 +4,8 @@
   "info": {
     "singularName": "site-type",
     "pluralName": "site-types",
-    "displayName": "siteType"
+    "displayName": "siteType",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -14,6 +15,12 @@
     "name": {
       "type": "string",
       "required": true
+    },
+    "translations": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::translation.translation",
+      "mappedBy": "site_type"
     }
   }
 }

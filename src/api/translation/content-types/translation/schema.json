@@ -20,6 +20,18 @@
       "type": "component",
       "repeatable": true,
       "component": "blocks.locale"
+    },
+    "site_type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::site-type.site-type",
+      "inversedBy": "translations"
+    },
+    "field_option": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::field-option.field-option",
+      "inversedBy": "translation"
     }
   }
 }

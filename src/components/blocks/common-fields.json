@@ -6,11 +6,6 @@
   },
   "options": {},
   "attributes": {
-    "uniqueId": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
     "researchValue": {
       "type": "string"
     },
@@ -41,10 +36,10 @@
     "Type": {
       "type": "string"
     },
-    "siteTypes": {
+    "field_code": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::site-type.site-type"
+      "relation": "oneToOne",
+      "target": "api::field-code.field-code"
     }
   }
 }

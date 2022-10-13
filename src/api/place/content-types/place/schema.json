@@ -4,7 +4,8 @@
   "info": {
     "singularName": "place",
     "pluralName": "places",
-    "displayName": "place"
+    "displayName": "place",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -27,6 +28,9 @@
       "type": "component",
       "repeatable": false,
       "component": "blocks.common-fields"
+    },
+    "uniqueId": {
+      "type": "string"
     }
   }
 }
