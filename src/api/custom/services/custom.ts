@@ -1,5 +1,5 @@
 /**
- * search service.
+ * custom service.
  */
 
 export default () => ({});

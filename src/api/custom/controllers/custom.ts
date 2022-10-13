@@ -1,13 +1,12 @@
 /**
- * A set of functions called "actions" for `user-registration`
+ * A set of functions called "actions" for `custom`
  */
 
 export default {
   changePassword: async (ctx,next) => {
     console.log(ctx, ctx.params,ctx.query);
     try {
-      // let data= await strapi.service("api::user-registration.user-registration").changePassword(ctx.params.id,ctx.query.password);
-      let data = await strapi.entityService.update('plugin::users-permissions.user',ctx.params.id,{
+      let data = await strapi.entityService.update('plugin::custom.user',ctx.params.id,{
         data: {
           password: ctx.query.password,
           blocked: false,
@@ -19,6 +18,18 @@ export default {
     } catch (err) {
       console.log(err)
       ctx.badRequest("controller error", { moreDetails: err });
+    }
+  },
+  searchCount: async (ctx, next) => {
+    try {
+      ctx.body = {
+        places: 2010,
+        events: 1500,
+        library: 2455,
+        media: 3000
+      };
+    } catch (err) {
+      ctx.body = err;
     }
   }
 };
