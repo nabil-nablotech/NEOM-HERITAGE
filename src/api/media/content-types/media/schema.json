@@ -4,7 +4,8 @@
   "info": {
     "singularName": "media",
     "pluralName": "medias",
-    "displayName": "media"
+    "displayName": "media",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -33,12 +34,12 @@
       "type": "text"
     },
     "featuredImage": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "private": true
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
     },
     "description": {
       "type": "text"
@@ -71,6 +72,9 @@
       "type": "string"
     },
     "model": {
+      "type": "string"
+    },
+    "mediaType": {
       "type": "string"
     }
   }
