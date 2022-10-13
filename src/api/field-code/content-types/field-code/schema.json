@@ -15,11 +15,11 @@
       "type": "string",
       "required": true
     },
-    "field_option": {
+    "field_options": {
       "type": "relation",
-      "relation": "oneToOne",
+      "relation": "manyToMany",
       "target": "api::field-option.field-option",
-      "inversedBy": "field_code"
+      "mappedBy": "field_codes"
     }
   }
 }

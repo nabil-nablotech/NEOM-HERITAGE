@@ -42,14 +42,6 @@
     "type": {
       "type": "string"
     },
-    "asset_config": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::asset-config.asset-config"
-    },
-    "recommendations": {
-      "type": "text"
-    },
     "deleted": {
       "type": "boolean",
       "default": false
@@ -58,6 +50,53 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "keywords": {
+      "type": "string"
+    },
+    "placeUIPath": {
+      "type": "string"
+    },
+    "assetConfig": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::asset-config.asset-config"
+    },
+    "siteType": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "siteTypePlaces"
+    },
+    "recommendations": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "recommendationsPlace"
+    },
+    "researchValue": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "researchValuePlaces"
+    },
+    "tourismValue": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "tourismValuePlaces"
+    },
+    "stateOfConservation": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "stateOfConservationPlaces"
+    },
+    "risk": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "riskPlaces"
     }
   }
 }
