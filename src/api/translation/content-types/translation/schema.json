@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "translations",
+  "info": {
+    "singularName": "translation",
+    "pluralName": "translations",
+    "displayName": "translation"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "code": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "locale": {
+      "type": "component",
+      "repeatable": true,
+      "component": "blocks.locale"
+    },
+    "site_type": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::site-type.site-type",
+      "inversedBy": "translations"
+    },
+    "field_option": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::field-option.field-option",
+      "inversedBy": "translation"
+    }
+  }
+}

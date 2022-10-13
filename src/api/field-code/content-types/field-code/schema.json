@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "field_codes",
+  "info": {
+    "singularName": "field-code",
+    "pluralName": "field-codes",
+    "displayName": "fieldCode"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "field_option": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::field-option.field-option",
+      "inversedBy": "field_code"
+    }
+  }
+}

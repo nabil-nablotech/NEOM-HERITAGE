@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "asset_configs",
+  "info": {
+    "singularName": "asset-config",
+    "pluralName": "asset-configs",
+    "displayName": "assetConfig"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "assetConfigId": {
+      "type": "integer"
+    },
+    "categoryCode": {
+      "type": "string"
+    },
+    "categoryDescId": {
+      "type": "string"
+    },
+    "typeCode": {
+      "type": "string"
+    },
+    "typeDescId": {
+      "type": "string"
+    }
+  }
+}

@@ -6,7 +6,7 @@ export default {
   searchCount: async (ctx, next) => {
     try {
       ctx.body = {
-        places: 2000,
+        places: 2010,
         events: 1500,
         library: 2455,
         media: 3000

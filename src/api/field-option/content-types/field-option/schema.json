@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "field_options",
+  "info": {
+    "singularName": "field-option",
+    "pluralName": "field-options",
+    "displayName": "fieldOption"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "field_code": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::field-code.field-code",
+      "inversedBy": "field_option"
+    },
+    "translation": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::translation.translation",
+      "inversedBy": "field_option"
+    }
+  }
+}
