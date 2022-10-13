@@ -73,6 +73,30 @@
       "relation": "manyToMany",
       "target": "api::field-option.field-option",
       "inversedBy": "recommendationsPlace"
+    },
+    "researchValue": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "researchValuePlaces"
+    },
+    "tourismValue": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "tourismValuePlaces"
+    },
+    "stateOfConservation": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "stateOfConservationPlaces"
+    },
+    "risk": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "riskPlaces"
     }
   }
 }

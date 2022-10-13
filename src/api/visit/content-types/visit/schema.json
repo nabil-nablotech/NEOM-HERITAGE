@@ -33,11 +33,6 @@
     "uniqueId": {
       "type": "string"
     },
-    "tourism_value": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::tourism-value.tourism-value"
-    },
     "recommendation": {
       "type": "text"
     },

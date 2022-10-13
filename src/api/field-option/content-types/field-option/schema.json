@@ -38,6 +38,30 @@
       "relation": "manyToMany",
       "target": "api::place.place",
       "mappedBy": "siteType"
+    },
+    "researchValuePlaces": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::place.place",
+      "mappedBy": "researchValue"
+    },
+    "tourismValuePlaces": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::place.place",
+      "mappedBy": "tourismValue"
+    },
+    "stateOfConservationPlaces": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::place.place",
+      "mappedBy": "stateOfConservation"
+    },
+    "riskPlaces": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::place.place",
+      "inversedBy": "risk"
     }
   }
 }
