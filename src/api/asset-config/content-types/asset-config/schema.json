@@ -25,6 +25,12 @@
     },
     "typeDescId": {
       "type": "string"
+    },
+    "researchValueVisits": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::visit.visit",
+      "mappedBy": "researchValue"
     }
   }
 }
