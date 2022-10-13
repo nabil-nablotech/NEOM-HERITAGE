@@ -1,0 +1,18 @@
+{
+  "kind": "collectionType",
+  "collectionName": "risks",
+  "info": {
+    "singularName": "risk",
+    "pluralName": "risks",
+    "displayName": "Risk"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    }
+  }
+}

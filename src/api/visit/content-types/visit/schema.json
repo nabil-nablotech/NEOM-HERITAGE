@@ -1,0 +1,95 @@
+{
+  "kind": "collectionType",
+  "collectionName": "visits",
+  "info": {
+    "singularName": "visit",
+    "pluralName": "visits",
+    "displayName": "visit",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "visitDate": {
+      "type": "date"
+    },
+    "recordingTeam": {
+      "type": "string"
+    },
+    "visitNumber": {
+      "type": "integer"
+    },
+    "fieldNarrative": {
+      "type": "string"
+    },
+    "assessmentType": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "string"
+    },
+    "uniqueId": {
+      "type": "string"
+    },
+    "site_types": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::site-type.site-type",
+      "mappedBy": "visit"
+    },
+    "research_value": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::research-value.research-value"
+    },
+    "tourism_value": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tourism-value.tourism-value"
+    },
+    "stateof_conservation": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::state-of-conservation.state-of-conservation"
+    },
+    "recommendation": {
+      "type": "text"
+    },
+    "siteDescription": {
+      "type": "text"
+    },
+    "risk": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::risk.risk"
+    },
+    "period": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "float"
+    },
+    "longitude": {
+      "type": "float"
+    },
+    "asset_config": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::asset-config.asset-config"
+    },
+    "type": {
+      "type": "string"
+    },
+    "deleted": {
+      "type": "boolean",
+      "default": false
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

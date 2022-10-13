@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_shared_button_locales",
+  "info": {
+    "displayName": "buttonLocale"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::translation.translation"
+    },
+    "href": {
+      "type": "string"
+    }
+  }
+}

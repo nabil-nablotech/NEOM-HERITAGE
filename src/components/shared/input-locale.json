@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_shared_input_locales",
+  "info": {
+    "displayName": "inputLocale"
+  },
+  "options": {},
+  "attributes": {
+    "placeholder": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::translation.translation"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}
