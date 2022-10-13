@@ -32,6 +32,12 @@
     },
     "name": {
       "type": "string"
+    },
+    "recommendationsPlace": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::place.place",
+      "inversedBy": "recommendations"
     }
   }
 }

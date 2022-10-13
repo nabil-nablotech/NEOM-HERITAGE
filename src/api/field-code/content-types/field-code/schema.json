@@ -23,26 +23,25 @@
     },
     "researchValuePlace": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToMany",
       "target": "api::place.place",
       "mappedBy": "researchValue"
     },
-
     "tourismValuePlaces": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToMany",
       "target": "api::place.place",
       "mappedBy": "tourismValue"
     },
     "stateOfConservationPlaces": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToMany",
       "target": "api::place.place",
       "mappedBy": "stateOfConservation"
     },
     "riskPlaces": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToMany",
       "target": "api::place.place",
       "mappedBy": "risk"
     }

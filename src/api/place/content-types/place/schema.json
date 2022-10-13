@@ -42,9 +42,6 @@
     "type": {
       "type": "string"
     },
-    "recommendations": {
-      "type": "text"
-    },
     "deleted": {
       "type": "boolean",
       "default": false
@@ -94,6 +91,12 @@
       "relation": "manyToOne",
       "target": "api::field-code.field-code",
       "inversedBy": "riskPlaces"
+    },
+    "recommendations": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "recommendationsPlace"
     }
   }
 }

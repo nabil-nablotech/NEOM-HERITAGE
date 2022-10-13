@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2022-10-13T08:01:14.523Z"
+    "x-generation-date": "2022-10-13T14:42:07.328Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -4397,9 +4397,6 @@
                                                         "type": {
                                                           "type": "string"
                                                         },
-                                                        "recommendations": {
-                                                          "type": "string"
-                                                        },
                                                         "deleted": {
                                                           "type": "boolean"
                                                         },
@@ -5086,6 +5083,26 @@
                                                             }
                                                           }
                                                         },
+                                                        "recommendations": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "data": {
+                                                              "type": "array",
+                                                              "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "id": {
+                                                                    "type": "number"
+                                                                  },
+                                                                  "attributes": {
+                                                                    "type": "object",
+                                                                    "properties": {}
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
                                                         "createdAt": {
                                                           "type": "string",
                                                           "format": "date-time"
@@ -5430,6 +5447,26 @@
                             },
                             "name": {
                               "type": "string"
+                            },
+                            "recommendationsPlace": {
+                              "type": "object",
+                              "properties": {
+                                "data": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "attributes": {
+                                        "type": "object",
+                                        "properties": {}
+                                      }
+                                    }
+                                  }
+                                }
+                              }
                             },
                             "createdAt": {
                               "type": "string",
@@ -5715,9 +5752,6 @@
                                                         "type": {
                                                           "type": "string"
                                                         },
-                                                        "recommendations": {
-                                                          "type": "string"
-                                                        },
                                                         "deleted": {
                                                           "type": "boolean"
                                                         },
@@ -6404,6 +6438,26 @@
                                                             }
                                                           }
                                                         },
+                                                        "recommendations": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "data": {
+                                                              "type": "array",
+                                                              "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "id": {
+                                                                    "type": "number"
+                                                                  },
+                                                                  "attributes": {
+                                                                    "type": "object",
+                                                                    "properties": {}
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
                                                         "createdAt": {
                                                           "type": "string",
                                                           "format": "date-time"
@@ -6748,6 +6802,26 @@
                             },
                             "name": {
                               "type": "string"
+                            },
+                            "recommendationsPlace": {
+                              "type": "object",
+                              "properties": {
+                                "data": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "attributes": {
+                                        "type": "object",
+                                        "properties": {}
+                                      }
+                                    }
+                                  }
+                                }
+                              }
                             },
                             "createdAt": {
                               "type": "string",
@@ -7066,9 +7140,6 @@
                                                         "type": {
                                                           "type": "string"
                                                         },
-                                                        "recommendations": {
-                                                          "type": "string"
-                                                        },
                                                         "deleted": {
                                                           "type": "boolean"
                                                         },
@@ -7755,6 +7826,26 @@
                                                             }
                                                           }
                                                         },
+                                                        "recommendations": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "data": {
+                                                              "type": "array",
+                                                              "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "id": {
+                                                                    "type": "number"
+                                                                  },
+                                                                  "attributes": {
+                                                                    "type": "object",
+                                                                    "properties": {}
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
                                                         "createdAt": {
                                                           "type": "string",
                                                           "format": "date-time"
@@ -8099,6 +8190,26 @@
                             },
                             "name": {
                               "type": "string"
+                            },
+                            "recommendationsPlace": {
+                              "type": "object",
+                              "properties": {
+                                "data": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "attributes": {
+                                        "type": "object",
+                                        "properties": {}
+                                      }
+                                    }
+                                  }
+                                }
+                              }
                             },
                             "createdAt": {
                               "type": "string",
@@ -8384,9 +8495,6 @@
                                                         "type": {
                                                           "type": "string"
                                                         },
-                                                        "recommendations": {
-                                                          "type": "string"
-                                                        },
                                                         "deleted": {
                                                           "type": "boolean"
                                                         },
@@ -9073,6 +9181,26 @@
                                                             }
                                                           }
                                                         },
+                                                        "recommendations": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "data": {
+                                                              "type": "array",
+                                                              "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "id": {
+                                                                    "type": "number"
+                                                                  },
+                                                                  "attributes": {
+                                                                    "type": "object",
+                                                                    "properties": {}
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
                                                         "createdAt": {
                                                           "type": "string",
                                                           "format": "date-time"
@@ -9418,6 +9546,26 @@
                             "name": {
                               "type": "string"
                             },
+                            "recommendationsPlace": {
+                              "type": "object",
+                              "properties": {
+                                "data": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "attributes": {
+                                        "type": "object",
+                                        "properties": {}
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
                             "createdAt": {
                               "type": "string",
                               "format": "date-time"
@@ -9654,6 +9802,20 @@
               },
               "name": {
                 "type": "string"
+              },
+              "recommendationsPlace": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "example": "string or id"
+                }
               }
             }
           }
@@ -10176,9 +10338,6 @@
                                                         "type": {
                                                           "type": "string"
                                                         },
-                                                        "recommendations": {
-                                                          "type": "string"
-                                                        },
                                                         "deleted": {
                                                           "type": "boolean"
                                                         },
@@ -10614,6 +10773,26 @@
                                                             }
                                                           }
                                                         },
+                                                        "recommendations": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "data": {
+                                                              "type": "array",
+                                                              "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "id": {
+                                                                    "type": "number"
+                                                                  },
+                                                                  "attributes": {
+                                                                    "type": "object",
+                                                                    "properties": {}
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
                                                         "createdAt": {
                                                           "type": "string",
                                                           "format": "date-time"
@@ -10669,6 +10848,26 @@
                                           },
                                           "name": {
                                             "type": "string"
+                                          },
+                                          "recommendationsPlace": {
+                                            "type": "object",
+                                            "properties": {
+                                              "data": {
+                                                "type": "array",
+                                                "items": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "id": {
+                                                      "type": "number"
+                                                    },
+                                                    "attributes": {
+                                                      "type": "object",
+                                                      "properties": {}
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
                                           },
                                           "createdAt": {
                                             "type": "string",
@@ -10887,6 +11086,26 @@
               },
               "name": {
                 "type": "string"
+              },
+              "recommendationsPlace": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "properties": {}
+                        }
+                      }
+                    }
+                  }
+                }
               },
               "createdAt": {
                 "type": "string",
@@ -11451,9 +11670,6 @@
                                                         "type": {
                                                           "type": "string"
                                                         },
-                                                        "recommendations": {
-                                                          "type": "string"
-                                                        },
                                                         "deleted": {
                                                           "type": "boolean"
                                                         },
@@ -11889,6 +12105,26 @@
                                                             }
                                                           }
                                                         },
+                                                        "recommendations": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "data": {
+                                                              "type": "array",
+                                                              "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "id": {
+                                                                    "type": "number"
+                                                                  },
+                                                                  "attributes": {
+                                                                    "type": "object",
+                                                                    "properties": {}
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
                                                         "createdAt": {
                                                           "type": "string",
                                                           "format": "date-time"
@@ -11944,6 +12180,26 @@
                                           },
                                           "name": {
                                             "type": "string"
+                                          },
+                                          "recommendationsPlace": {
+                                            "type": "object",
+                                            "properties": {
+                                              "data": {
+                                                "type": "array",
+                                                "items": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "id": {
+                                                      "type": "number"
+                                                    },
+                                                    "attributes": {
+                                                      "type": "object",
+                                                      "properties": {}
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
                                           },
                                           "createdAt": {
                                             "type": "string",
@@ -12162,6 +12418,26 @@
               },
               "name": {
                 "type": "string"
+              },
+              "recommendationsPlace": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "properties": {}
+                        }
+                      }
+                    }
+                  }
+                }
               },
               "createdAt": {
                 "type": "string",
@@ -12759,9 +13035,6 @@
                                                         "type": {
                                                           "type": "string"
                                                         },
-                                                        "recommendations": {
-                                                          "type": "string"
-                                                        },
                                                         "deleted": {
                                                           "type": "boolean"
                                                         },
@@ -13197,6 +13470,26 @@
                                                             }
                                                           }
                                                         },
+                                                        "recommendations": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "data": {
+                                                              "type": "array",
+                                                              "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "id": {
+                                                                    "type": "number"
+                                                                  },
+                                                                  "attributes": {
+                                                                    "type": "object",
+                                                                    "properties": {}
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
                                                         "createdAt": {
                                                           "type": "string",
                                                           "format": "date-time"
@@ -13252,6 +13545,26 @@
                                           },
                                           "name": {
                                             "type": "string"
+                                          },
+                                          "recommendationsPlace": {
+                                            "type": "object",
+                                            "properties": {
+                                              "data": {
+                                                "type": "array",
+                                                "items": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "id": {
+                                                      "type": "number"
+                                                    },
+                                                    "attributes": {
+                                                      "type": "object",
+                                                      "properties": {}
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
                                           },
                                           "createdAt": {
                                             "type": "string",
@@ -13470,6 +13783,26 @@
               },
               "name": {
                 "type": "string"
+              },
+              "recommendationsPlace": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "properties": {}
+                        }
+                      }
+                    }
+                  }
+                }
               },
               "createdAt": {
                 "type": "string",
@@ -14034,9 +14367,6 @@
                                                         "type": {
                                                           "type": "string"
                                                         },
-                                                        "recommendations": {
-                                                          "type": "string"
-                                                        },
                                                         "deleted": {
                                                           "type": "boolean"
                                                         },
@@ -14472,6 +14802,26 @@
                                                             }
                                                           }
                                                         },
+                                                        "recommendations": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "data": {
+                                                              "type": "array",
+                                                              "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "id": {
+                                                                    "type": "number"
+                                                                  },
+                                                                  "attributes": {
+                                                                    "type": "object",
+                                                                    "properties": {}
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
                                                         "createdAt": {
                                                           "type": "string",
                                                           "format": "date-time"
@@ -14527,6 +14877,26 @@
                                           },
                                           "name": {
                                             "type": "string"
+                                          },
+                                          "recommendationsPlace": {
+                                            "type": "object",
+                                            "properties": {
+                                              "data": {
+                                                "type": "array",
+                                                "items": {
+                                                  "type": "object",
+                                                  "properties": {
+                                                    "id": {
+                                                      "type": "number"
+                                                    },
+                                                    "attributes": {
+                                                      "type": "object",
+                                                      "properties": {}
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
                                           },
                                           "createdAt": {
                                             "type": "string",
@@ -14745,6 +15115,26 @@
               },
               "name": {
                 "type": "string"
+              },
+              "recommendationsPlace": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "properties": {}
+                        }
+                      }
+                    }
+                  }
+                }
               },
               "createdAt": {
                 "type": "string",
@@ -26279,9 +26669,6 @@
               "type": {
                 "type": "string"
               },
-              "recommendations": {
-                "type": "string"
-              },
               "deleted": {
                 "type": "boolean"
               },
@@ -26370,6 +26757,20 @@
                   }
                 ],
                 "example": "string or id"
+              },
+              "recommendations": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "example": "string or id"
+                }
               }
             }
           }
@@ -26414,9 +26815,6 @@
                 "format": "float"
               },
               "type": {
-                "type": "string"
-              },
-              "recommendations": {
                 "type": "string"
               },
               "deleted": {
@@ -27114,9 +27512,6 @@
                                                         "type": {
                                                           "type": "string"
                                                         },
-                                                        "recommendations": {
-                                                          "type": "string"
-                                                        },
                                                         "deleted": {
                                                           "type": "boolean"
                                                         },
@@ -27243,6 +27638,26 @@
                                                                 "attributes": {
                                                                   "type": "object",
                                                                   "properties": {}
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "recommendations": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "data": {
+                                                              "type": "array",
+                                                              "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "id": {
+                                                                    "type": "number"
+                                                                  },
+                                                                  "attributes": {
+                                                                    "type": "object",
+                                                                    "properties": {}
+                                                                  }
                                                                 }
                                                               }
                                                             }
@@ -27593,6 +28008,26 @@
                             "name": {
                               "type": "string"
                             },
+                            "recommendationsPlace": {
+                              "type": "object",
+                              "properties": {
+                                "data": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "attributes": {
+                                        "type": "object",
+                                        "properties": {}
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
                             "createdAt": {
                               "type": "string",
                               "format": "date-time"
@@ -27705,6 +28140,26 @@
                       "attributes": {
                         "type": "object",
                         "properties": {}
+                      }
+                    }
+                  }
+                }
+              },
+              "recommendations": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "properties": {}
+                        }
                       }
                     }
                   }
@@ -27801,9 +28256,6 @@
               "type": {
                 "type": "string"
               },
-              "recommendations": {
-                "type": "string"
-              },
               "deleted": {
                 "type": "boolean"
               },
@@ -28499,9 +28951,6 @@
                                                         "type": {
                                                           "type": "string"
                                                         },
-                                                        "recommendations": {
-                                                          "type": "string"
-                                                        },
                                                         "deleted": {
                                                           "type": "boolean"
                                                         },
@@ -28628,6 +29077,26 @@
                                                                 "attributes": {
                                                                   "type": "object",
                                                                   "properties": {}
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "recommendations": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "data": {
+                                                              "type": "array",
+                                                              "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "id": {
+                                                                    "type": "number"
+                                                                  },
+                                                                  "attributes": {
+                                                                    "type": "object",
+                                                                    "properties": {}
+                                                                  }
                                                                 }
                                                               }
                                                             }
@@ -28978,6 +29447,26 @@
                             "name": {
                               "type": "string"
                             },
+                            "recommendationsPlace": {
+                              "type": "object",
+                              "properties": {
+                                "data": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "attributes": {
+                                        "type": "object",
+                                        "properties": {}
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
                             "createdAt": {
                               "type": "string",
                               "format": "date-time"
@@ -29090,6 +29579,26 @@
                       "attributes": {
                         "type": "object",
                         "properties": {}
+                      }
+                    }
+                  }
+                }
+              },
+              "recommendations": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "properties": {}
+                        }
                       }
                     }
                   }
@@ -29219,9 +29728,6 @@
               "type": {
                 "type": "string"
               },
-              "recommendations": {
-                "type": "string"
-              },
               "deleted": {
                 "type": "boolean"
               },
@@ -29917,9 +30423,6 @@
                                                         "type": {
                                                           "type": "string"
                                                         },
-                                                        "recommendations": {
-                                                          "type": "string"
-                                                        },
                                                         "deleted": {
                                                           "type": "boolean"
                                                         },
@@ -30046,6 +30549,26 @@
                                                                 "attributes": {
                                                                   "type": "object",
                                                                   "properties": {}
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "recommendations": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "data": {
+                                                              "type": "array",
+                                                              "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "id": {
+                                                                    "type": "number"
+                                                                  },
+                                                                  "attributes": {
+                                                                    "type": "object",
+                                                                    "properties": {}
+                                                                  }
                                                                 }
                                                               }
                                                             }
@@ -30396,6 +30919,26 @@
                             "name": {
                               "type": "string"
                             },
+                            "recommendationsPlace": {
+                              "type": "object",
+                              "properties": {
+                                "data": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "attributes": {
+                                        "type": "object",
+                                        "properties": {}
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
                             "createdAt": {
                               "type": "string",
                               "format": "date-time"
@@ -30508,6 +31051,26 @@
                       "attributes": {
                         "type": "object",
                         "properties": {}
+                      }
+                    }
+                  }
+                }
+              },
+              "recommendations": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "properties": {}
+                        }
                       }
                     }
                   }
@@ -30604,9 +31167,6 @@
               "type": {
                 "type": "string"
               },
-              "recommendations": {
-                "type": "string"
-              },
               "deleted": {
                 "type": "boolean"
               },
@@ -31302,9 +31862,6 @@
                                                         "type": {
                                                           "type": "string"
                                                         },
-                                                        "recommendations": {
-                                                          "type": "string"
-                                                        },
                                                         "deleted": {
                                                           "type": "boolean"
                                                         },
@@ -31431,6 +31988,26 @@
                                                                 "attributes": {
                                                                   "type": "object",
                                                                   "properties": {}
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        },
+                                                        "recommendations": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "data": {
+                                                              "type": "array",
+                                                              "items": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "id": {
+                                                                    "type": "number"
+                                                                  },
+                                                                  "attributes": {
+                                                                    "type": "object",
+                                                                    "properties": {}
+                                                                  }
                                                                 }
                                                               }
                                                             }
@@ -31781,6 +32358,26 @@
                             "name": {
                               "type": "string"
                             },
+                            "recommendationsPlace": {
+                              "type": "object",
+                              "properties": {
+                                "data": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "id": {
+                                        "type": "number"
+                                      },
+                                      "attributes": {
+                                        "type": "object",
+                                        "properties": {}
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
                             "createdAt": {
                               "type": "string",
                               "format": "date-time"
@@ -31893,6 +32490,26 @@
                       "attributes": {
                         "type": "object",
                         "properties": {}
+                      }
+                    }
+                  }
+                }
+              },
+              "recommendations": {
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "number"
+                        },
+                        "attributes": {
+                          "type": "object",
+                          "properties": {}
+                        }
                       }
                     }
                   }
@@ -33419,9 +34036,6 @@
                                                       "type": {
                                                         "type": "string"
                                                       },
-                                                      "recommendations": {
-                                                        "type": "string"
-                                                      },
                                                       "deleted": {
                                                         "type": "boolean"
                                                       },
@@ -33857,6 +34471,26 @@
                                                           }
                                                         }
                                                       },
+                                                      "recommendations": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "data": {
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "object",
+                                                              "properties": {
+                                                                "id": {
+                                                                  "type": "number"
+                                                                },
+                                                                "attributes": {
+                                                                  "type": "object",
+                                                                  "properties": {}
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      },
                                                       "createdAt": {
                                                         "type": "string",
                                                         "format": "date-time"
@@ -34155,6 +34789,26 @@
                           },
                           "name": {
                             "type": "string"
+                          },
+                          "recommendationsPlace": {
+                            "type": "object",
+                            "properties": {
+                              "data": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "attributes": {
+                                      "type": "object",
+                                      "properties": {}
+                                    }
+                                  }
+                                }
+                              }
+                            }
                           },
                           "createdAt": {
                             "type": "string",
@@ -34363,9 +35017,6 @@
                                                       "type": {
                                                         "type": "string"
                                                       },
-                                                      "recommendations": {
-                                                        "type": "string"
-                                                      },
                                                       "deleted": {
                                                         "type": "boolean"
                                                       },
@@ -34801,6 +35452,26 @@
                                                           }
                                                         }
                                                       },
+                                                      "recommendations": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "data": {
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "object",
+                                                              "properties": {
+                                                                "id": {
+                                                                  "type": "number"
+                                                                },
+                                                                "attributes": {
+                                                                  "type": "object",
+                                                                  "properties": {}
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      },
                                                       "createdAt": {
                                                         "type": "string",
                                                         "format": "date-time"
@@ -35099,6 +35770,26 @@
                           },
                           "name": {
                             "type": "string"
+                          },
+                          "recommendationsPlace": {
+                            "type": "object",
+                            "properties": {
+                              "data": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "attributes": {
+                                      "type": "object",
+                                      "properties": {}
+                                    }
+                                  }
+                                }
+                              }
+                            }
                           },
                           "createdAt": {
                             "type": "string",
@@ -35340,9 +36031,6 @@
                                                       "type": {
                                                         "type": "string"
                                                       },
-                                                      "recommendations": {
-                                                        "type": "string"
-                                                      },
                                                       "deleted": {
                                                         "type": "boolean"
                                                       },
@@ -35778,6 +36466,26 @@
                                                           }
                                                         }
                                                       },
+                                                      "recommendations": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "data": {
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "object",
+                                                              "properties": {
+                                                                "id": {
+                                                                  "type": "number"
+                                                                },
+                                                                "attributes": {
+                                                                  "type": "object",
+                                                                  "properties": {}
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      },
                                                       "createdAt": {
                                                         "type": "string",
                                                         "format": "date-time"
@@ -36076,6 +36784,26 @@
                           },
                           "name": {
                             "type": "string"
+                          },
+                          "recommendationsPlace": {
+                            "type": "object",
+                            "properties": {
+                              "data": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "attributes": {
+                                      "type": "object",
+                                      "properties": {}
+                                    }
+                                  }
+                                }
+                              }
+                            }
                           },
                           "createdAt": {
                             "type": "string",
@@ -36284,9 +37012,6 @@
                                                       "type": {
                                                         "type": "string"
                                                       },
-                                                      "recommendations": {
-                                                        "type": "string"
-                                                      },
                                                       "deleted": {
                                                         "type": "boolean"
                                                       },
@@ -36722,6 +37447,26 @@
                                                           }
                                                         }
                                                       },
+                                                      "recommendations": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "data": {
+                                                            "type": "array",
+                                                            "items": {
+                                                              "type": "object",
+                                                              "properties": {
+                                                                "id": {
+                                                                  "type": "number"
+                                                                },
+                                                                "attributes": {
+                                                                  "type": "object",
+                                                                  "properties": {}
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      },
                                                       "createdAt": {
                                                         "type": "string",
                                                         "format": "date-time"
@@ -37020,6 +37765,26 @@
                           },
                           "name": {
                             "type": "string"
+                          },
+                          "recommendationsPlace": {
+                            "type": "object",
+                            "properties": {
+                              "data": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "type": "number"
+                                    },
+                                    "attributes": {
+                                      "type": "object",
+                                      "properties": {}
+                                    }
+                                  }
+                                }
+                              }
+                            }
                           },
                           "createdAt": {
                             "type": "string",
@@ -38238,9 +39003,6 @@
                                                               "type": {
                                                                 "type": "string"
                                                               },
-                                                              "recommendations": {
-                                                                "type": "string"
-                                                              },
                                                               "deleted": {
                                                                 "type": "boolean"
                                                               },
@@ -38676,6 +39438,26 @@
                                                                   }
                                                                 }
                                                               },
+                                                              "recommendations": {
+                                                                "type": "object",
+                                                                "properties": {
+                                                                  "data": {
+                                                                    "type": "array",
+                                                                    "items": {
+                                                                      "type": "object",
+                                                                      "properties": {
+                                                                        "id": {
+                                                                          "type": "number"
+                                                                        },
+                                                                        "attributes": {
+                                                                          "type": "object",
+                                                                          "properties": {}
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              },
                                                               "createdAt": {
                                                                 "type": "string",
                                                                 "format": "date-time"
@@ -38877,6 +39659,26 @@
                                   },
                                   "name": {
                                     "type": "string"
+                                  },
+                                  "recommendationsPlace": {
+                                    "type": "object",
+                                    "properties": {
+                                      "data": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "object",
+                                          "properties": {
+                                            "id": {
+                                              "type": "number"
+                                            },
+                                            "attributes": {
+                                              "type": "object",
+                                              "properties": {}
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
                                   },
                                   "createdAt": {
                                     "type": "string",
