@@ -24,12 +24,6 @@
       "target": "api::translation.translation",
       "inversedBy": "field_option"
     },
-    "places": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::place.place",
-      "inversedBy": "siteTypes"
-    },
     "name": {
       "type": "string"
     },
@@ -37,7 +31,13 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::place.place",
-      "inversedBy": "recommendations"
+      "mappedBy": "recommendations"
+    },
+    "siteTypePlaces": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::place.place",
+      "mappedBy": "siteType"
     }
   }
 }

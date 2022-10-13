@@ -62,35 +62,11 @@
       "relation": "oneToOne",
       "target": "api::asset-config.asset-config"
     },
-    "siteTypes": {
+    "siteType": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::field-option.field-option",
-      "mappedBy": "places"
-    },
-    "researchValue": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::field-code.field-code",
-      "inversedBy": "researchValuePlace"
-    },
-    "tourismValue": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::field-code.field-code",
-      "inversedBy": "tourismValuePlaces"
-    },
-    "stateOfConservation": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::field-code.field-code",
-      "inversedBy": "stateOfConservationPlaces"
-    },
-    "risk": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::field-code.field-code",
-      "inversedBy": "riskPlaces"
+      "inversedBy": "siteTypePlaces"
     },
     "recommendations": {
       "type": "relation",

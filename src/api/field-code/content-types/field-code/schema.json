@@ -20,30 +20,6 @@
       "relation": "manyToMany",
       "target": "api::field-option.field-option",
       "mappedBy": "field_codes"
-    },
-    "researchValuePlace": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::place.place",
-      "mappedBy": "researchValue"
-    },
-    "tourismValuePlaces": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::place.place",
-      "mappedBy": "tourismValue"
-    },
-    "stateOfConservationPlaces": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::place.place",
-      "mappedBy": "stateOfConservation"
-    },
-    "riskPlaces": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::place.place",
-      "mappedBy": "risk"
     }
   }
 }
