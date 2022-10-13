@@ -56,20 +56,19 @@ const AuthenticatedApp = () => {
     },
   ]);
 
-  const shouldUpdateStrapi = useMemo(
-    () => checkLatestStrapiVersion(strapiVersion, tag_name),
-    [tag_name]
-  );
+  const shouldUpdateStrapi = useMemo(() => checkLatestStrapiVersion(strapiVersion, tag_name), [
+    tag_name,
+  ]);
 
   useEffect(() => {
     if (userRoles) {
       const isUserSuperAdmin = userRoles.find(({ code }) => code === 'strapi-super-admin');
 
-      if (isUserSuperAdmin && appInfos?.autoReload) {
+      if (isUserSuperAdmin) {
         setGuidedTourVisibilityRef.current(true);
       }
     }
-  }, [userRoles, appInfos]);
+  }, [userRoles]);
 
   // We don't need to wait for the release query to be fetched before rendering the plugins
   // however, we need the appInfos and the permissions
@@ -77,16 +76,6 @@ const AuthenticatedApp = () => {
     (isFetching && isFetched) || status === 'loading' || fetchPermissionsStatus === 'loading';
 
   const shouldShowLoader = isLoading || shouldShowNotDependentQueriesLoader;
-
-  const appInfosValue = useMemo(() => {
-    return {
-      ...appInfos,
-      latestStrapiReleaseTag: tag_name,
-      setUserDisplayName,
-      shouldUpdateStrapi,
-      userDisplayName,
-    };
-  }, [appInfos, tag_name, shouldUpdateStrapi, userDisplayName]);
 
   if (shouldShowLoader) {
     return <LoadingIndicatorPage />;
@@ -98,7 +87,15 @@ const AuthenticatedApp = () => {
   }
 
   return (
-    <AppInfosContext.Provider value={appInfosValue}>
+    <AppInfosContext.Provider
+      value={{
+        ...appInfos,
+        latestStrapiReleaseTag: tag_name,
+        setUserDisplayName,
+        shouldUpdateStrapi,
+        userDisplayName,
+      }}
+    >
       <RBACProvider permissions={permissions} refetchPermissions={refetch}>
         <PluginsInitializer />
       </RBACProvider>

@@ -8,8 +8,7 @@ const Notification = ({ dispatch, notification }) => {
   const { formatMessage } = useIntl();
   const { message, link, type, id, onClose, timeout, blockTransition } = notification;
 
-  const formattedMessage = (msg) =>
-    typeof msg === 'string' ? msg : formatMessage(msg, msg.values);
+  const formattedMessage = msg => (typeof msg === 'string' ? msg : formatMessage(msg, msg.values));
   const handleClose = useCallback(() => {
     if (onClose) {
       onClose();
@@ -67,7 +66,9 @@ const Notification = ({ dispatch, notification }) => {
               defaultMessage: link.label?.defaultMessage || link.label?.id || link.label,
             })}
           </Link>
-        ) : undefined
+        ) : (
+          undefined
+        )
       }
       onClose={handleClose}
       closeLabel="Close"

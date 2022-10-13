@@ -35,35 +35,17 @@ const DynamicTable = ({
       layout,
     });
 
-    const formattedHeaders = headers.displayedHeaders.map((header) => {
-      const { metadatas } = header;
-
+    const formattedHeaders = headers.displayedHeaders.map(header => {
       if (header.fieldSchema.type === 'relation') {
         const sortFieldValue = `${header.name}.${header.metadatas.mainField.name}`;
 
         return {
           ...header,
-          metadatas: {
-            ...metadatas,
-            label: formatMessage({
-              id: getTrad(`containers.ListPage.table-headers.${header.name}`),
-              defaultMessage: metadatas.label,
-            }),
-          },
           name: sortFieldValue,
         };
       }
 
-      return {
-        ...header,
-        metadatas: {
-          ...metadatas,
-          label: formatMessage({
-            id: getTrad(`containers.ListPage.table-headers.${header.name}`),
-            defaultMessage: metadatas.label,
-          }),
-        },
-      };
+      return header;
     });
 
     if (!hasDraftAndPublish) {
@@ -79,14 +61,11 @@ const DynamicTable = ({
           type: 'custom',
         },
         metadatas: {
-          label: formatMessage({
-            id: getTrad(`containers.ListPage.table-headers.publishedAt`),
-            defaultMessage: 'publishedAt',
-          }),
+          label: formatMessage({ id: getTrad('containers.ListPage.table-headers.published_at') }),
           searchable: false,
           sortable: true,
         },
-        cellFormatter(cellData) {
+        cellFormatter: cellData => {
           const isPublished = !isEmpty(cellData.publishedAt);
 
           return <State isPublished={isPublished} />;

@@ -21,6 +21,18 @@
       "relation": "oneToMany",
       "target": "api::translation.translation",
       "mappedBy": "site_type"
+    },
+    "place": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::place.place",
+      "inversedBy": "site_types"
+    },
+    "visit": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::visit.visit",
+      "inversedBy": "site_types"
     }
   }
 }

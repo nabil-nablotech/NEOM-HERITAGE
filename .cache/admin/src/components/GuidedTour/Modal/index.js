@@ -16,8 +16,10 @@ const GuidedTourModal = () => {
     setSkipped,
   } = useGuidedTour();
   const [isVisible, setIsVisible] = useState(currentStep);
-  const [{ stepContent, sectionIndex, stepIndex, hasSectionAfter, hasStepAfter }, dispatch] =
-    useReducer(reducer, initialState);
+  const [
+    { stepContent, sectionIndex, stepIndex, hasSectionAfter, hasStepAfter },
+    dispatch,
+  ] = useReducer(reducer, initialState);
   const { trackUsage } = useTracking();
 
   useEffect(() => {

@@ -7,50 +7,30 @@ const tableHeaders = [
   {
     name: 'firstname',
     key: 'firstname',
-    metadatas: {
-      label: {
-        id: 'Settings.permissions.users.firstname',
-        defaultMessage: 'Firstname',
-      },
-      sortable: true,
-    },
+    metadatas: { label: 'Firstname', sortable: true },
   },
   {
     name: 'lastname',
     key: 'lastname',
-    metadatas: {
-      label: {
-        id: 'Settings.permissions.users.lastname',
-        defaultMessage: 'Lastname',
-      },
-      sortable: true,
-    },
+    metadatas: { label: 'Lastname', sortable: true },
   },
   {
     key: 'email',
     name: 'email',
-    metadatas: {
-      label: { id: 'Settings.permissions.users.email', defaultMessage: 'Email' },
-      sortable: true,
-    },
+    metadatas: { label: 'Email', sortable: true },
   },
   {
     key: 'roles',
     name: 'roles',
-    metadatas: {
-      label: {
-        id: 'Settings.permissions.users.roles',
-        defaultMessage: 'Roles',
-      },
-      sortable: false,
-    },
-    cellFormatter({ roles }, { formatMessage }) {
+    metadatas: { label: 'Roles', sortable: false },
+    /* eslint-disable react/prop-types */
+    cellFormatter: ({ roles }, { formatMessage }) => {
       return (
         <Typography textColor="neutral800">
           {roles
-            .map((role) =>
+            .map(role =>
               formatMessage({
-                id: `Settings.permissions.users.${role.code}`,
+                id: `global.${role.code}`,
                 defaultMessage: role.name,
               })
             )
@@ -58,37 +38,25 @@ const tableHeaders = [
         </Typography>
       );
     },
+    /* eslint-enable react/prop-types */
   },
   {
     key: 'username',
     name: 'username',
-    metadatas: {
-      label: {
-        id: 'Settings.permissions.users.username',
-        defaultMessage: 'Username',
-      },
-      sortable: true,
-    },
+    metadatas: { label: 'Username', sortable: true },
   },
   {
     key: 'isActive',
     name: 'isActive',
-    metadatas: {
-      label: {
-        id: 'Settings.permissions.users.user-status',
-        defaultMessage: 'User status',
-      },
-      sortable: false,
-    },
-    cellFormatter({ isActive }, { formatMessage }) {
+    metadatas: { label: 'User status', sortable: false },
+    // eslint-disable-next-line react/prop-types
+    cellFormatter: ({ isActive }, { formatMessage }) => {
       return (
         <Flex>
           <Status isActive={isActive} variant={isActive ? 'success' : 'danger'} />
           <Typography textColor="neutral800">
             {formatMessage({
-              id: isActive
-                ? 'Settings.permissions.users.active'
-                : 'Settings.permissions.users.inactive',
+              id: isActive ? 'global.active' : 'global.inactive',
               defaultMessage: isActive ? 'Active' : 'Inactive',
             })}
           </Typography>

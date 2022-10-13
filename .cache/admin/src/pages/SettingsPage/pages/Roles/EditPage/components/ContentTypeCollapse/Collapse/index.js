@@ -107,11 +107,14 @@ const Collapse = ({
 }) => {
   const [isModalOpen, setModalOpen] = useState(false);
   const { formatMessage } = useIntl();
-  const { modifiedData, onChangeParentCheckbox, onChangeSimpleCheckbox } =
-    usePermissionsDataManager();
+  const {
+    modifiedData,
+    onChangeParentCheckbox,
+    onChangeSimpleCheckbox,
+  } = usePermissionsDataManager();
 
   const handleToggleModalIsOpen = () => {
-    setModalOpen((s) => !s);
+    setModalOpen(s => !s);
   };
 
   const handleModalClose = () => {
@@ -192,7 +195,7 @@ const Collapse = ({
                         { label: `${permissionLabel} ${label}` }
                       )}
                       // Keep same signature as packages/core/admin/admin/src/components/Roles/Permissions/index.js l.91
-                      onValueChange={(value) => {
+                      onValueChange={value => {
                         onChangeParentCheckbox({
                           target: {
                             name: checkboxName,
@@ -215,7 +218,7 @@ const Collapse = ({
                     indeterminate={hasConditions}
                     name={checkboxName}
                     // Keep same signature as packages/core/admin/admin/src/components/Roles/Permissions/index.js l.91
-                    onValueChange={(value) => {
+                    onValueChange={value => {
                       onChangeSimpleCheckbox({
                         target: {
                           name: checkboxName,

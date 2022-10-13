@@ -24,13 +24,66 @@
     "placeNameArabic": {
       "type": "string"
     },
-    "fields": {
-      "type": "component",
-      "repeatable": false,
-      "component": "blocks.common-fields"
-    },
     "uniqueId": {
       "type": "string"
+    },
+    "siteDescription": {
+      "type": "text"
+    },
+    "period": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "float"
+    },
+    "longitude": {
+      "type": "float"
+    },
+    "type": {
+      "type": "string"
+    },
+    "site_types": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::site-type.site-type",
+      "mappedBy": "place"
+    },
+    "research_value": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::research-value.research-value"
+    },
+    "asset_config": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::asset-config.asset-config"
+    },
+    "tourism_value": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tourism-value.tourism-value"
+    },
+    "stateof_conservation": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::state-of-conservation.state-of-conservation"
+    },
+    "risk": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::risk.risk"
+    },
+    "recommendations": {
+      "type": "text"
+    },
+    "deleted": {
+      "type": "boolean",
+      "default": false
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }

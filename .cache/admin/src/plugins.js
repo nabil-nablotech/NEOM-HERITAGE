@@ -6,6 +6,7 @@ import documentation from '../../../node_modules/@strapi/plugin-documentation/st
 import graphql from '../../../node_modules/@strapi/plugin-graphql/strapi-admin.js';
 import i18N from '../../../node_modules/@strapi/plugin-i18n/strapi-admin.js';
 import usersPermissions from '../../../node_modules/@strapi/plugin-users-permissions/strapi-admin.js';
+import requestId from '../../../node_modules/strapi-plugin-request-id/strapi-admin.js';
 
 
 const plugins = {
@@ -16,6 +17,7 @@ const plugins = {
   'graphql': graphql,
   'i18n': i18N,
   'users-permissions': usersPermissions,
+  'request-id': requestId,
 };
 
 export default plugins;
