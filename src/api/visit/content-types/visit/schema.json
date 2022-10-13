@@ -33,37 +33,11 @@
     "uniqueId": {
       "type": "string"
     },
-    "site_types": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::site-type.site-type",
-      "mappedBy": "visit"
-    },
-    "research_value": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::research-value.research-value"
-    },
-    "tourism_value": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::tourism-value.tourism-value"
-    },
-    "stateof_conservation": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::state-of-conservation.state-of-conservation"
-    },
     "recommendation": {
       "type": "text"
     },
     "siteDescription": {
       "type": "text"
-    },
-    "risk": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::risk.risk"
     },
     "period": {
       "type": "string"
