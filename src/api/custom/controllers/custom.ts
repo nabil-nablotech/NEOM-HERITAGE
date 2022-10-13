@@ -4,9 +4,8 @@
 
 export default {
   changePassword: async (ctx,next) => {
-    console.log(ctx, ctx.params,ctx.query);
     try {
-      let data = await strapi.entityService.update('plugin::custom.user',ctx.params.id,{
+      let data = await strapi.entityService.update('plugin::users-permissions.user',ctx.params.id,{
         data: {
           password: ctx.query.password,
           blocked: false,
@@ -22,12 +21,17 @@ export default {
   },
   searchCount: async (ctx, next) => {
     try {
+      const placeCount = await strapi.query('api::place.place').count({where: {}});
+      const visitCount = await strapi.query('api::visit.visit').count({where: {}});
+      const libraryCount = await strapi.query('api::media.media').count({where: { $or: [{mediaType: 'Documents'}, {mediaType: 'References'}, {mediaType: 'InlineText'}]}});
+      const mediaCount = await strapi.query('api::media.media').count({where: { $or: [{mediaType: 'Images'}, {mediaType: 'Videos'}, {mediaType: '3Dmodel'}]}});
       ctx.body = {
-        places: 2010,
-        events: 1500,
-        library: 2455,
-        media: 3000
+        places: placeCount,
+        events: visitCount,
+        library: libraryCount,
+        media: mediaCount
       };
+      return ctx.body;
     } catch (err) {
       ctx.body = err;
     }

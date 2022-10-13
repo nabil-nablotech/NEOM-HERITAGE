@@ -1,7 +1,7 @@
 export default {
   routes: [
     {
-     method: 'GET',
+     method: 'PUT',
      path: '/custom/change-password/:id',
      handler: 'custom.changePassword',
      config: {
