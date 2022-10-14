@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "media_associates",
+  "info": {
+    "singularName": "media-associate",
+    "pluralName": "media-associates",
+    "displayName": "mediaAssociates"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "placeId": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::place.place",
+      "inversedBy": "media_associates"
+    },
+    "visitId": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::visit.visit",
+      "inversedBy": "media_associates"
+    },
+    "mediaId": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::media.media",
+      "inversedBy": "media_associate"
+    }
+  }
+}

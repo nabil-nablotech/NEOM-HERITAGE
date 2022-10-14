@@ -39,22 +39,20 @@
       "configurable": false,
       "private": true
     },
-    "confirmed": {
-      "type": "boolean",
-      "default": false,
-      "configurable": true
-    },
-    "blocked": {
-      "type": "boolean",
-      "default": true,
-      "configurable": true
-    },
     "role": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "plugin::users-permissions.role",
       "inversedBy": "users",
       "configurable": false
+    },
+    "confirmed": {
+      "type": "boolean",
+      "default": false
+    },
+    "blocked": {
+      "type": "boolean",
+      "default": true
     },
     "username": {
       "type": "string",
@@ -74,11 +72,11 @@
       "type": "text",
       "default": "null"
     },
-    "userIdPlaces": {
+    "places": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToMany",
       "target": "api::place.place",
-      "inversedBy": "userId"
+      "mappedBy": "userId"
     }
   }
 }

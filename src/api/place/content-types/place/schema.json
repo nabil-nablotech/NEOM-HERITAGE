@@ -46,11 +46,6 @@
       "type": "boolean",
       "default": false
     },
-    "users_permissions_user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
-    },
     "keywords": {
       "type": "string"
     },
@@ -101,9 +96,21 @@
     },
     "userId": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
-      "inversedBy": "userIdPlaces"
+      "inversedBy": "places"
+    },
+    "visit_associates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::visit-associate.visit-associate",
+      "mappedBy": "placeId"
+    },
+    "media_associates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::media-associate.media-associate",
+      "mappedBy": "placeId"
     }
   }
 }

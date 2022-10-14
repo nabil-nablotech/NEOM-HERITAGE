@@ -28,13 +28,13 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::media.media",
-      "inversedBy": "assetConfig"
+      "mappedBy": "assetConfig"
     },
     "assetConfigVisits": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::visit.visit",
-      "inversedBy": "assetConfig"
+      "mappedBy": "assetConfig"
     }
   }
 }

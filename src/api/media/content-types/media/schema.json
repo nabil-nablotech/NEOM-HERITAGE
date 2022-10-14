@@ -50,9 +50,6 @@
     "latitude": {
       "type": "float"
     },
-    "mediaType": {
-      "type": "string"
-    },
     "featuredImage": {
       "type": "boolean"
     },
@@ -71,11 +68,6 @@
     "mediaUIPath": {
       "type": "string"
     },
-    "users_permissions_user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
-    },
     "deleted": {
       "type": "boolean"
     },
@@ -89,6 +81,12 @@
       "relation": "manyToMany",
       "target": "api::asset-config.asset-config",
       "inversedBy": "assetConfigMedia"
+    },
+    "media_associate": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::media-associate.media-associate",
+      "inversedBy": "mediaId"
     }
   }
 }

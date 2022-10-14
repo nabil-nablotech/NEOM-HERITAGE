@@ -92,6 +92,12 @@
       "relation": "manyToMany",
       "target": "api::visit.visit",
       "mappedBy": "risk"
+    },
+    "researchValueVisits": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::visit.visit",
+      "mappedBy": "researchValue"
     }
   }
 }

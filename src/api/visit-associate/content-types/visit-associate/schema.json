@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "visit_associates",
+  "info": {
+    "singularName": "visit-associate",
+    "pluralName": "visit-associates",
+    "displayName": "visitAssociates",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "placeId": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::place.place",
+      "inversedBy": "visit_associates"
+    },
+    "visitId": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::visit.visit",
+      "inversedBy": "visit_associate"
+    }
+  }
+}

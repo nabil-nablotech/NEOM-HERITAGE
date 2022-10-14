@@ -22,7 +22,7 @@
       "type": "integer"
     },
     "fieldNarrative": {
-      "type": "string"
+      "type": "text"
     },
     "assessmentType": {
       "type": "string"
@@ -51,11 +51,6 @@
     "deleted": {
       "type": "boolean",
       "default": false
-    },
-    "users_permissions_user": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "plugin::users-permissions.user"
     },
     "siteType": {
       "type": "relation",
@@ -87,7 +82,7 @@
       "target": "api::field-option.field-option",
       "inversedBy": "riskVisits"
     },
-    "Keywords": {
+    "keywords": {
       "type": "string"
     },
     "visitUIPath": {
@@ -98,6 +93,24 @@
       "relation": "manyToMany",
       "target": "api::asset-config.asset-config",
       "inversedBy": "assetConfigVisits"
+    },
+    "researchValue": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "researchValueVisits"
+    },
+    "visit_associate": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::visit-associate.visit-associate",
+      "inversedBy": "visitId"
+    },
+    "media_associates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::media-associate.media-associate",
+      "mappedBy": "visitId"
     }
   }
 }
