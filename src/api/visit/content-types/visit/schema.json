@@ -74,12 +74,6 @@
       "target": "api::field-option.field-option",
       "inversedBy": "recommendationsVisits"
     },
-    "researchValue": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::asset-config.asset-config",
-      "inversedBy": "researchValueVisits"
-    },
     "tourismValue": {
       "type": "relation",
       "relation": "manyToMany",
