@@ -57,11 +57,6 @@
     "placeUIPath": {
       "type": "string"
     },
-    "assetConfig": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::asset-config.asset-config"
-    },
     "siteType": {
       "type": "relation",
       "relation": "manyToMany",
@@ -97,6 +92,18 @@
       "relation": "manyToMany",
       "target": "api::field-option.field-option",
       "inversedBy": "riskPlaces"
+    },
+    "assetConfig": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::asset-config.asset-config",
+      "inversedBy": "assetConfigPlaces"
+    },
+    "userId": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "userIdPlaces"
     }
   }
 }

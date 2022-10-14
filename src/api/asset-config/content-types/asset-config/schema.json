@@ -17,6 +17,24 @@
     },
     "typeCode": {
       "type": "string"
+    },
+    "assetConfigPlaces": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::place.place",
+      "mappedBy": "assetConfig"
+    },
+    "assetConfigMedia": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::media.media",
+      "inversedBy": "assetConfig"
+    },
+    "assetConfigVisits": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::visit.visit",
+      "inversedBy": "assetConfig"
     }
   }
 }

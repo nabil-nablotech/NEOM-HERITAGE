@@ -73,6 +73,12 @@
     "recoveryToken": {
       "type": "text",
       "default": "null"
+    },
+    "userIdPlaces": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::place.place",
+      "inversedBy": "userId"
     }
   }
 }

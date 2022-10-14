@@ -71,11 +71,6 @@
     "mediaUIPath": {
       "type": "string"
     },
-    "assetConfig": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::asset-config.asset-config"
-    },
     "users_permissions_user": {
       "type": "relation",
       "relation": "oneToOne",
@@ -88,6 +83,12 @@
       "type": "component",
       "repeatable": false,
       "component": "blocks.common-fields"
+    },
+    "assetConfig": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::asset-config.asset-config",
+      "inversedBy": "assetConfigMedia"
     }
   }
 }

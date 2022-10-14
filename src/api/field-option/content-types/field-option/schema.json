@@ -61,7 +61,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::place.place",
-      "inversedBy": "risk"
+      "mappedBy": "risk"
     },
     "siteTypeVisits": {
       "type": "relation",
