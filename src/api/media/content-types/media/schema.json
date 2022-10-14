@@ -18,22 +18,10 @@
     "bearing": {
       "type": "text"
     },
-    "zone": {
-      "type": "string"
-    },
-    "easting": {
-      "type": "string"
-    },
-    "northing": {
-      "type": "string"
-    },
     "by": {
       "type": "text"
     },
-    "initials": {
-      "type": "text"
-    },
-    "featuredImage": {
+    "object": {
       "type": "media",
       "multiple": false,
       "required": false,
@@ -62,20 +50,44 @@
     "latitude": {
       "type": "float"
     },
-    "depth": {
-      "type": "string"
-    },
-    "dimension": {
-      "type": "string"
-    },
-    "make": {
-      "type": "string"
-    },
-    "model": {
-      "type": "string"
-    },
     "mediaType": {
       "type": "string"
+    },
+    "featuredImage": {
+      "type": "boolean"
+    },
+    "objectURL": {
+      "type": "string"
+    },
+    "referenceURL": {
+      "type": "string"
+    },
+    "citation": {
+      "type": "string"
+    },
+    "keywords": {
+      "type": "string"
+    },
+    "mediaUIPath": {
+      "type": "string"
+    },
+    "assetConfig": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::asset-config.asset-config"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "deleted": {
+      "type": "boolean"
+    },
+    "imageMetadata": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.common-fields"
     }
   }
 }

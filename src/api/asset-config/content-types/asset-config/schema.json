@@ -4,33 +4,19 @@
   "info": {
     "singularName": "asset-config",
     "pluralName": "asset-configs",
-    "displayName": "assetConfig"
+    "displayName": "assetConfig",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "assetConfigId": {
-      "type": "integer"
-    },
     "categoryCode": {
-      "type": "string"
-    },
-    "categoryDescId": {
       "type": "string"
     },
     "typeCode": {
       "type": "string"
-    },
-    "typeDescId": {
-      "type": "string"
-    },
-    "researchValueVisits": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::visit.visit",
-      "mappedBy": "researchValue"
     }
   }
 }

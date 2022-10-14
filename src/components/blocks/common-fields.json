@@ -1,45 +1,34 @@
 {
   "collectionName": "components_blocks_common_fields",
   "info": {
-    "displayName": "commonFields",
+    "displayName": "imageMetadata",
     "description": ""
   },
   "options": {},
   "attributes": {
-    "researchValue": {
+    "fileSize": {
       "type": "string"
     },
-    "tourismValue": {
+    "storage": {
       "type": "string"
     },
-    "stateOfConservation": {
+    "make": {
       "type": "string"
     },
-    "recommendation": {
+    "model": {
       "type": "string"
     },
-    "siteDescription": {
-      "type": "string"
-    },
-    "Risk": {
-      "type": "string"
-    },
-    "Period": {
-      "type": "string"
-    },
-    "Latitude": {
+    "depth": {
       "type": "float"
     },
-    "Longitude": {
+    "dimension": {
       "type": "float"
     },
-    "Type": {
-      "type": "string"
+    "created": {
+      "type": "date"
     },
-    "field_code": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::field-code.field-code"
+    "modified": {
+      "type": "date"
     }
   }
 }
