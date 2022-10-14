@@ -33,9 +33,6 @@
     "uniqueId": {
       "type": "string"
     },
-    "recommendation": {
-      "type": "text"
-    },
     "siteDescription": {
       "type": "text"
     },
@@ -48,7 +45,7 @@
     "longitude": {
       "type": "float"
     },
-    "asset_config": {
+    "assetConfig": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::asset-config.asset-config"
@@ -64,6 +61,48 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "siteType": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "siteTypeVisits"
+    },
+    "recommendations": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "recommendationsVisits"
+    },
+    "researchValue": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::asset-config.asset-config",
+      "inversedBy": "researchValueVisits"
+    },
+    "tourismValue": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "tourismValueVisits"
+    },
+    "stateOfConservation": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "stateOfConservationVisits"
+    },
+    "risk": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "riskVisits"
+    },
+    "Keywords": {
+      "type": "string"
+    },
+    "visitUIPath": {
+      "type": "string"
     }
   }
 }
