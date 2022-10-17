@@ -8,14 +8,11 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "previousNumber": {
-      "type": "string"
-    },
-    "placeNumber": {
+    "uniqueId": {
       "type": "string"
     },
     "placeNameEnglish": {
@@ -24,7 +21,10 @@
     "placeNameArabic": {
       "type": "string"
     },
-    "uniqueId": {
+    "placeNumber": {
+      "type": "string"
+    },
+    "previousNumber": {
       "type": "string"
     },
     "siteDescription": {

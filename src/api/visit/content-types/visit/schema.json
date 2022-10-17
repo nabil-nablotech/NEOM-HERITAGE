@@ -8,18 +8,21 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
+    "uniqueId": {
+      "type": "string"
+    },
+    "visitNumber": {
+      "type": "integer"
+    },
     "visitDate": {
       "type": "date"
     },
     "recordingTeam": {
       "type": "string"
-    },
-    "visitNumber": {
-      "type": "integer"
     },
     "fieldNarrative": {
       "type": "text"
@@ -28,9 +31,6 @@
       "type": "string"
     },
     "artifacts": {
-      "type": "string"
-    },
-    "uniqueId": {
       "type": "string"
     },
     "siteDescription": {
@@ -51,6 +51,12 @@
     "deleted": {
       "type": "boolean",
       "default": false
+    },
+    "keywords": {
+      "type": "string"
+    },
+    "visitUIPath": {
+      "type": "string"
     },
     "siteType": {
       "type": "relation",
@@ -81,12 +87,6 @@
       "relation": "manyToMany",
       "target": "api::field-option.field-option",
       "inversedBy": "riskVisits"
-    },
-    "keywords": {
-      "type": "string"
-    },
-    "visitUIPath": {
-      "type": "string"
     },
     "assetConfig": {
       "type": "relation",

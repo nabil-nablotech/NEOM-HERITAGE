@@ -15,6 +15,9 @@
     "uniqueId": {
       "type": "string"
     },
+    "title": {
+      "type": "string"
+    },
     "bearing": {
       "type": "text"
     },
@@ -31,9 +34,6 @@
     },
     "description": {
       "type": "text"
-    },
-    "title": {
-      "type": "string"
     },
     "photographedBy": {
       "type": "string"
