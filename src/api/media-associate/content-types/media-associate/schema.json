@@ -27,7 +27,7 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::media.media",
-      "inversedBy": "media_associate"
+      "mappedBy": "media_associate"
     }
   }
 }

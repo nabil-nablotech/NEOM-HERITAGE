@@ -76,7 +76,7 @@
       "repeatable": false,
       "component": "blocks.common-fields"
     },
-    "assetConfig": {
+    "mediaType": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::asset-config.asset-config",

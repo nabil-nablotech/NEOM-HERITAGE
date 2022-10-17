@@ -1,6 +1,7 @@
 /**
  * A set of functions called "actions" for `custom`
  */
+import { fetchPLaces } from "../../../config/connection";
 
 export default {
   changePassword: async (ctx, next) => {
@@ -25,15 +26,68 @@ export default {
   },
   searchCount: async (ctx, next) => {
     try {
-      const placeCount = await strapi.query("api::place.place").count({ where: {} });
-      const visitCount = await strapi.query("api::visit.visit").count({ where: {} });
-      const media = await strapi.query("api::media.media").findMany({
+      // custom query
+      fetchPLaces((err, data) => {
+        // console.log("error-",err,"--data--",data)
+      });
+
+      const placeCount = await strapi
+        .query("api::place.place")
+        .count({ where: {} });
+      const visitCount = await strapi
+        .query("api::visit.visit")
+        .count({ where: {} });
+      const mediaCount = await strapi.query("api::media.media").findMany({
         populate: {
-          assetConfig: true,
+          mediaType: {
+            where: {
+              $or: [
+                {
+                  categoryCode: {
+                    $eq: "IMAGE",
+                  },
+                },
+                {
+                  categoryCode: {
+                    $eq: "VIDEO",
+                  },
+                },
+                {
+                  categoryCode: {
+                    $eq: "3DMODEL",
+                  },
+                },
+              ],
+            },
+          },
         },
       });
-      const libraryCount = media.filter(x => x.assetConfig[0].categoryCode === 'DOCUMENT' || x.assetConfig[0].categoryCode === 'REFERENCEURL' || x.assetConfig[0].categoryCode === 'INLINE');
-      const mediaCount = media.filter(x => x.assetConfig[0].categoryCode === 'IMAGE' || x.assetConfig[0].categoryCode === 'VIDEO' || x.assetConfig[0].categoryCode === '3DMODEL');
+      const libraryCount = await strapi.query("api::media.media").findMany({
+        populate: {
+          mediaType: {
+            where: {
+              $or: [
+                {
+                  categoryCode: {
+                    $eq: "DOCUMENT",
+                  },
+                },
+                {
+                  categoryCode: {
+                    $eq: "REFERENCEURL",
+                  },
+                },
+                {
+                  categoryCode: {
+                    $eq: "INLINE",
+                  },
+                },
+              ],
+            },
+          },
+        },
+      });
+
       ctx.body = {
         places: placeCount,
         events: visitCount,
@@ -42,6 +96,7 @@ export default {
       };
       return ctx.body;
     } catch (err) {
+      console.error("error on search-------------", err);
       ctx.body = err;
     }
   },
