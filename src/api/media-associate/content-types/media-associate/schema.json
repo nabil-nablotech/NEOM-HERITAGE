@@ -4,26 +4,27 @@
   "info": {
     "singularName": "media-associate",
     "pluralName": "media-associates",
-    "displayName": "mediaAssociates"
+    "displayName": "mediaAssociates",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "placeId": {
+    "placeUniqueId": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::place.place",
       "inversedBy": "media_associates"
     },
-    "visitId": {
+    "visitUniqueId": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::visit.visit",
       "inversedBy": "media_associates"
     },
-    "mediaId": {
+    "mediaUniqueId": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::media.media",

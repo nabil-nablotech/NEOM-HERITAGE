@@ -12,13 +12,13 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "placeId": {
+    "placeUniqueId": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::place.place",
       "inversedBy": "visit_associates"
     },
-    "visitId": {
+    "visitUniqueId": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::visit.visit",

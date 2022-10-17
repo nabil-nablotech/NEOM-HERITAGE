@@ -104,13 +104,13 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::visit-associate.visit-associate",
-      "inversedBy": "visitId"
+      "inversedBy": "visitUniqueId"
     },
     "media_associates": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::media-associate.media-associate",
-      "mappedBy": "visitId"
+      "mappedBy": "visitUniqueId"
     }
   }
 }
