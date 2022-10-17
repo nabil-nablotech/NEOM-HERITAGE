@@ -13,7 +13,9 @@
   "pluginOptions": {},
   "attributes": {
     "uniqueId": {
-      "type": "string"
+      "type": "string",
+      "unique": true,
+      "required": true
     },
     "title": {
       "type": "string"
@@ -45,7 +47,8 @@
       "type": "float"
     },
     "featuredImage": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": false
     },
     "objectURL": {
       "type": "string"

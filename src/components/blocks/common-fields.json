@@ -19,10 +19,10 @@
       "type": "string"
     },
     "depth": {
-      "type": "float"
+      "type": "string"
     },
     "dimension": {
-      "type": "float"
+      "type": "string"
     },
     "created": {
       "type": "date"
