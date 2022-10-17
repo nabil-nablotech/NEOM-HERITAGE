@@ -24,17 +24,17 @@
       "target": "api::place.place",
       "mappedBy": "assetConfig"
     },
-    "assetConfigMedia": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::media.media",
-      "mappedBy": "assetConfig"
-    },
     "assetConfigVisits": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::visit.visit",
       "mappedBy": "assetConfig"
+    },
+    "assetConfigMedia": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::media.media",
+      "mappedBy": "mediaType"
     }
   }
 }

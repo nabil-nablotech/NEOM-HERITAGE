@@ -28,7 +28,7 @@
       "type": "date"
     },
     "modified": {
-      "type": "date"
+      "type": "datetime"
     }
   }
 }
