@@ -26,7 +26,6 @@ export default {
   },
   searchCount: async (ctx, next) => {
     try {
-      // custom query
       fetchPLaces((err, data) => {
         // console.log("error-",err,"--data--",data)
       });
@@ -37,57 +36,24 @@ export default {
       const visitCount = await strapi
         .query("api::visit.visit")
         .count({ where: {} });
-      const mediaCount = await strapi.query("api::media.media").findMany({
+      const media = await strapi.query("api::media.media").findMany({
         populate: {
-          mediaType: {
-            where: {
-              $or: [
-                {
-                  categoryCode: {
-                    $eq: "IMAGE",
-                  },
-                },
-                {
-                  categoryCode: {
-                    $eq: "VIDEO",
-                  },
-                },
-                {
-                  categoryCode: {
-                    $eq: "3DMODEL",
-                  },
-                },
-              ],
-            },
-          },
-        },
-      });
-      const libraryCount = await strapi.query("api::media.media").findMany({
-        populate: {
-          mediaType: {
-            where: {
-              $or: [
-                {
-                  categoryCode: {
-                    $eq: "DOCUMENT",
-                  },
-                },
-                {
-                  categoryCode: {
-                    $eq: "REFERENCEURL",
-                  },
-                },
-                {
-                  categoryCode: {
-                    $eq: "INLINE",
-                  },
-                },
-              ],
-            },
-          },
-        },
+          mediaType: true,
+        }
       });
 
+      const libraryCount = media.filter(
+        (x) =>
+          x.mediaType[0].categoryCode === "DOCUMENT" ||
+          x.mediaType[0].categoryCode === "REFERENCEURL" ||
+          x.mediaType[0].categoryCode === "INLINE"
+      );
+      const mediaCount = media.filter(
+        (x) =>
+          x.mediaType[0].categoryCode === "IMAGE" ||
+          x.mediaType[0].categoryCode === "VIDEO" ||
+          x.mediaType[0].categoryCode === "3DMODEL"
+      );
       ctx.body = {
         places: placeCount,
         events: visitCount,
@@ -96,7 +62,7 @@ export default {
       };
       return ctx.body;
     } catch (err) {
-      console.error("error on search-------------", err);
+      console.log("error on search-------------", err);
       ctx.body = err;
     }
   },
