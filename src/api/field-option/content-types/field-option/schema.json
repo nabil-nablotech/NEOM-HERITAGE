@@ -12,6 +12,9 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "name": {
+      "type": "string"
+    },
     "field_codes": {
       "type": "relation",
       "relation": "manyToMany",
@@ -23,9 +26,6 @@
       "relation": "oneToOne",
       "target": "api::translation.translation",
       "inversedBy": "field_option"
-    },
-    "name": {
-      "type": "string"
     },
     "recommendationsPlace": {
       "type": "relation",
