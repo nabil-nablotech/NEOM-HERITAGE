@@ -27,9 +27,6 @@
     "fieldNarrative": {
       "type": "text"
     },
-    "assessmentType": {
-      "type": "string"
-    },
     "siteDescription": {
       "type": "text"
     },
@@ -117,6 +114,12 @@
       "relation": "manyToMany",
       "target": "api::field-option.field-option",
       "inversedBy": "artifactsVisits"
+    },
+    "assessmentType": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "assessmentTypeVisits"
     }
   }
 }

@@ -121,7 +121,13 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::visit.visit",
-      "inversedBy": "artifacts"
+      "mappedBy": "artifacts"
+    },
+    "assessmentTypeVisits": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::visit.visit",
+      "inversedBy": "assessmentType"
     }
   }
 }
