@@ -44,15 +44,15 @@ export default {
 
       const libraryCount = media.filter(
         (x) =>
-          x.mediaType[0].categoryCode === "DOCUMENT" ||
-          x.mediaType[0].categoryCode === "REFERENCEURL" ||
-          x.mediaType[0].categoryCode === "INLINE"
+          x.mediaType[0]?.categoryCode === "DOCUMENT" ||
+          x.mediaType[0]?.categoryCode === "REFERENCEURL" ||
+          x.mediaType[0]?.categoryCode === "INLINE"
       );
       const mediaCount = media.filter(
         (x) =>
-          x.mediaType[0].categoryCode === "IMAGE" ||
-          x.mediaType[0].categoryCode === "VIDEO" ||
-          x.mediaType[0].categoryCode === "3DMODEL"
+          x.mediaType[0]?.categoryCode === "IMAGE" ||
+          x.mediaType[0]?.categoryCode === "VIDEO" ||
+          x.mediaType[0]?.categoryCode === "3DMODEL"
       );
       ctx.body = {
         places: placeCount,
