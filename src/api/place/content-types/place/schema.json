@@ -30,9 +30,6 @@
     "siteDescription": {
       "type": "text"
     },
-    "period": {
-      "type": "string"
-    },
     "latitude": {
       "type": "float"
     },
@@ -52,17 +49,20 @@
     "placeUIPath": {
       "type": "string"
     },
+    "placeValue": {
+      "type": "integer"
+    },
     "siteType": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::field-option.field-option",
       "inversedBy": "siteTypePlaces"
     },
-    "recommendations": {
+    "recommendation": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::field-option.field-option",
-      "inversedBy": "recommendationsPlace"
+      "inversedBy": "recommendationPlace"
     },
     "researchValue": {
       "type": "relation",
@@ -111,6 +111,18 @@
       "relation": "oneToMany",
       "target": "api::media-associate.media-associate",
       "mappedBy": "placeUniqueId"
+    },
+    "period": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "periodPlaces"
+    },
+    "artifacts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "ArtifactsPlaces"
     }
   }
 }

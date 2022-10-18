@@ -12,10 +12,10 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "categoryCode": {
+    "typeCode": {
       "type": "string"
     },
-    "typeCode": {
+    "categoryCode": {
       "type": "string"
     },
     "assetConfigPlaces": {

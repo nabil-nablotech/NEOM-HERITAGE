@@ -30,14 +30,8 @@
     "assessmentType": {
       "type": "string"
     },
-    "artifacts": {
-      "type": "string"
-    },
     "siteDescription": {
       "type": "text"
-    },
-    "period": {
-      "type": "string"
     },
     "latitude": {
       "type": "float"
@@ -64,7 +58,7 @@
       "target": "api::field-option.field-option",
       "inversedBy": "siteTypeVisits"
     },
-    "recommendations": {
+    "recommendation": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::field-option.field-option",
@@ -111,6 +105,18 @@
       "relation": "oneToMany",
       "target": "api::media-associate.media-associate",
       "mappedBy": "visitUniqueId"
+    },
+    "period": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "periodVisits"
+    },
+    "artifacts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "artifactsVisits"
     }
   }
 }

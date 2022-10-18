@@ -22,7 +22,7 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::visit.visit",
-      "inversedBy": "visit_associate"
+      "mappedBy": "visit_associate"
     }
   }
 }

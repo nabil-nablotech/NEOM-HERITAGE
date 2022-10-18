@@ -27,12 +27,6 @@
       "target": "api::translation.translation",
       "inversedBy": "field_option"
     },
-    "recommendationsPlace": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::place.place",
-      "mappedBy": "recommendations"
-    },
     "siteTypePlaces": {
       "type": "relation",
       "relation": "manyToMany",
@@ -69,12 +63,6 @@
       "target": "api::visit.visit",
       "mappedBy": "siteType"
     },
-    "recommendationsVisits": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::visit.visit",
-      "mappedBy": "recommendations"
-    },
     "tourismValueVisits": {
       "type": "relation",
       "relation": "manyToMany",
@@ -98,6 +86,42 @@
       "relation": "manyToMany",
       "target": "api::visit.visit",
       "mappedBy": "researchValue"
+    },
+    "periodPlaces": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::place.place",
+      "mappedBy": "period"
+    },
+    "periodVisits": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::visit.visit",
+      "mappedBy": "period"
+    },
+    "recommendationPlace": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::place.place",
+      "mappedBy": "recommendation"
+    },
+    "recommendationsVisits": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::visit.visit",
+      "mappedBy": "recommendation"
+    },
+    "ArtifactsPlaces": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::place.place",
+      "inversedBy": "artifacts"
+    },
+    "artifactsVisits": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::visit.visit",
+      "inversedBy": "artifacts"
     }
   }
 }
