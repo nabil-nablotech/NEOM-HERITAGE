@@ -26,8 +26,6 @@ export default {
   },
   searchCount: async (ctx, next) => {
     try {
-
-
       const placeCount = await strapi
         .query("api::place.place")
         .count({ where: {} });
@@ -104,7 +102,7 @@ export default {
         .findMany({});
 
       fielOptions.map(x => {
-        x.value = x.id;
+        x.value = x.translation.locale[0].value;
         x.label = x.translation.locale[0].value;
         return x;
       })
