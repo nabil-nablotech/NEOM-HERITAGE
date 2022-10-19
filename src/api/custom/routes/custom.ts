@@ -17,6 +17,15 @@ export default {
         policies: [],
         middlewares: [],
       },
-     },
+    },
+    {
+      method: 'GET',
+      path: '/custom/options',
+      handler: 'custom.refinedSearchOptions',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };

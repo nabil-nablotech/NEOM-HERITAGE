@@ -26,9 +26,7 @@ export default {
   },
   searchCount: async (ctx, next) => {
     try {
-      fetchPLaces((err, data) => {
-        // console.log("error-",err,"--data--",data)
-      });
+
 
       const placeCount = await strapi
         .query("api::place.place")
@@ -36,29 +34,82 @@ export default {
       const visitCount = await strapi
         .query("api::visit.visit")
         .count({ where: {} });
-      const media = await strapi.query("api::media.media").findMany({
-        populate: {
-          mediaType: true,
+      const mediaCount = await strapi.query("api::media.media").findMany({
+        where : {
+          mediaType: {
+            $or: [{categoryCode: {
+              $contains: "IMAGE"
+            }}, {categoryCode: {
+              $contains: "VIDEO"
+            }},{categoryCode: {
+              $contains: "3DMODEL"
+            }}] 
+          }
         }
       });
-      const libraryCount = media.filter(
-        (x) =>
-          x.mediaType[0]?.categoryCode === "DOCUMENT" ||
-          x.mediaType[0]?.categoryCode === "REFERENCEURL" ||
-          x.mediaType[0]?.categoryCode === "INLINE"
-      );
-      const mediaCount = media.filter(
-        (x) =>
-          x.mediaType[0]?.categoryCode === "IMAGE" ||
-          x.mediaType[0]?.categoryCode === "VIDEO" ||
-          x.mediaType[0]?.categoryCode === "3DMODEL"
-      );
+      const libraryCount = await strapi.query("api::media.media").findMany({
+        where : {
+          mediaType: {
+            $or: [{categoryCode: {
+              $contains: "DOCUMENT"
+            }}, {categoryCode: {
+              $contains: "REFERENCEURL"
+            }},{categoryCode: {
+              $contains: "INLINE"
+            }}] 
+          }
+        }
+      });
+
       ctx.body = {
         places: placeCount,
         events: visitCount,
         library: libraryCount.length,
         media: mediaCount.length,
       };
+      return ctx.body;
+    } catch (err) {
+      console.log("error on search-------------", err);
+      ctx.body = err;
+    }
+  },
+
+  refinedSearchOptions: async (ctx, next) => {
+    try {
+      const fielOptions = await strapi
+        .query("api::field-option.field-option")
+        .findMany({
+          populate: {
+            field_codes: true,
+            translation: {
+              populate: {
+                locale: {
+                  populate: {
+                    languages: true,
+                  },
+                  where: {
+                    languages: {
+                      name: {
+                        $contains: ctx.header.language
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+         });
+      const fieldCodes = await strapi
+        .query("api::field-code.field-code")
+        .findMany({});
+
+      let searchOption = {};
+      fieldCodes.map(x => {
+        searchOption[x.name] = fielOptions.filter(y => y.field_codes[0].name === x.name);
+        return searchOption;
+      });
+      
+      ctx.body = searchOption;
       return ctx.body;
     } catch (err) {
       console.log("error on search-------------", err);
