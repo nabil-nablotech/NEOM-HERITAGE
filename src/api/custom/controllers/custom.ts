@@ -103,6 +103,12 @@ export default {
         .query("api::field-code.field-code")
         .findMany({});
 
+      fielOptions.map(x => {
+        x.value = x.id;
+        x.label = x.translation.locale[0].value;
+        return x;
+      })
+
       let searchOption = {};
       fieldCodes.map(x => {
         searchOption[x.name] = fielOptions.filter(y => y.field_codes[0].name === x.name);
