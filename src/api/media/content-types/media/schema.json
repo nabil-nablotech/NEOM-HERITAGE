@@ -21,7 +21,7 @@
       "type": "string"
     },
     "bearing": {
-      "type": "text"
+      "type": "string"
     },
     "object": {
       "type": "media",
@@ -30,6 +30,12 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "by": {
+      "type": "string"
+    },
+    "photographedBy": {
+      "type": "string"
     },
     "description": {
       "type": "text"
