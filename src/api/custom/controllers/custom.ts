@@ -33,30 +33,50 @@ export default {
         .query("api::visit.visit")
         .count({ where: {} });
       const mediaCount = await strapi.query("api::media.media").findMany({
-        where : {
+        where: {
           mediaType: {
-            $or: [{categoryCode: {
-              $contains: "IMAGE"
-            }}, {categoryCode: {
-              $contains: "VIDEO"
-            }},{categoryCode: {
-              $contains: "3DMODEL"
-            }}] 
-          }
-        }
+            $or: [
+              {
+                categoryCode: {
+                  $contains: "IMAGE",
+                },
+              },
+              {
+                categoryCode: {
+                  $contains: "VIDEO",
+                },
+              },
+              {
+                categoryCode: {
+                  $contains: "3DMODEL",
+                },
+              },
+            ],
+          },
+        },
       });
       const libraryCount = await strapi.query("api::media.media").findMany({
-        where : {
+        where: {
           mediaType: {
-            $or: [{categoryCode: {
-              $contains: "DOCUMENT"
-            }}, {categoryCode: {
-              $contains: "REFERENCEURL"
-            }},{categoryCode: {
-              $contains: "INLINE"
-            }}] 
-          }
-        }
+            $or: [
+              {
+                categoryCode: {
+                  $contains: "DOCUMENT",
+                },
+              },
+              {
+                categoryCode: {
+                  $contains: "REFERENCEURL",
+                },
+              },
+              {
+                categoryCode: {
+                  $contains: "INLINE",
+                },
+              },
+            ],
+          },
+        },
       });
 
       ctx.body = {
@@ -88,31 +108,33 @@ export default {
                   where: {
                     languages: {
                       name: {
-                        $contains: ctx.header.language
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-         });
+                        $contains: ctx.header.language,
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        });
       const fieldCodes = await strapi
         .query("api::field-code.field-code")
         .findMany({});
 
-      fielOptions.map(x => {
+      fielOptions.map((x) => {
         x.value = x.translation.locale[0].value;
         x.label = x.translation.locale[0].value;
         return x;
-      })
+      });
 
       let searchOption = {};
-      fieldCodes.map(x => {
-        searchOption[x.name] = fielOptions.filter(y => y.field_codes[0].name === x.name);
+      fieldCodes.map((x) => {
+        searchOption[x.name] = fielOptions.filter(
+          (y) => y.field_codes[0].name === x.name
+        );
         return searchOption;
       });
-      
+
       ctx.body = searchOption;
       return ctx.body;
     } catch (err) {
