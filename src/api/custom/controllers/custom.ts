@@ -37,17 +37,17 @@ export default {
           mediaType: {
             $or: [
               {
-                categoryCode: {
+                typeCode: {
                   $contains: "IMAGE",
                 },
               },
               {
-                categoryCode: {
+                typeCode: {
                   $contains: "VIDEO",
                 },
               },
               {
-                categoryCode: {
+                typeCode: {
                   $contains: "3DMODEL",
                 },
               },
@@ -60,17 +60,17 @@ export default {
           mediaType: {
             $or: [
               {
-                categoryCode: {
+                typeCode: {
                   $contains: "DOCUMENT",
                 },
               },
               {
-                categoryCode: {
+                typeCode: {
                   $contains: "REFERENCEURL",
                 },
               },
               {
-                categoryCode: {
+                typeCode: {
                   $contains: "INLINE",
                 },
               },

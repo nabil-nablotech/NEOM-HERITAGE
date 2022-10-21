@@ -79,12 +79,6 @@
       "target": "api::field-option.field-option",
       "inversedBy": "riskVisits"
     },
-    "assetConfig": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::asset-config.asset-config",
-      "inversedBy": "assetConfigVisits"
-    },
     "researchValue": {
       "type": "relation",
       "relation": "manyToMany",
@@ -120,6 +114,12 @@
       "relation": "manyToMany",
       "target": "api::field-option.field-option",
       "inversedBy": "assessmentTypeVisits"
+    },
+    "assetConfigId": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::asset-config.asset-config",
+      "inversedBy": "visits"
     }
   }
 }
