@@ -18,23 +18,23 @@
     "categoryCode": {
       "type": "string"
     },
-    "assetConfigPlaces": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::place.place",
-      "mappedBy": "assetConfig"
-    },
-    "assetConfigVisits": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::visit.visit",
-      "mappedBy": "assetConfig"
-    },
-    "assetConfigMedia": {
+    "media": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::media.media",
-      "mappedBy": "mediaType"
+      "inversedBy": "mediaType"
+    },
+    "places": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::place.place",
+      "inversedBy": "assetConfigId"
+    },
+    "visits": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::visit.visit",
+      "inversedBy": "assetConfigId"
     }
   }
 }

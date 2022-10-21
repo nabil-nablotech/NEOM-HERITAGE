@@ -88,12 +88,6 @@
       "target": "api::field-option.field-option",
       "inversedBy": "riskPlaces"
     },
-    "assetConfig": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::asset-config.asset-config",
-      "inversedBy": "assetConfigPlaces"
-    },
     "userId": {
       "type": "relation",
       "relation": "manyToOne",
@@ -123,6 +117,12 @@
       "relation": "manyToMany",
       "target": "api::field-option.field-option",
       "inversedBy": "ArtifactsPlaces"
+    },
+    "assetConfigId": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::asset-config.asset-config",
+      "inversedBy": "places"
     }
   }
 }
