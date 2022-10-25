@@ -7,7 +7,8 @@
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi"
+    "strapi": "strapi",
+    "service":"strapi services:list"
   },
   "dependencies": {
     "@strapi/plugin-documentation": "^4.3.2",

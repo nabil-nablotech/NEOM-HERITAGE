@@ -24,6 +24,19 @@ export default {
       ctx.badRequest("controller error", { moreDetails: err });
     }
   },
+  updateMe: async (ctx, next) => {
+    try {
+      const { id } = ctx.state.user;
+      let data = await strapi.entityService.update(
+        "plugin::users-permissions.user",
+        id,
+        { data: {} }
+      );
+      ctx.body = data;
+    } catch (err) {
+      ctx.badRequest("controller error", { moreDetails: err });
+    }
+  },
   searchCount: async (ctx, next) => {
     try {
       const placeCount = await strapi
