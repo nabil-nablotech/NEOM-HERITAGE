@@ -8,7 +8,8 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "service":"strapi services:list"
+    "service": "strapi services:list",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@strapi/plugin-documentation": "^4.3.2",
@@ -17,6 +18,7 @@
     "@strapi/plugin-users-permissions": "4.3.2",
     "@strapi/strapi": "4.3.2",
     "mysql": "^2.18.1",
+    "patch-package": "^6.4.7",
     "strapi-plugin-request-id": "^1.1.0"
   },
   "author": {
@@ -29,5 +31,8 @@
     "node": ">=14.19.1 <=18.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "postinstall-postinstall": "^2.1.0"
+  }
 }
