@@ -74,3 +74,5 @@ Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/
         } else {
         qb.count({ count: state.count });
         }
+
+## Note: We will use camelCase with normal fileds and we will use snake_case with relation fields in collection

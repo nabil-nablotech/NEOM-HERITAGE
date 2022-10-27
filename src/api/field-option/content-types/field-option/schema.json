@@ -128,12 +128,6 @@
       "relation": "manyToMany",
       "target": "api::visit.visit",
       "mappedBy": "assessmentType"
-    },
-    "media": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::media.media",
-      "inversedBy": "artifacts"
     }
   }
 }

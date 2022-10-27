@@ -45,9 +45,10 @@ export default {
       const visitCount = await strapi
         .query("api::visit.visit")
         .count({ where: {} });
+
       const mediaCount = await strapi.query("api::media.media").findMany({
         where: {
-          mediaType: {
+          media_type: {
             $or: [
               {
                 typeCode: {
@@ -70,7 +71,7 @@ export default {
       });
       const libraryCount = await strapi.query("api::media.media").findMany({
         where: {
-          mediaType: {
+          media_type: {
             $or: [
               {
                 typeCode: {
@@ -133,10 +134,9 @@ export default {
       const fieldCodes = await strapi
         .query("api::field-code.field-code")
         .findMany({});
-
       fielOptions.map((x) => {
-        x.value = x.translation.locale[0].value;
-        x.label = x.translation.locale[0].value;
+        x.value = x.translation.locale.length > 0 && x.translation.locale[0].value;
+        x.label = x.translation.locale.length > 0 && x.translation.locale[0].value;
         return x;
       });
 
@@ -155,4 +155,20 @@ export default {
       ctx.body = err;
     }
   },
+
+  placeDetails: async (ctx, next) => {
+    console.log('ctx', ctx.params.uniqueId)
+    try {
+      
+      const place = await strapi
+          .query("api::place.place")
+          .count({ where: {
+            uniqueId: ctx.params.uniqueId
+          } });
+        ctx.body = place;
+    } catch (err) {
+      console.log("error in place details-------------", err);
+      ctx.body = err;
+    }
+  }
 };

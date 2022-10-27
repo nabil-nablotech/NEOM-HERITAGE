@@ -36,5 +36,14 @@ export default {
         middlewares: [],
       },
     },
+    {
+      method: "GET",
+      path: "/custom/place/:uniqueId",
+      handler: "custom.placeDetails",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };
