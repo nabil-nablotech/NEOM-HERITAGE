@@ -157,14 +157,35 @@ export default {
   },
 
   placeDetails: async (ctx, next) => {
-    console.log('ctx', ctx.params.uniqueId)
     try {
       
       const place = await strapi
           .query("api::place.place")
-          .count({ where: {
-            uniqueId: ctx.params.uniqueId
+          .findOne({
+            populate: {
+              media_associates: {
+                populate: {
+                  media_unique_id: {
+                    populate: {
+                      object: true
+                    }
+                  }
+                }
+              },
+              visit_associates: {
+                populate: {
+                  visit_unique_id: true
+                }
+              }
+            },
+          where: {
+            uniqueId: ctx.params.uniqueId,
           } });
+      const visitCount = await strapi
+      .query("api::visit.visit")
+      .count({ where: {
+
+      } });
         ctx.body = place;
     } catch (err) {
       console.log("error in place details-------------", err);
