@@ -80,17 +80,17 @@
       "repeatable": false,
       "component": "blocks.common-fields"
     },
-    "media_associate": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::media-associate.media-associate",
-      "inversedBy": "mediaUniqueId"
-    },
-    "mediaType": {
+    "media_type": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::asset-config.asset-config",
       "inversedBy": "media"
+    },
+    "media_associate": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::media-associate.media-associate",
+      "inversedBy": "media_unique_id"
     }
   }
 }

@@ -38,9 +38,6 @@
     "longitude": {
       "type": "float"
     },
-    "type": {
-      "type": "string"
-    },
     "deleted": {
       "type": "boolean",
       "default": false
@@ -51,21 +48,9 @@
     "visitUIPath": {
       "type": "string"
     },
-    "visit_associate": {
+    "asset_config_id": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::visit-associate.visit-associate",
-      "inversedBy": "visitUniqueId"
-    },
-    "media_associates": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::media-associate.media-associate",
-      "mappedBy": "visitUniqueId"
-    },
-    "assetConfigId": {
-      "type": "relation",
-      "relation": "manyToMany",
+      "relation": "manyToOne",
       "target": "api::asset-config.asset-config",
       "inversedBy": "visits"
     },
@@ -98,6 +83,18 @@
     },
     "assessmentTypeOther": {
       "type": "string"
+    },
+    "visit_associate": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::visit-associate.visit-associate",
+      "inversedBy": "visit_unique_id"
+    },
+    "media_associates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::media-associate.media-associate",
+      "mappedBy": "visit_unique_id"
     }
   }
 }

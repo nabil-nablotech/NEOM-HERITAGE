@@ -38,9 +38,6 @@
     "longitude": {
       "type": "float"
     },
-    "type": {
-      "type": "string"
-    },
     "deleted": {
       "type": "boolean",
       "default": false
@@ -54,27 +51,9 @@
     "placeValue": {
       "type": "integer"
     },
-    "userId": {
+    "asset_config_id": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "places"
-    },
-    "visit_associates": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::visit-associate.visit-associate",
-      "mappedBy": "placeUniqueId"
-    },
-    "media_associates": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::media-associate.media-associate",
-      "mappedBy": "placeUniqueId"
-    },
-    "assetConfigId": {
-      "type": "relation",
-      "relation": "manyToMany",
       "target": "api::asset-config.asset-config",
       "inversedBy": "places"
     },
@@ -101,6 +80,18 @@
     },
     "artifacts": {
       "type": "string"
+    },
+    "visit_associates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::visit-associate.visit-associate",
+      "mappedBy": "place_unique_id"
+    },
+    "media_associates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::media-associate.media-associate",
+      "mappedBy": "place_unique_id"
     }
   }
 }
