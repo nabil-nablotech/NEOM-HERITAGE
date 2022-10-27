@@ -91,6 +91,12 @@
       "relation": "manyToMany",
       "target": "api::asset-config.asset-config",
       "inversedBy": "media"
+    },
+    "artifacts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::field-option.field-option",
+      "inversedBy": "media"
     }
   }
 }
