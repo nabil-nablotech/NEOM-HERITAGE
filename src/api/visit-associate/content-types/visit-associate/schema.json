@@ -12,17 +12,17 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "placeUniqueId": {
+    "place_unique_id": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::place.place",
       "inversedBy": "visit_associates"
     },
-    "visitUniqueId": {
+    "visit_unique_id": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::visit.visit",
-      "mappedBy": "visit_associate"
+      "inversedBy": "visit_associate"
     }
   }
 }

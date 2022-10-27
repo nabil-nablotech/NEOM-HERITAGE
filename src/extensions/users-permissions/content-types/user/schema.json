@@ -71,12 +71,6 @@
     "recoveryToken": {
       "type": "text",
       "default": "null"
-    },
-    "places": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::place.place",
-      "mappedBy": "userId"
     }
   }
 }

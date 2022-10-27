@@ -13,7 +13,9 @@
   "pluginOptions": {},
   "attributes": {
     "uniqueId": {
-      "type": "string"
+      "type": "string",
+      "unique": true,
+      "required": true
     },
     "visitNumber": {
       "type": "integer"
@@ -36,9 +38,6 @@
     "longitude": {
       "type": "float"
     },
-    "type": {
-      "type": "string"
-    },
     "deleted": {
       "type": "boolean",
       "default": false
@@ -49,77 +48,53 @@
     "visitUIPath": {
       "type": "string"
     },
-    "siteType": {
+    "asset_config_id": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "siteTypeVisits"
+      "relation": "manyToOne",
+      "target": "api::asset-config.asset-config",
+      "inversedBy": "visits"
+    },
+    "siteType": {
+      "type": "string"
     },
     "recommendation": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "recommendationsVisits"
+      "type": "string"
     },
     "tourismValue": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "tourismValueVisits"
+      "type": "string"
     },
     "stateOfConservation": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "stateOfConservationVisits"
+      "type": "string"
     },
     "risk": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "riskVisits"
+      "type": "string"
     },
     "researchValue": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "researchValueVisits"
+      "type": "string"
+    },
+    "period": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "string"
+    },
+    "assessmentType": {
+      "type": "string"
+    },
+    "assessmentTypeOther": {
+      "type": "string"
     },
     "visit_associate": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::visit-associate.visit-associate",
-      "inversedBy": "visitUniqueId"
+      "inversedBy": "visit_unique_id"
     },
     "media_associates": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::media-associate.media-associate",
-      "mappedBy": "visitUniqueId"
-    },
-    "period": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "periodVisits"
-    },
-    "artifacts": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "artifactsVisits"
-    },
-    "assessmentType": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "assessmentTypeVisits"
-    },
-    "assetConfigId": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::asset-config.asset-config",
-      "inversedBy": "visits"
+      "mappedBy": "visit_unique_id"
     }
   }
 }

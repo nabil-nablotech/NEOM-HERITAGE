@@ -15,9 +15,9 @@
     "name": {
       "type": "string"
     },
-    "field_codes": {
+    "field_code": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "manyToOne",
       "target": "api::field-code.field-code",
       "inversedBy": "field_options"
     },

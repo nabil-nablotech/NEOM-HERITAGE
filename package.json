@@ -19,6 +19,7 @@
     "@strapi/strapi": "4.3.2",
     "mysql": "^2.18.1",
     "patch-package": "^6.4.7",
+    "postinstall-postinstall": "^2.1.0",
     "strapi-plugin-request-id": "^1.1.0"
   },
   "author": {
