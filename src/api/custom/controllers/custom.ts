@@ -112,7 +112,6 @@ export default {
         .query("api::field-option.field-option")
         .findMany({
           populate: {
-            field_codes: true,
             translation: {
               populate: {
                 locale: {
@@ -134,7 +133,8 @@ export default {
       const fieldCodes = await strapi
         .query("api::field-code.field-code")
         .findMany({});
-      fielOptions.map((x) => {
+      fielOptions.map((x, i) => {
+        console.log(i, ':', JSON.stringify(x.translation.locale[0]))
         x.value = x.translation.locale.length > 0 && x.translation.locale[0].value;
         x.label = x.translation.locale.length > 0 && x.translation.locale[0].value;
         return x;
