@@ -28,13 +28,13 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::place.place",
-      "inversedBy": "assetConfigId"
+      "mappedBy": "assetConfigId"
     },
     "visits": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::visit.visit",
-      "inversedBy": "assetConfigId"
+      "mappedBy": "assetConfigId"
     }
   }
 }
