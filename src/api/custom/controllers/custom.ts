@@ -112,7 +112,7 @@ export default {
         .query("api::field-option.field-option")
         .findMany({
           populate: {
-            field_codes: true,
+            field_code: true,
             translation: {
               populate: {
                 locale: {
@@ -134,16 +134,16 @@ export default {
       const fieldCodes = await strapi
         .query("api::field-code.field-code")
         .findMany({});
-      fielOptions.map((x) => {
-        x.value = x.translation.locale.length > 0 && x.translation.locale[0].value;
-        x.label = x.translation.locale.length > 0 && x.translation.locale[0].value;
+        fielOptions.map((x, i) => {
+        x.value = x.translation.locale.length > 0 && x.translation.locale[0]?.value || '';
+        x.label = x.translation.locale.length > 0 && x.translation.locale[0]?.value || '';
         return x;
       });
 
       let searchOption = {};
       fieldCodes.map((x) => {
         searchOption[x.name] = fielOptions.filter(
-          (y) => y.field_codes[0].name === x.name
+          (y) => y.field_code.name === x.name
         );
         return searchOption;
       });
@@ -151,7 +151,7 @@ export default {
       ctx.body = searchOption;
       return ctx.body;
     } catch (err) {
-      console.log("error on search-------------", err);
+      console.log("error in redine search options-------------", err);
       ctx.body = err;
     }
   },
