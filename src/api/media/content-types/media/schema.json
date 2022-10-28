@@ -63,7 +63,7 @@
       "type": "string"
     },
     "keywords": {
-      "type": "string"
+      "type": "json"
     },
     "mediaUIPath": {
       "type": "string"
