@@ -48,41 +48,38 @@
     "visitUIPath": {
       "type": "string"
     },
+    "siteType": {
+      "type": "json"
+    },
+    "researchValue": {
+      "type": "json"
+    },
+    "artifacts": {
+      "type": "json"
+    },
+    "tourismValue": {
+      "type": "json"
+    },
+    "stateOfConservation": {
+      "type": "json"
+    },
+    "recommendation": {
+      "type": "json"
+    },
+    "risk": {
+      "type": "json"
+    },
+    "period": {
+      "type": "json"
+    },
+    "assessmentType": {
+      "type": "json"
+    },
     "asset_config_id": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::asset-config.asset-config",
       "inversedBy": "visits"
-    },
-    "siteType": {
-      "type": "string"
-    },
-    "recommendation": {
-      "type": "string"
-    },
-    "tourismValue": {
-      "type": "string"
-    },
-    "stateOfConservation": {
-      "type": "string"
-    },
-    "risk": {
-      "type": "string"
-    },
-    "researchValue": {
-      "type": "string"
-    },
-    "period": {
-      "type": "string"
-    },
-    "artifacts": {
-      "type": "string"
-    },
-    "assessmentType": {
-      "type": "string"
-    },
-    "assessmentTypeOther": {
-      "type": "string"
     },
     "visit_associate": {
       "type": "relation",
@@ -94,6 +91,12 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::media-associate.media-associate",
+      "mappedBy": "visit_unique_id"
+    },
+    "remark_headers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::remark-header.remark-header",
       "mappedBy": "visit_unique_id"
     }
   }

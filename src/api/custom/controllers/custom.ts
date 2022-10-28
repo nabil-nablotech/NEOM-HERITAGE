@@ -167,7 +167,8 @@ export default {
                 populate: {
                   media_unique_id: {
                     populate: {
-                      object: true
+                      object: true,
+                      media_type: true
                     }
                   }
                 }
@@ -181,11 +182,8 @@ export default {
           where: {
             uniqueId: ctx.params.uniqueId,
           } });
-      const visitCount = await strapi
-      .query("api::visit.visit")
-      .count({ where: {
-
-      } });
+      const libraryItems = place.media_associates.filter(x => x.media_unique_id.media_type[0].categoryCode === "LIBRARY");
+      place.libraryItems = libraryItems;
         ctx.body = place;
     } catch (err) {
       console.log("error in place details-------------", err);

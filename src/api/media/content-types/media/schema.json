@@ -31,17 +31,14 @@
         "images"
       ]
     },
-    "by": {
-      "type": "string"
-    },
-    "photographedBy": {
+    "Author": {
       "type": "string"
     },
     "description": {
       "type": "text"
     },
-    "actionType": {
-      "type": "string"
+    "categoryType": {
+      "type": "json"
     },
     "fileName": {
       "type": "string"
