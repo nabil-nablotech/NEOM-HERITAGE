@@ -31,16 +31,13 @@
         "images"
       ]
     },
-    "by": {
-      "type": "string"
-    },
-    "photographedBy": {
+    "Author": {
       "type": "string"
     },
     "description": {
       "type": "text"
     },
-    "actionType": {
+    "categoryType": {
       "type": "string"
     },
     "fileName": {
