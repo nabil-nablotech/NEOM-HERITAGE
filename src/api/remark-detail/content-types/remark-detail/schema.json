@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "remark_details",
+  "info": {
+    "singularName": "remark-detail",
+    "pluralName": "remark-details",
+    "displayName": "remarkDetails"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "remark_header_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::remark-header.remark-header",
+      "inversedBy": "remark_details"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

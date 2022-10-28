@@ -92,6 +92,12 @@
       "relation": "oneToMany",
       "target": "api::media-associate.media-associate",
       "mappedBy": "place_unique_id"
+    },
+    "remark_headers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::remark-header.remark-header",
+      "mappedBy": "place_unique_id"
     }
   }
 }
