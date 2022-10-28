@@ -51,35 +51,35 @@
     "placeValue": {
       "type": "integer"
     },
+    "siteType": {
+      "type": "json"
+    },
+    "researchValue": {
+      "type": "json"
+    },
+    "artifacts": {
+      "type": "json"
+    },
+    "tourismValue": {
+      "type": "json"
+    },
+    "stateOfConservation": {
+      "type": "json"
+    },
+    "recommendation": {
+      "type": "json"
+    },
+    "risk": {
+      "type": "json"
+    },
+    "period": {
+      "type": "json"
+    },
     "asset_config_id": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::asset-config.asset-config",
       "inversedBy": "places"
-    },
-    "siteType": {
-      "type": "string"
-    },
-    "recommendation": {
-      "type": "string"
-    },
-    "researchValue": {
-      "type": "string"
-    },
-    "tourismValue": {
-      "type": "string"
-    },
-    "stateOfConservation": {
-      "type": "string"
-    },
-    "risk": {
-      "type": "string"
-    },
-    "period": {
-      "type": "string"
-    },
-    "artifacts": {
-      "type": "string"
     },
     "visit_associates": {
       "type": "relation",

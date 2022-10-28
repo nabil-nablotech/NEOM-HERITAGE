@@ -38,7 +38,7 @@
       "type": "text"
     },
     "categoryType": {
-      "type": "string"
+      "type": "json"
     },
     "fileName": {
       "type": "string"
