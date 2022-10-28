@@ -134,9 +134,13 @@ export default {
       const fieldCodes = await strapi
         .query("api::field-code.field-code")
         .findMany({});
-        fielOptions.map((x, i) => {
-        x.value = x.translation.locale.length > 0 && x.translation.locale[0]?.value || '';
-        x.label = x.translation.locale.length > 0 && x.translation.locale[0]?.value || '';
+      fielOptions.map((x, i) => {
+        x.value =
+          (x.translation.locale.length > 0 && x.translation.locale[0]?.value) ||
+          "";
+        x.label =
+          (x.translation.locale.length > 0 && x.translation.locale[0]?.value) ||
+          "";
         return x;
       });
 
@@ -158,36 +162,117 @@ export default {
 
   placeDetails: async (ctx, next) => {
     try {
-      
-      const place = await strapi
-          .query("api::place.place")
-          .findOne({
+      const place = await strapi.query("api::place.place").findOne({
+        populate: {
+          media_associates: {
             populate: {
-              media_associates: {
+              media_unique_id: {
                 populate: {
-                  media_unique_id: {
+                  object: true,
+                  media_type: true,
+                },
+              },
+            },
+          },
+          visit_associates: {
+            populate: {
+              visit_unique_id: {
+                populate: {
+                  media_associates: {
                     populate: {
-                      object: true,
-                      media_type: true
+                      media_unique_id: {
+                        populate: {
+                          object: true
+                        }
+                      }
                     }
                   }
                 }
-              },
-              visit_associates: {
-                populate: {
-                  visit_unique_id: true
-                }
               }
             },
-          where: {
-            uniqueId: ctx.params.uniqueId,
-          } });
-      const libraryItems = place.media_associates.filter(x => x.media_unique_id.media_type[0].categoryCode === "LIBRARY");
+          },
+        },
+        where: {
+          uniqueId: ctx.params.uniqueId,
+        },
+      });
+      const libraryItems = place.media_associates.filter(
+        (x) => x.media_unique_id.media_type[0].categoryCode === "LIBRARY"
+      );
       place.libraryItems = libraryItems;
-        ctx.body = place;
+      ctx.body = place;
     } catch (err) {
       console.log("error in place details-------------", err);
       ctx.body = err;
     }
-  }
+  },
+
+  eventDetails: async (ctx, next) => {
+    try {
+      const data = await strapi.query("api::visit.visit").findOne({
+        populate: {
+          media_associates: {
+            populate: {
+              media_unique_id: {
+                populate: {
+                  object: true,
+                  media_type: true,
+                },
+              },
+            },
+          },
+          visit_associate: {
+            populate: {
+              place_unique_id: true
+            }
+          },
+        },
+        where: {
+          uniqueId: ctx.params.uniqueId,
+        },
+      });
+      const libraryItems = data.media_associates.filter(
+        (x) => x.media_unique_id.media_type[0].categoryCode === "LIBRARY"
+      );
+      const mediaGallery = data.media_associates.filter(
+        (x) => x.media_unique_id.media_type[0].categoryCode === "MEDIA"
+      );
+      data.libraryItems = libraryItems;
+      data.mediaGallery = mediaGallery;
+
+      ctx.body = data;
+    } catch (err) {
+      console.log("error in place details-------------", err);
+      ctx.body = err;
+    }
+  },
+
+  mediaDetails: async (ctx, next) => {
+    try {
+      const data = await strapi.query("api::media.media").findOne({
+        populate: {
+          object: true,
+          media_type: true,
+          media_associates: {
+            populate: {
+              place_unique_id: true
+            },
+          },
+        },
+        where: {
+          uniqueId: ctx.params.uniqueId,
+          media_type: {
+            categoryCode: {
+              $contains: "MEDIA",
+            },
+          },
+        },
+      });
+
+      ctx.body = data;
+    } catch (err) {
+      console.log("error in place details-------------", err);
+      ctx.body = err;
+    }
+  },
 };

@@ -45,5 +45,23 @@ export default {
         middlewares: [],
       },
     },
+    {
+      method: "GET",
+      path: "/custom/event/:uniqueId",
+      handler: "custom.eventDetails",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: "GET",
+      path: "/custom/media/:uniqueId",
+      handler: "custom.mediaDetails",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };
