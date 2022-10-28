@@ -34,7 +34,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::media.media",
-      "inversedBy": "media_type"
+      "mappedBy": "media_type"
     }
   }
 }
