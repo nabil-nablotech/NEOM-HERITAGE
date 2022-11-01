@@ -182,13 +182,13 @@ export default {
                     populate: {
                       media_unique_id: {
                         populate: {
-                          object: true
-                        }
-                      }
-                    }
-                  }
-                }
-              }
+                          object: true,
+                        },
+                      },
+                    },
+                  },
+                },
+              },
             },
           },
         },
@@ -223,8 +223,8 @@ export default {
           },
           visit_associate: {
             populate: {
-              place_unique_id: true
-            }
+              place_unique_id: true,
+            },
           },
         },
         where: {
@@ -255,7 +255,7 @@ export default {
           media_type: true,
           media_associates: {
             populate: {
-              place_unique_id: true
+              place_unique_id: true,
             },
           },
         },
@@ -273,6 +273,85 @@ export default {
     } catch (err) {
       console.log("error in place details-------------", err);
       ctx.body = err;
+    }
+  },
+
+  getRemarks: async (ctx, next) => {
+    try {
+      // let whereCondition: {
+      //   place_unique_id?: { uniqueId: any };
+      //   visit_unique_id?: { uniqueId: any };
+      // };
+      // if (ctx.query.type.toLowerCase() === "place") {
+      //   whereCondition = {
+      //     place_unique_id: {
+      //       uniqueId: ctx.query.uniqueId,
+      //     },
+      //   };
+      // } else if (ctx.query.type.toLowerCase() === "visit") {
+      //   whereCondition = {
+      //     visit_unique_id: {
+      //       uniqueId: ctx.query.uniqueId,
+      //     },
+      //   };
+      // }
+      const data = await strapi
+        .query("api::remark-header.remark-header")
+        .findOne({
+          where: {
+            $or: [
+              {
+                place_unique_id: {
+                  uniqueId: ctx.query.uniqueId,
+                },
+              },
+              {
+                visit_unique_id: {
+                  uniqueId: ctx.query.uniqueId,
+                },
+              },
+            ],
+          },
+          populate: {
+            place_unique_id: true,
+            visit_unique_id: true,
+            users_permissions_user: true,
+          },
+        });
+      ctx.body = data;
+    } catch (err) {
+      console.log("Error in fetching remarks", err);
+      ctx.body = err;
+    }
+  },
+
+  addRemarks: async (ctx, next) => {
+    try {
+      const user = ctx.state.user;
+      let addData: {
+        place_unique_id?: { id: Number };
+        visit_unique_id?: { id: Number };
+        users_permissions_user?: Number;
+      };
+      if (ctx.request.body.type.toLowerCase() === "place") {
+        addData = {
+          place_unique_id: ctx.request.body.id,
+        };
+      } else if (ctx.request.body.type.toLowerCase() === "visit") {
+        addData = {
+          visit_unique_id: ctx.request.body.id,
+        };
+      }
+      addData.users_permissions_user = user.id;
+      const data = await strapi
+        .query("api::remark-header.remark-header")
+        .create({
+          data: addData,
+        });
+      ctx.body = data;
+    } catch (err) {
+      console.log("error", err);
+      ctx.badRequest("controller error", { moreDetails: err });
     }
   },
 };

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "remark-header",
     "pluralName": "remark-headers",
-    "displayName": "remarkHeader"
+    "displayName": "remarkHeader",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -28,6 +29,12 @@
       "relation": "oneToMany",
       "target": "api::remark-detail.remark-detail",
       "mappedBy": "remark_header_id"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "remark_headers"
     }
   }
 }
