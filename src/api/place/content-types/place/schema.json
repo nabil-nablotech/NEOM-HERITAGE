@@ -13,7 +13,9 @@
   "pluginOptions": {},
   "attributes": {
     "uniqueId": {
-      "type": "string"
+      "type": "string",
+      "unique": true,
+      "required": true
     },
     "placeNameEnglish": {
       "type": "string"
@@ -36,15 +38,9 @@
     "longitude": {
       "type": "float"
     },
-    "type": {
-      "type": "string"
-    },
     "deleted": {
       "type": "boolean",
       "default": false
-    },
-    "keywords": {
-      "type": "string"
     },
     "placeUIPath": {
       "type": "string"
@@ -53,76 +49,55 @@
       "type": "integer"
     },
     "siteType": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "siteTypePlaces"
-    },
-    "recommendation": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "recommendationPlace"
+      "type": "json"
     },
     "researchValue": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "researchValuePlaces"
+      "type": "json"
+    },
+    "artifacts": {
+      "type": "json"
     },
     "tourismValue": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "tourismValuePlaces"
+      "type": "json"
     },
     "stateOfConservation": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "stateOfConservationPlaces"
+      "type": "json"
+    },
+    "recommendation": {
+      "type": "json"
     },
     "risk": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "riskPlaces"
+      "type": "json"
     },
-    "userId": {
+    "period": {
+      "type": "json"
+    },
+    "keywords": {
+      "type": "json"
+    },
+    "asset_config_id": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
+      "target": "api::asset-config.asset-config",
       "inversedBy": "places"
     },
     "visit_associates": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::visit-associate.visit-associate",
-      "mappedBy": "placeUniqueId"
+      "mappedBy": "place_unique_id"
     },
     "media_associates": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::media-associate.media-associate",
-      "mappedBy": "placeUniqueId"
+      "mappedBy": "place_unique_id"
     },
-    "period": {
+    "remark_headers": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "periodPlaces"
-    },
-    "artifacts": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::field-option.field-option",
-      "inversedBy": "ArtifactsPlaces"
-    },
-    "assetConfigId": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::asset-config.asset-config",
-      "inversedBy": "places"
+      "relation": "oneToMany",
+      "target": "api::remark-header.remark-header",
+      "mappedBy": "place_unique_id"
     }
   }
 }

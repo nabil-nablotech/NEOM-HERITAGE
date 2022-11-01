@@ -31,17 +31,14 @@
         "images"
       ]
     },
-    "by": {
-      "type": "string"
-    },
-    "photographedBy": {
+    "Author": {
       "type": "string"
     },
     "description": {
       "type": "text"
     },
-    "actionType": {
-      "type": "string"
+    "categoryType": {
+      "type": "json"
     },
     "fileName": {
       "type": "string"
@@ -66,7 +63,7 @@
       "type": "string"
     },
     "keywords": {
-      "type": "string"
+      "type": "json"
     },
     "mediaUIPath": {
       "type": "string"
@@ -80,17 +77,17 @@
       "repeatable": false,
       "component": "blocks.common-fields"
     },
-    "media_associate": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::media-associate.media-associate",
-      "inversedBy": "mediaUniqueId"
-    },
-    "mediaType": {
+    "media_type": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::asset-config.asset-config",
       "inversedBy": "media"
+    },
+    "media_associate": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::media-associate.media-associate",
+      "inversedBy": "media_unique_id"
     }
   }
 }

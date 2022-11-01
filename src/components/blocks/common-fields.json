@@ -6,6 +6,15 @@
   },
   "options": {},
   "attributes": {
+    "fileName": {
+      "type": "string"
+    },
+    "longitude": {
+      "type": "float"
+    },
+    "latitude": {
+      "type": "float"
+    },
     "fileSize": {
       "type": "string"
     },

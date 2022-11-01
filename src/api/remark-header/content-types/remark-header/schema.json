@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "remark_headers",
+  "info": {
+    "singularName": "remark-header",
+    "pluralName": "remark-headers",
+    "displayName": "remarkHeader"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "place_unique_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::place.place",
+      "inversedBy": "remark_headers"
+    },
+    "visit_unique_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::visit.visit",
+      "inversedBy": "remark_headers"
+    },
+    "remark_details": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::remark-detail.remark-detail",
+      "mappedBy": "remark_header_id"
+    }
+  }
+}

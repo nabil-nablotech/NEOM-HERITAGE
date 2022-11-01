@@ -1,0 +1,26 @@
+diff --git a/node_modules/@strapi/database/lib/query/query-builder.js b/node_modules/@strapi/database/lib/query/query-builder.js
+index 0d0bc1d..3a36cdb 100644
+--- a/node_modules/@strapi/database/lib/query/query-builder.js
++++ b/node_modules/@strapi/database/lib/query/query-builder.js
+@@ -281,6 +281,7 @@ const createQueryBuilder = (uid, db) => {
+       }
+ 
+       const aliasedTableName = this.mustUseAlias() ? `${tableName} as ${this.alias}` : tableName;
++      const tableNameToUse = this.mustUseAlias() ? `${this.alias}` : tableName; //++
+ 
+       const qb = db.getConnection(aliasedTableName);
+ 
+@@ -304,7 +305,12 @@ const createQueryBuilder = (uid, db) => {
+           const dbColumnName =
+             state.count === '*' ? '*' : this.aliasColumn(helpers.toColumnName(meta, state.count));
+ 
+-          qb.count({ count: dbColumnName });
++          // qb.count({ count: dbColumnName }); //--
++          if (_.has('id', meta.attributes)) { //++
++            qb.countDistinct({ count: `${tableNameToUse}.id` }); //++
++          } else { //++
++            qb.count({ count: dbColumnName }); //++
++          } //++
+           break;
+         }
+         case 'max': {

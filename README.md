@@ -55,3 +55,24 @@ Feel free to check out the [Strapi GitHub repository](https://github.com/strapi/
 ---
 
 <sub>🤫 Psst! [Strapi is hiring](https://strapi.io/careers).</sub>
+
+## TODO:
+
+- In the strapi we have one open issue that is pagination. Strapi is not giving pagination count properly.
+  we need make some changes in node\*modules we need to install below package
+  - https://www.npmjs.com/package/patch-package
+    in the file query-builder.js under node_modules/@strapi/database/lib/query/ we need to make some changes as below.
+    ## In getKnexQuery function after
+        const aliasedTableName = this.mustUseAlias() ? `${tableName} as ${this.alias}` : tableName;
+    ## add this code
+        const tableNameToUse = this.mustUseAlias() ? `${this.alias}` : tableName;
+    ## then comment below line
+        qb.count({ count: dbColumnName });
+    ## add this code
+        if (\*.has('id', meta.attributes)) {
+        qb.countDistinct({ count: `${tableNameToUse}.id` });
+        } else {
+        qb.count({ count: state.count });
+        }
+
+## Note: We will use camelCase with normal fileds and we will use snake_case with relation fields in collection

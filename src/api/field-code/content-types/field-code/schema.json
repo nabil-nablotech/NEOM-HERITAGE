@@ -17,9 +17,9 @@
     },
     "field_options": {
       "type": "relation",
-      "relation": "manyToMany",
+      "relation": "oneToMany",
       "target": "api::field-option.field-option",
-      "mappedBy": "field_codes"
+      "mappedBy": "field_code"
     }
   }
 }
