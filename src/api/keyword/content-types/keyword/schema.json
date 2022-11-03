@@ -17,6 +17,12 @@
     },
     "keywords": {
       "type": "json"
+    },
+    "asset_config": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::asset-config.asset-config",
+      "inversedBy": "keywords"
     }
   }
 }

@@ -261,11 +261,9 @@ export default {
         },
         where: {
           uniqueId: ctx.params.uniqueId,
-          media_type: {
-            categoryCode: {
-              $contains: "MEDIA",
-            },
-          },
+          // media_type: {
+          //   categoryCode:  "MEDIA"
+          // },
         },
       });
 
@@ -354,4 +352,62 @@ export default {
       ctx.badRequest("controller error", { moreDetails: err });
     }
   },
+
+  getKeywords: async (ctx, next) => {
+    try {
+      const data = await strapi.query("api::keyword.keyword").findMany({
+        where: {
+          asset_config: {
+            id: ctx.params.asset_config_id,
+          },
+        },
+      });
+      let keywords =[];
+      data.map(x => keywords.push(x.keywords));
+      keywords = keywords.flatMap(x => x);
+
+      ctx.body = keywords;
+    } catch (err) {
+      console.log("error in place details-------------", err);
+      ctx.body = err;
+    }
+  },
+  addKeywords: async (ctx, next) => {
+    try {
+      
+      let reqBody = ctx.request.body.keywords;
+      for(let i = 0; i < reqBody.length; i ++) {
+
+        const keywords = await strapi.query("api::keyword.keyword").findMany({
+          where: {
+            asset_config: {
+              id: ctx.params.asset_config_id,
+            },
+            keywords: {
+              $contains: reqBody[i]
+            }
+          }
+        });
+        if (keywords.length > 0) {
+          reqBody = reqBody.filter(x => x !== reqBody[i]);
+        }
+      }
+      const addData = {
+        asset_config: `${ctx.params.asset_config_id}`,
+        keywords: reqBody
+      }
+      if (reqBody.length > 0) {
+        const data = await strapi.query("api::keyword.keyword").create({
+          data: addData,
+        });
+        ctx.body = data;
+      } else {
+        ctx.body = {};
+      }
+
+    } catch (err) {
+      console.log("error in keywords add-------------", err);
+      ctx.body = err;
+    }
+  }
 };
