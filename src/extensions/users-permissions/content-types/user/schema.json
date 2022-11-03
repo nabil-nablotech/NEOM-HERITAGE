@@ -71,6 +71,12 @@
     "recoveryToken": {
       "type": "text",
       "default": "null"
+    },
+    "remark_headers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::remark-header.remark-header",
+      "mappedBy": "users_permissions_user"
     }
   }
 }
