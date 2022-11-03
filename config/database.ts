@@ -6,7 +6,7 @@ export default ({ env }) => ({
       port: env.int('DATABASE_PORT', 3306),
       database: env('DATABASE_NAME', 'neom'),
       user: env('DATABASE_USERNAME', 'root'),
-      password: env('DATABASE_PASSWORD', ''),
+      password: env('DATABASE_PASSWORD', 'Abate@2022'),
       ssl: env.bool('DATABASE_SSL', false),
     },
   },
