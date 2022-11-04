@@ -355,12 +355,18 @@ export default {
 
   getKeywords: async (ctx, next) => {
     try {
-      const data = await strapi.query("api::keyword.keyword").findMany({
-        where: {
-          asset_config: {
-            id: ctx.params.asset_config_id,
-          },
+      let queryWhere: any =  {
+        asset_config: {
+          id: ctx.params.asset_config_id,
         },
+      }
+      if (ctx.query.search) {
+        queryWhere.keywords = {
+          $contains: ctx.query.search
+        };
+      }
+      const data = await strapi.query("api::keyword.keyword").findMany({
+        where: queryWhere,
       });
       let keywords =[];
       data.map(x => keywords.push(x.keywords));
