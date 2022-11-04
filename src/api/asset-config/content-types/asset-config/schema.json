@@ -35,6 +35,12 @@
       "relation": "manyToMany",
       "target": "api::media.media",
       "mappedBy": "media_type"
+    },
+    "keywords": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::keyword.keyword",
+      "mappedBy": "asset_config"
     }
   }
 }
