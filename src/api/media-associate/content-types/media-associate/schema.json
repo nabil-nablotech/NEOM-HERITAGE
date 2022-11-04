@@ -12,15 +12,15 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "place_unique_id": {
+    "place_unique_ids": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::place.place",
       "inversedBy": "media_associates"
     },
-    "visit_unique_id": {
+    "visit_unique_ids": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::visit.visit",
       "inversedBy": "media_associates"
     },
