@@ -164,7 +164,7 @@ export default {
     try {
       const place = await strapi.query("api::place.place").findOne({
         populate: {
-          media_associates: {
+          media_associate: {
             populate: {
               media_unique_id: {
                 populate: {
@@ -253,9 +253,10 @@ export default {
         populate: {
           object: true,
           media_type: true,
-          media_associates: {
+          media_associate: {
             populate: {
-              place_unique_id: true,
+              place_unique_ids: true,
+              visit_unique_ids: true,
             },
           },
         },
