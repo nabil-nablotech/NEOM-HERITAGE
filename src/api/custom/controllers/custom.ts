@@ -296,7 +296,7 @@ export default {
       // }
       const data = await strapi
         .query("api::remark-header.remark-header")
-        .findOne({
+        .findMany({
           where: {
             $or: [
               {
@@ -314,6 +314,7 @@ export default {
           populate: {
             place_unique_id: true,
             visit_unique_id: true,
+            remark_details: true,
             users_permissions_user: true,
           },
         });
