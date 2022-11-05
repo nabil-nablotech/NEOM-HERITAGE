@@ -72,6 +72,7 @@ export default {
         middlewares: [],
       },
     },
+    
     {
       method: "GET",
       path: "/custom/remarks",
@@ -85,6 +86,24 @@ export default {
       method: "POST",
       path: "/custom/remarks",
       handler: "custom.addRemarks",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: "POST",
+      path: "/custom/keywords/:asset_config_id",
+      handler: "custom.addKeywords",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: "GET",
+      path: "/custom/keywords/:asset_config_id",
+      handler: "custom.getKeywords",
       config: {
         policies: [],
         middlewares: [],

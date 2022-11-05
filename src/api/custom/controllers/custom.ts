@@ -267,19 +267,18 @@ export default {
         populate: {
           object: true,
           media_type: true,
-          media_associates: {
+          media_associate: {
             populate: {
-              place_unique_id: true,
+              place_unique_ids: true,
+              visit_unique_ids: true,
             },
           },
         },
         where: {
           uniqueId: ctx.params.uniqueId,
-          media_type: {
-            categoryCode: {
-              $contains: "MEDIA",
-            },
-          },
+          // media_type: {
+          //   categoryCode:  "MEDIA"
+          // },
         },
       });
 
@@ -311,7 +310,7 @@ export default {
       // }
       const data = await strapi
         .query("api::remark-header.remark-header")
-        .findOne({
+        .findMany({
           where: {
             $or: [
               {
@@ -329,6 +328,11 @@ export default {
           populate: {
             place_unique_id: true,
             visit_unique_id: true,
+            remark_details: {
+              populate: {
+                users_permissions_user: true
+              }
+            },
             users_permissions_user: true,
           },
         });
@@ -342,30 +346,100 @@ export default {
   addRemarks: async (ctx, next) => {
     try {
       const user = ctx.state.user;
-      let addData: {
-        place_unique_id?: { id: Number };
-        visit_unique_id?: { id: Number };
-        users_permissions_user?: Number;
-      };
-      if (ctx.request.body.type.toLowerCase() === "place") {
-        addData = {
-          place_unique_id: ctx.request.body.id,
+      let response: { id?: Number, detail?: { id?: Number } } = { id: null, detail: { id: null } };
+      let { id, type, description, remark_header_id } = ctx.request.body;
+      if (!remark_header_id) {
+        let addData: {
+          place_unique_id?: { id: Number };
+          visit_unique_id?: { id: Number };
+          users_permissions_user?: Number;
         };
-      } else if (ctx.request.body.type.toLowerCase() === "visit") {
-        addData = {
-          visit_unique_id: ctx.request.body.id,
-        };
+        if (type.toLowerCase() === "place") {
+          addData = {
+            place_unique_id: id,
+          };
+        } else if (type.toLowerCase() === "visit") {
+          addData = {
+            visit_unique_id: id,
+          };
+        }
+        addData.users_permissions_user = user.id;
+        response = await strapi
+          .query("api::remark-header.remark-header")
+          .create({
+            data: addData,
+          });
+        remark_header_id = response.id;
       }
-      addData.users_permissions_user = user.id;
-      const data = await strapi
-        .query("api::remark-header.remark-header")
-        .create({
-          data: addData,
-        });
-      ctx.body = data;
+      response.detail = await strapi.query("api::remark-detail.remark-detail").create({ data: { remark_header_id: remark_header_id, description: description, users_permissions_user: user.id } });
+      ctx.body = response;
     } catch (err) {
       console.log("error", err);
       ctx.badRequest("controller error", { moreDetails: err });
     }
   },
+
+  getKeywords: async (ctx, next) => {
+    try {
+      let queryWhere: any = {
+        asset_config: {
+          id: ctx.params.asset_config_id,
+        },
+      }
+      if (ctx.query.search) {
+        queryWhere.keywords = {
+          $contains: ctx.query.search
+        };
+      }
+      const data = await strapi.query("api::keyword.keyword").findMany({
+        where: queryWhere,
+      });
+      let keywords = [];
+      data.map(x => keywords.push(x.keywords));
+      keywords = keywords.flatMap(x => x);
+
+      ctx.body = keywords;
+    } catch (err) {
+      console.log("error in place details-------------", err);
+      ctx.body = err;
+    }
+  },
+  addKeywords: async (ctx, next) => {
+    try {
+
+      let reqBody = ctx.request.body.keywords;
+      for (let i = 0; i < reqBody.length; i++) {
+
+        const keywords = await strapi.query("api::keyword.keyword").findMany({
+          where: {
+            asset_config: {
+              id: ctx.params.asset_config_id,
+            },
+            keywords: {
+              $contains: reqBody[i]
+            }
+          }
+        });
+        if (keywords.length > 0) {
+          reqBody = reqBody.filter(x => x !== reqBody[i]);
+        }
+      }
+      const addData = {
+        asset_config: `${ctx.params.asset_config_id}`,
+        keywords: reqBody
+      }
+      if (reqBody.length > 0) {
+        const data = await strapi.query("api::keyword.keyword").create({
+          data: addData,
+        });
+        ctx.body = data;
+      } else {
+        ctx.body = {};
+      }
+
+    } catch (err) {
+      console.log("error in keywords add-------------", err);
+      ctx.body = err;
+    }
+  }
 };

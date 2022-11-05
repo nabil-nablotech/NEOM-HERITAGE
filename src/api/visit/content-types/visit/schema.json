@@ -87,17 +87,17 @@
       "target": "api::visit-associate.visit-associate",
       "inversedBy": "visit_unique_id"
     },
-    "media_associates": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::media-associate.media-associate",
-      "mappedBy": "visit_unique_id"
-    },
     "remark_headers": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::remark-header.remark-header",
       "mappedBy": "visit_unique_id"
+    },
+    "media_associates": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::media-associate.media-associate",
+      "inversedBy": "visit_unique_ids"
     }
   }
 }
