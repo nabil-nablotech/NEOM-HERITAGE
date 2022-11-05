@@ -314,7 +314,11 @@ export default {
           populate: {
             place_unique_id: true,
             visit_unique_id: true,
-            remark_details: true,
+            remark_details: {
+              populate: {
+                users_permissions_user: true
+              }
+            },
             users_permissions_user: true,
           },
         });
