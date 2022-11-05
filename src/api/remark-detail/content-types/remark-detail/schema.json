@@ -4,7 +4,8 @@
   "info": {
     "singularName": "remark-detail",
     "pluralName": "remark-details",
-    "displayName": "remarkDetails"
+    "displayName": "remarkDetails",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,12 @@
     },
     "description": {
       "type": "text"
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "remark_details"
     }
   }
 }

@@ -327,27 +327,33 @@ export default {
   addRemarks: async (ctx, next) => {
     try {
       const user = ctx.state.user;
-      let addData: {
-        place_unique_id?: { id: Number };
-        visit_unique_id?: { id: Number };
-        users_permissions_user?: Number;
-      };
-      if (ctx.request.body.type.toLowerCase() === "place") {
-        addData = {
-          place_unique_id: ctx.request.body.id,
+      let response: { id?: Number, detail?: { id?: Number } } = { id: null, detail: { id: null } };
+      let { id, type, description, remark_header_id } = ctx.request.body;
+      if (!remark_header_id) {
+        let addData: {
+          place_unique_id?: { id: Number };
+          visit_unique_id?: { id: Number };
+          users_permissions_user?: Number;
         };
-      } else if (ctx.request.body.type.toLowerCase() === "visit") {
-        addData = {
-          visit_unique_id: ctx.request.body.id,
-        };
+        if (type.toLowerCase() === "place") {
+          addData = {
+            place_unique_id: id,
+          };
+        } else if (type.toLowerCase() === "visit") {
+          addData = {
+            visit_unique_id: id,
+          };
+        }
+        addData.users_permissions_user = user.id;
+        response = await strapi
+          .query("api::remark-header.remark-header")
+          .create({
+            data: addData,
+          });
+        remark_header_id = response.id;
       }
-      addData.users_permissions_user = user.id;
-      const data = await strapi
-        .query("api::remark-header.remark-header")
-        .create({
-          data: addData,
-        });
-      ctx.body = data;
+      response.detail = await strapi.query("api::remark-detail.remark-detail").create({ data: { remark_header_id: remark_header_id, description: description, users_permissions_user: user.id } });
+      ctx.body = response;
     } catch (err) {
       console.log("error", err);
       ctx.badRequest("controller error", { moreDetails: err });
@@ -356,7 +362,7 @@ export default {
 
   getKeywords: async (ctx, next) => {
     try {
-      let queryWhere: any =  {
+      let queryWhere: any = {
         asset_config: {
           id: ctx.params.asset_config_id,
         },
@@ -369,7 +375,7 @@ export default {
       const data = await strapi.query("api::keyword.keyword").findMany({
         where: queryWhere,
       });
-      let keywords =[];
+      let keywords = [];
       data.map(x => keywords.push(x.keywords));
       keywords = keywords.flatMap(x => x);
 
@@ -381,9 +387,9 @@ export default {
   },
   addKeywords: async (ctx, next) => {
     try {
-      
+
       let reqBody = ctx.request.body.keywords;
-      for(let i = 0; i < reqBody.length; i ++) {
+      for (let i = 0; i < reqBody.length; i++) {
 
         const keywords = await strapi.query("api::keyword.keyword").findMany({
           where: {

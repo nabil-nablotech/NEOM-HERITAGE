@@ -77,6 +77,12 @@
       "relation": "oneToMany",
       "target": "api::remark-header.remark-header",
       "mappedBy": "users_permissions_user"
+    },
+    "remark_details": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::remark-detail.remark-detail",
+      "mappedBy": "users_permissions_user"
     }
   }
 }
