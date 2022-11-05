@@ -6,7 +6,7 @@ var con = mysql.createConnection({
   port: 3306,
   database: 'neom',
   user: 'root',
-  password: '',
+  password: 'Abate@2022',
   ssl: false,
 });
 
