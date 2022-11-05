@@ -56,6 +56,15 @@ export default {
     },
     {
       method: "GET",
+      path: "/custom/medias",
+      handler: "custom.getMedias",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: "GET",
       path: "/custom/media/:uniqueId",
       handler: "custom.mediaDetails",
       config: {

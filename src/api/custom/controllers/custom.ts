@@ -1,6 +1,7 @@
 /**
  * A set of functions called "actions" for `custom`
  */
+import qs from "qs";
 import { fetchPLaces } from "../../../config/connection";
 
 export default {
@@ -243,6 +244,19 @@ export default {
       ctx.body = data;
     } catch (err) {
       console.log("error in place details-------------", err);
+      ctx.body = err;
+    }
+  },
+  getMedias: async (ctx, next) => {
+    try {
+      const data = await strapi.query("api::media.media").findMany({
+        populate: true,
+        where: qs.parse(ctx.query?.filter),
+      });
+
+      ctx.body = data;
+    } catch (err) {
+      console.log("error in s-------------", err);
       ctx.body = err;
     }
   },
