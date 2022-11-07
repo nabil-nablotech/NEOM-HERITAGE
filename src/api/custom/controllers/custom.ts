@@ -1,6 +1,7 @@
 /**
  * A set of functions called "actions" for `custom`
  */
+import qs from "qs";
 import { fetchPLaces } from "../../../config/connection";
 
 export default {
@@ -246,6 +247,19 @@ export default {
       ctx.body = err;
     }
   },
+  getMedias: async (ctx, next) => {
+    try {
+      const data = await strapi.query("api::media.media").findMany({
+        populate: true,
+        where: qs.parse(ctx.query?.filter),
+      });
+
+      ctx.body = data;
+    } catch (err) {
+      console.log("error in s-------------", err);
+      ctx.body = err;
+    }
+  },
 
   mediaDetails: async (ctx, next) => {
     try {
@@ -296,7 +310,7 @@ export default {
       // }
       const data = await strapi
         .query("api::remark-header.remark-header")
-        .findOne({
+        .findMany({
           where: {
             $or: [
               {
@@ -312,11 +326,47 @@ export default {
             ],
           },
           populate: {
-            place_unique_id: true,
-            visit_unique_id: true,
-            users_permissions_user: true,
+            remark_details: {
+              populate: {
+                users_permissions_user: true
+              }
+            },
           },
         });
+
+      let remark_details_group = {
+        id: null,
+        description: null,
+        remark_header_id: null,
+        createdAt: null,
+        updatedAt: null,
+        users_permissions_user: {},
+        child: []
+      };
+      for (let item of data) {
+        item.remark_details.forEach((remark_detail, index) => {
+          if (index == 0) {
+            remark_details_group.id = remark_detail.id;
+            remark_details_group.description = remark_detail.description;
+            remark_details_group.remark_header_id = remark_detail.remark_header_id;
+            remark_details_group.createdAt = remark_detail.createdAt;
+            remark_details_group.updatedAt = remark_detail.updatedAt;
+            remark_details_group.users_permissions_user = remark_detail.users_permissions_user;
+          } else {
+            remark_details_group.child.push(remark_detail);
+          }
+        })
+        item.remark_details = remark_details_group;
+        remark_details_group = {
+          id: null,
+          description: null,
+          remark_header_id: null,
+          createdAt: null,
+          updatedAt: null,
+          users_permissions_user: {},
+          child: []
+        };
+      }
       ctx.body = data;
     } catch (err) {
       console.log("Error in fetching remarks", err);
@@ -327,27 +377,33 @@ export default {
   addRemarks: async (ctx, next) => {
     try {
       const user = ctx.state.user;
-      let addData: {
-        place_unique_id?: { id: Number };
-        visit_unique_id?: { id: Number };
-        users_permissions_user?: Number;
-      };
-      if (ctx.request.body.type.toLowerCase() === "place") {
-        addData = {
-          place_unique_id: ctx.request.body.id,
+      let response: { id?: Number, detail?: { id?: Number } } = { id: null, detail: { id: null } };
+      let { id, type, description, remark_header_id } = ctx.request.body;
+      if (!remark_header_id) {
+        let addData: {
+          place_unique_id?: { id: Number };
+          visit_unique_id?: { id: Number };
+          users_permissions_user?: Number;
         };
-      } else if (ctx.request.body.type.toLowerCase() === "visit") {
-        addData = {
-          visit_unique_id: ctx.request.body.id,
-        };
+        if (type.toLowerCase() === "place") {
+          addData = {
+            place_unique_id: id,
+          };
+        } else if (type.toLowerCase() === "visit") {
+          addData = {
+            visit_unique_id: id,
+          };
+        }
+        addData.users_permissions_user = user.id;
+        response = await strapi
+          .query("api::remark-header.remark-header")
+          .create({
+            data: addData,
+          });
+        remark_header_id = response.id;
       }
-      addData.users_permissions_user = user.id;
-      const data = await strapi
-        .query("api::remark-header.remark-header")
-        .create({
-          data: addData,
-        });
-      ctx.body = data;
+      response.detail = await strapi.query("api::remark-detail.remark-detail").create({ data: { remark_header_id: remark_header_id, description: description, users_permissions_user: user.id } });
+      ctx.body = response;
     } catch (err) {
       console.log("error", err);
       ctx.badRequest("controller error", { moreDetails: err });
@@ -356,7 +412,7 @@ export default {
 
   getKeywords: async (ctx, next) => {
     try {
-      let queryWhere: any =  {
+      let queryWhere: any = {
         asset_config: {
           id: ctx.params.asset_config_id,
         },
@@ -369,7 +425,7 @@ export default {
       const data = await strapi.query("api::keyword.keyword").findMany({
         where: queryWhere,
       });
-      let keywords =[];
+      let keywords = [];
       data.map(x => keywords.push(x.keywords));
       keywords = keywords.flatMap(x => x);
 
@@ -381,9 +437,9 @@ export default {
   },
   addKeywords: async (ctx, next) => {
     try {
-      
+
       let reqBody = ctx.request.body.keywords;
-      for(let i = 0; i < reqBody.length; i ++) {
+      for (let i = 0; i < reqBody.length; i++) {
 
         const keywords = await strapi.query("api::keyword.keyword").findMany({
           where: {
