@@ -326,16 +326,35 @@ export default {
             ],
           },
           populate: {
-            place_unique_id: true,
-            visit_unique_id: true,
             remark_details: {
               populate: {
                 users_permissions_user: true
               }
             },
-            users_permissions_user: true,
           },
         });
+      let remark_details_group = {
+        id: null,
+        description: null,
+        createdAt: null,
+        updatedAt: null,
+        users_permissions_user: {},
+        child: []
+      }
+      for (let item of data) {
+        item.remark_details.forEach(remark_detail => {
+          if (remark_detail.id == remark_detail.remark_header_id) {
+            remark_details_group.id = remark_detail.id
+            remark_details_group.description = remark_detail.description
+            remark_details_group.createdAt = remark_detail.createdAt
+            remark_details_group.updatedAt = remark_detail.updatedAt
+            remark_details_group.users_permissions_user = remark_detail.users_permissions_user
+          } else {
+            remark_details_group.child.push(remark_detail);
+          }
+        })
+        item.remark_details = remark_details_group;
+      }
       ctx.body = data;
     } catch (err) {
       console.log("Error in fetching remarks", err);
