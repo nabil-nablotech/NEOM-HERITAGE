@@ -1,32 +1,29 @@
 export default [
-  'strapi::errors',
+  "strapi::errors",
+  "strapi::security",
   {
-    name: 'strapi::cors',
+    name: "strapi::cors",
     config: {
       enabled: true,
-      headers: '*',
-      origin: ["*"]
-    }
+      headers: "*",
+      origin: ["*"],
+    },
   },
-  'strapi::poweredBy',
-  'strapi::logger',
-  'strapi::query',
-  'strapi::body',
-  'strapi::session',
-  'strapi::favicon',
-  'strapi::public',
+  "strapi::poweredBy",
+  "strapi::logger",
+  "strapi::query",
   {
-    name: "strapi::security",
+    name: "strapi::body",
     config: {
-      contentSecurityPolicy: {
-        useDefaults: true,
-        directives: {
-          "connect-src": ["'self'", "https:"],
-          "img-src": ["'self'", "data:", "blob:"],
-          "media-src": ["'self'", "data:", "blob:"],
-          upgradeInsecureRequests: null,
-        }
-      }
-    }
+      formLimit: "200mb",
+      jsonLimit: "200mb",
+      textLimit: "200mb",
+      formidable: {
+        maxFileSize: 200 * 1024 * 1024,
+      },
+    },
   },
+  "strapi::session",
+  "strapi::favicon",
+  "strapi::public",
 ];
