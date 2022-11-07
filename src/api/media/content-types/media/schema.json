@@ -54,7 +54,7 @@
       "default": false
     },
     "objectURL": {
-      "type": "string"
+      "type": "text"
     },
     "referenceURL": {
       "type": "string"
