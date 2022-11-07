@@ -1,6 +1,5 @@
 export default [
   'strapi::errors',
-  'strapi::security',
   {
     name: 'strapi::cors',
     config: {
@@ -16,5 +15,18 @@ export default [
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
-  
+  {
+    name: "strapi::security",
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          "connect-src": ["'self'", "https:"],
+          "img-src": ["'self'", "data:", "blob:"],
+          "media-src": ["'self'", "data:", "blob:"],
+          upgradeInsecureRequests: null,
+        }
+      }
+    }
+  },
 ];
