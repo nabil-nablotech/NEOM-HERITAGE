@@ -72,7 +72,7 @@ export default {
         middlewares: [],
       },
     },
-    
+
     {
       method: "GET",
       path: "/custom/remarks",
@@ -86,6 +86,15 @@ export default {
       method: "POST",
       path: "/custom/remarks",
       handler: "custom.addRemarks",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: "PUT",
+      path: "/custom/remarks/:id",
+      handler: "custom.updateRemarks",
       config: {
         policies: [],
         middlewares: [],

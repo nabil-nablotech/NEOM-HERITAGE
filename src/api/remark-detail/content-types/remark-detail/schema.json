@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -20,6 +20,11 @@
     },
     "description": {
       "type": "text"
+    },
+    "delete": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     },
     "users_permissions_user": {
       "type": "relation",
