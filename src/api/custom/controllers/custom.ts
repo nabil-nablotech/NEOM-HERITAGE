@@ -410,6 +410,38 @@ export default {
     }
   },
 
+  updateRemarks: async (ctx, next) => {
+    try {
+      const user = ctx.state.user;
+      const remark = await strapi
+        .query("api::remark-detail.remark-detail")
+        .findOne({
+          where: {
+            id: ctx.params.id,
+          },
+          populate: {
+            users_permissions_user: true
+          }
+        });
+
+      if (user.id === remark.users_permissions_user.id) {
+        let data = await strapi.entityService.update(
+          "api::remark-detail.remark-detail",
+          ctx.params.id,
+          {
+            data: ctx.request.body.data,
+          }
+        );
+        ctx.body = data;
+      } else {
+        ctx.badRequest("Not authorized", { msg: "User is not authorized" })
+      }
+    } catch (err) {
+      console.log("error", err);
+      ctx.badRequest("controller error in updateRemarks", { moreDetails: err });
+    }
+  },
+
   getKeywords: async (ctx, next) => {
     try {
       let queryWhere: any = {
