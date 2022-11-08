@@ -207,6 +207,19 @@ export default {
       ctx.body = err;
     }
   },
+  getEvents: async (ctx, next) => {
+    try {
+      const data = await strapi.query("api::visit.visit").findMany({
+        populate: true,
+        where: qs.parse(ctx.query?.filter),
+      });
+
+      ctx.body = data;
+    } catch (err) {
+      console.log("error in getEvents", err);
+      ctx.body = err;
+    }
+  },
 
   eventDetails: async (ctx, next) => {
     try {
@@ -256,7 +269,7 @@ export default {
 
       ctx.body = data;
     } catch (err) {
-      console.log("error in s-------------", err);
+      console.log("error in getMedias", err);
       ctx.body = err;
     }
   },

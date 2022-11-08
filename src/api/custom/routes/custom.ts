@@ -47,6 +47,15 @@ export default {
     },
     {
       method: "GET",
+      path: "/custom/visits",
+      handler: "custom.getEvents",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: "GET",
       path: "/custom/event/:uniqueId",
       handler: "custom.eventDetails",
       config: {
