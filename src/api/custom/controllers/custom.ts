@@ -270,7 +270,15 @@ export default {
           media_associate: {
             populate: {
               place_unique_ids: true,
-              visit_unique_ids: true,
+              visit_unique_ids: {
+                populate: {
+                  visit_associate: {
+                    populate: {
+                      place_unique_id: true,
+                    },
+                  }
+                }
+              },
             },
           },
         },
