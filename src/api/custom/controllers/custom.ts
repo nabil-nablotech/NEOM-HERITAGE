@@ -291,23 +291,6 @@ export default {
 
   getRemarks: async (ctx, next) => {
     try {
-      // let whereCondition: {
-      //   place_unique_id?: { uniqueId: any };
-      //   visit_unique_id?: { uniqueId: any };
-      // };
-      // if (ctx.query.type.toLowerCase() === "place") {
-      //   whereCondition = {
-      //     place_unique_id: {
-      //       uniqueId: ctx.query.uniqueId,
-      //     },
-      //   };
-      // } else if (ctx.query.type.toLowerCase() === "visit") {
-      //   whereCondition = {
-      //     visit_unique_id: {
-      //       uniqueId: ctx.query.uniqueId,
-      //     },
-      //   };
-      // }
       const data = await strapi
         .query("api::remark-header.remark-header")
         .findMany({
@@ -324,6 +307,7 @@ export default {
                 },
               },
             ],
+            delete: false
           },
           populate: {
             remark_details: {
@@ -345,15 +329,17 @@ export default {
       };
       for (let item of data) {
         item.remark_details.forEach((remark_detail, index) => {
-          if (index == 0) {
-            remark_details_group.id = remark_detail.id;
-            remark_details_group.description = remark_detail.description;
-            remark_details_group.remark_header_id = remark_detail.remark_header_id;
-            remark_details_group.createdAt = remark_detail.createdAt;
-            remark_details_group.updatedAt = remark_detail.updatedAt;
-            remark_details_group.users_permissions_user = remark_detail.users_permissions_user;
-          } else {
-            remark_details_group.child.push(remark_detail);
+          if (!remark_detail.delete) {
+            if (index == 0) {
+              remark_details_group.id = remark_detail.id;
+              remark_details_group.description = remark_detail.description;
+              remark_details_group.remark_header_id = remark_detail.remark_header_id;
+              remark_details_group.createdAt = remark_detail.createdAt;
+              remark_details_group.updatedAt = remark_detail.updatedAt;
+              remark_details_group.users_permissions_user = remark_detail.users_permissions_user;
+            } else {
+              remark_details_group.child.push(remark_detail);
+            }
           }
         })
         item.remark_details = remark_details_group;
