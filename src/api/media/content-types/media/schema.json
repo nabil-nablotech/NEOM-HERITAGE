@@ -72,6 +72,14 @@
       "type": "boolean",
       "default": false
     },
+    "subType": {
+      "type": "enumeration",
+      "enum": [
+        "embededCode",
+        "url",
+        "video"
+      ]
+    },
     "imageMetadata": {
       "type": "component",
       "repeatable": false,
