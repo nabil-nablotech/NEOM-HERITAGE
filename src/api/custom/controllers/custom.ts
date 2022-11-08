@@ -336,20 +336,22 @@ export default {
         child: []
       };
       for (let item of data) {
-        item.remark_details.forEach((remark_detail, index) => {
-          if (!remark_detail.delete) {
-            if (index == 0) {
-              remark_details_group.id = remark_detail.id;
-              remark_details_group.description = remark_detail.description;
-              remark_details_group.remark_header_id = remark_detail.remark_header_id;
-              remark_details_group.createdAt = remark_detail.createdAt;
-              remark_details_group.updatedAt = remark_detail.updatedAt;
-              remark_details_group.users_permissions_user = remark_detail.users_permissions_user;
-            } else {
-              remark_details_group.child.push(remark_detail);
+        if (item.remark_details[0].delete === false) {
+          item.remark_details.forEach((remark_detail, index) => {
+            if (remark_detail.delete === false) {
+              if (index == 0) {
+                remark_details_group.id = remark_detail.id;
+                remark_details_group.description = remark_detail.description;
+                remark_details_group.remark_header_id = remark_detail.remark_header_id;
+                remark_details_group.createdAt = remark_detail.createdAt;
+                remark_details_group.updatedAt = remark_detail.updatedAt;
+                remark_details_group.users_permissions_user = remark_detail.users_permissions_user;
+              } else {
+                remark_details_group.child.push(remark_detail);
+              }
             }
-          }
-        })
+          })
+        }
         item.remark_details = remark_details_group;
         remark_details_group = {
           id: null,
