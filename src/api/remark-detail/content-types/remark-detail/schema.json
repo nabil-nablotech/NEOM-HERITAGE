@@ -21,6 +21,11 @@
     "description": {
       "type": "text"
     },
+    "delete": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
     "users_permissions_user": {
       "type": "relation",
       "relation": "manyToOne",

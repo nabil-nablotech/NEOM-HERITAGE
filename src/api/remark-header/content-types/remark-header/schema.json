@@ -35,6 +35,11 @@
       "relation": "manyToOne",
       "target": "plugin::users-permissions.user",
       "inversedBy": "remark_headers"
+    },
+    "delete": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }
