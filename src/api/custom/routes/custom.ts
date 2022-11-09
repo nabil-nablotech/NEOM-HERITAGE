@@ -38,8 +38,26 @@ export default {
     },
     {
       method: "GET",
+      path: "/custom/places",
+      handler: "custom.getPlaces",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: "GET",
       path: "/custom/place/:uniqueId",
       handler: "custom.placeDetails",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: "GET",
+      path: "/custom/visits",
+      handler: "custom.getEvents",
       config: {
         policies: [],
         middlewares: [],
@@ -102,7 +120,7 @@ export default {
     },
     {
       method: "POST",
-      path: "/custom/keywords/:asset_config_id",
+      path: "/custom/keywords/:tab_name",
       handler: "custom.addKeywords",
       config: {
         policies: [],
@@ -111,7 +129,7 @@ export default {
     },
     {
       method: "GET",
-      path: "/custom/keywords/:asset_config_id",
+      path: "/custom/keywords/:tab_name",
       handler: "custom.getKeywords",
       config: {
         policies: [],
