@@ -160,6 +160,19 @@ export default {
       ctx.body = err;
     }
   },
+  getPlaces: async (ctx, next) => {
+    try {
+      const data = await strapi.query("api::place.place").findMany({
+        populate: true,
+        where: qs.parse(ctx.query?.filter),
+      });
+
+      ctx.body = data;
+    } catch (err) {
+      console.log("error in getEvents", err);
+      ctx.body = err;
+    }
+  },
 
   placeDetails: async (ctx, next) => {
     try {

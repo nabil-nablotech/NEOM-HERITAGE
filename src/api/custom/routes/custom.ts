@@ -38,6 +38,15 @@ export default {
     },
     {
       method: "GET",
+      path: "/custom/places",
+      handler: "custom.getPlaces",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: "GET",
       path: "/custom/place/:uniqueId",
       handler: "custom.placeDetails",
       config: {
