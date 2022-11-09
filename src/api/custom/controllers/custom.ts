@@ -165,6 +165,7 @@ export default {
       const data = await strapi.query("api::place.place").findMany({
         populate: true,
         where: qs.parse(ctx.query?.filter),
+        orderBy: { id: 'asc' },
       });
 
       ctx.body = data;
@@ -227,6 +228,7 @@ export default {
       const data = await strapi.query("api::visit.visit").findMany({
         populate: true,
         where: qs.parse(ctx.query?.filter),
+        orderBy: { id: 'asc' },
       });
 
       ctx.body = data;
@@ -280,6 +282,7 @@ export default {
       const data = await strapi.query("api::media.media").findMany({
         populate: true,
         where: qs.parse(ctx.query?.filter),
+        orderBy: { id: 'asc' },
       });
 
       ctx.body = data;
