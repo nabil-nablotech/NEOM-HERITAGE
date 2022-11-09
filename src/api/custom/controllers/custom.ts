@@ -160,6 +160,19 @@ export default {
       ctx.body = err;
     }
   },
+  getPlaces: async (ctx, next) => {
+    try {
+      const data = await strapi.query("api::place.place").findMany({
+        populate: true,
+        where: qs.parse(ctx.query?.filter),
+      });
+
+      ctx.body = data;
+    } catch (err) {
+      console.log("error in getEvents", err);
+      ctx.body = err;
+    }
+  },
 
   placeDetails: async (ctx, next) => {
     try {
@@ -204,6 +217,19 @@ export default {
       ctx.body = place;
     } catch (err) {
       console.log("error in place details-------------", err);
+      ctx.body = err;
+    }
+  },
+  getEvents: async (ctx, next) => {
+    try {
+      const data = await strapi.query("api::visit.visit").findMany({
+        populate: true,
+        where: qs.parse(ctx.query?.filter),
+      });
+
+      ctx.body = data;
+    } catch (err) {
+      console.log("error in getEvents", err);
       ctx.body = err;
     }
   },
@@ -256,7 +282,7 @@ export default {
 
       ctx.body = data;
     } catch (err) {
-      console.log("error in s-------------", err);
+      console.log("error in getMedias", err);
       ctx.body = err;
     }
   },
