@@ -184,10 +184,12 @@ export default {
                       media_unique_id: {
                         populate: {
                           object: true,
+                          media_type: true
                         },
                       },
                     },
                   },
+                  asset_config_id: true
                 },
               },
             },
@@ -456,8 +458,10 @@ export default {
         where: queryWhere,
       });
       let keywords = [];
-      data.map(x => keywords.push(x.keywords));
-      keywords = keywords.flatMap(x => x);
+      if (data.length > 0) {
+        data.map(x => keywords.push(x.keywords));
+        keywords = keywords.flatMap(x => x);
+      }
 
       ctx.body = keywords;
     } catch (err) {
