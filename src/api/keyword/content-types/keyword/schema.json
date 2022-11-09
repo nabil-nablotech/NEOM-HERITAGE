@@ -12,9 +12,6 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "category": {
-      "type": "string"
-    },
     "keywords": {
       "type": "json"
     },
