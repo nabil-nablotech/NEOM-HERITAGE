@@ -440,9 +440,11 @@ export default {
 
   getKeywords: async (ctx, next) => {
     try {
+      let tabName = ctx.params.tab_name;
+      const assetsConfig = await strapi.query("api::asset-config.asset-config").findOne({ where: { categoryCode: tabName.toUpperCase() } });
       let queryWhere: any = {
         asset_config: {
-          id: ctx.params.asset_config_id,
+          id: assetsConfig.id,
         },
       }
       if (ctx.query.search) {
@@ -467,34 +469,68 @@ export default {
     try {
 
       let reqBody = ctx.request.body.keywords;
-      for (let i = 0; i < reqBody.length; i++) {
+      let tabName = ctx.params.tab_name;
+      let data;
+      const assetsConfig = await strapi.query("api::asset-config.asset-config").findOne({ where: { categoryCode: tabName.toUpperCase() } });
 
-        const keywords = await strapi.query("api::keyword.keyword").findMany({
-          where: {
-            asset_config: {
-              id: ctx.params.asset_config_id,
-            },
-            keywords: {
-              $contains: reqBody[i]
-            }
+      const keywords = await strapi.query("api::keyword.keyword").findOne({
+        where: {
+          asset_config: {
+            id: assetsConfig.id,
           }
-        });
-        if (keywords.length > 0) {
-          reqBody = reqBody.filter(x => x !== reqBody[i]);
         }
-      }
-      const addData = {
-        asset_config: `${ctx.params.asset_config_id}`,
-        keywords: reqBody
-      }
-      if (reqBody.length > 0) {
-        const data = await strapi.query("api::keyword.keyword").create({
+      });
+      if (keywords) {
+        reqBody.map((keyword: string) => {
+          if (keywords.keywords.indexOf(keyword) === -1) {
+            keywords.keywords.push(keyword);
+          }
+        })
+        data = await strapi.entityService.update(
+          "api::keyword.keyword",
+          keywords.id,
+          {
+            data: { keywords: keywords.keywords },
+          }
+        );
+      } else {
+        const addData = {
+          asset_config: `${assetsConfig.id}`,
+          keywords: reqBody
+        }
+        data = await strapi.query("api::keyword.keyword").create({
           data: addData,
         });
-        ctx.body = data;
-      } else {
-        ctx.body = {};
       }
+      ctx.body = data;
+      // for (let i = 0; i < reqBody.length; i++) {
+
+      //   const keywords = await strapi.query("api::keyword.keyword").findMany({
+      //     where: {
+      //       asset_config: {
+      //         id: assetsConfig.id,
+      //       },
+      //       keywords: {
+      //         $contains: reqBody[i]
+      //       }
+      //     }
+      //   });
+      //   if (keywords.length > 0) {
+      //     reqBody = reqBody.filter(x => x !== reqBody[i]);
+      //   }
+      // }
+      // const addData = {
+      //   asset_config: `${assetsConfig.id}`,
+      //   keywords: reqBody
+      // }
+      // if (reqBody.length > 0) {
+      //   const data = await strapi.query("api::keyword.keyword").create({
+      //     data: addData,
+      //   });
+      //   ctx.body = data;
+      // } else {
+      //   ctx.body = {};
+      // }
 
     } catch (err) {
       console.log("error in keywords add-------------", err);

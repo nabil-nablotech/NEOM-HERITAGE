@@ -102,7 +102,7 @@ export default {
     },
     {
       method: "POST",
-      path: "/custom/keywords/:asset_config_id",
+      path: "/custom/keywords/:tab_name",
       handler: "custom.addKeywords",
       config: {
         policies: [],
@@ -111,7 +111,7 @@ export default {
     },
     {
       method: "GET",
-      path: "/custom/keywords/:asset_config_id",
+      path: "/custom/keywords/:tab_name",
       handler: "custom.getKeywords",
       config: {
         policies: [],
