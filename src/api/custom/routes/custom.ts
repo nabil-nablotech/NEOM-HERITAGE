@@ -90,7 +90,7 @@ export default {
         middlewares: [],
       },
     },
-    
+
     {
       method: "GET",
       path: "/custom/remarks",
@@ -110,8 +110,17 @@ export default {
       },
     },
     {
+      method: "PUT",
+      path: "/custom/remarks/:id",
+      handler: "custom.updateRemarks",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
       method: "POST",
-      path: "/custom/keywords/:asset_config_id",
+      path: "/custom/keywords/:tab_name",
       handler: "custom.addKeywords",
       config: {
         policies: [],
@@ -120,7 +129,7 @@ export default {
     },
     {
       method: "GET",
-      path: "/custom/keywords/:asset_config_id",
+      path: "/custom/keywords/:tab_name",
       handler: "custom.getKeywords",
       config: {
         policies: [],

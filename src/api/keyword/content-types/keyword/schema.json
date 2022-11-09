@@ -8,13 +8,10 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "category": {
-      "type": "string"
-    },
     "keywords": {
       "type": "json"
     },

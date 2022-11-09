@@ -54,7 +54,7 @@
       "default": false
     },
     "objectURL": {
-      "type": "string"
+      "type": "text"
     },
     "referenceURL": {
       "type": "string"
@@ -71,6 +71,14 @@
     "deleted": {
       "type": "boolean",
       "default": false
+    },
+    "videoType": {
+      "type": "enumeration",
+      "enum": [
+        "embededCode",
+        "url",
+        "video"
+      ]
     },
     "imageMetadata": {
       "type": "component",
