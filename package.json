@@ -18,10 +18,12 @@
     "@strapi/plugin-users-permissions": "4.3.2",
     "@strapi/provider-upload-local": "^4.4.5",
     "@strapi/strapi": "4.3.2",
+    "csv-writer": "^1.6.0",
+    "json2csv": "^5.0.7",
     "mysql": "^2.18.1",
-    "strapi-plugin-import-export-entries": "^1.16.2",
     "patch-package": "^6.4.7",
     "postinstall-postinstall": "^2.1.0",
+    "strapi-plugin-import-export-entries": "^1.16.2",
     "strapi-plugin-request-id": "^1.1.0"
   },
   "author": {

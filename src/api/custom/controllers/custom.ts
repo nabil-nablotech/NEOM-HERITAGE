@@ -2,7 +2,10 @@
  * A set of functions called "actions" for `custom`
  */
 import qs from "qs";
+import * as fs from 'fs';
+import * as createCSV from 'csv-writer';
 import { fetchPLaces } from "../../../config/connection";
+import { Parser } from "json2csv";
 
 export default {
   changePassword: async (ctx, next) => {
@@ -166,6 +169,18 @@ export default {
         populate: true,
         where: qs.parse(ctx.query?.filter),
       });
+      const fields = Object.keys(data[0]);
+      const csvWriter = createCSV.createObjectCsvWriter({
+        path: './public/places.csv',
+        header: fields
+    });
+      // const opts = { fields,withBom:true,delimiter:"," };
+      // const parser = new Parser(opts);
+      // const csv = parser.parse(data);
+    csvWriter.writeRecords(data)
+    .then(() => {
+        console.log('...Done');
+    });
 
       ctx.body = data;
     } catch (err) {
