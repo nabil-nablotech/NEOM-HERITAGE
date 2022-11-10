@@ -578,7 +578,7 @@ export default {
   deleteType: async (ctx, next) => {
     try {
       let { tab_name, id } = ctx.params;
-      let { visit_associates_id, media_associates_id, remark_headers_id, visit } = ctx.request.body;
+      // let { visit_associates_id, media_associates_id, remark_headers_id, visit } = ctx.request.body;
       let data;
 
       // if (visit_associates_id && visit_associates_id.length > 0) {
@@ -672,8 +672,6 @@ export default {
 
         if (visit_associates && visit_associates.length > 0) {
           visit_associates.map(async (visit_associate: any) => {
-
-
             await strapi.entityService.update(
               "api::visit-associate.visit-associate",
               visit_associate.id,
