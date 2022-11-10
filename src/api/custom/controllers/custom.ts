@@ -574,7 +574,7 @@ export default {
     try {
       let { tab_name, id } = ctx.params;
       let { visit_associates_id, media_associates_id, remark_headers_id, visit } = ctx.request.body;
-
+      let data;
 
       if (visit_associates_id && visit_associates_id.length > 0) {
         visit_associates_id.map(async (id: number) => {
@@ -612,9 +612,9 @@ export default {
         })
       }
 
-      if (visit && visit.length > 0) {
+      if ((visit && visit.length > 0) || tab_name.toLowerCase() === "event") {
         visit.map(async (id: number) => {
-          await strapi.entityService.update(
+          data = await strapi.entityService.update(
             "api::visit.visit",
             id,
             {
@@ -625,15 +625,25 @@ export default {
       }
 
       if (tab_name.toLowerCase() === "place") {
-        let data = await strapi.entityService.update(
+        data = await strapi.entityService.update(
           "api::place.place",
           id,
           {
             data: { deleted: true },
           }
         );
-        ctx.body = data;
       }
+
+      if (tab_name.toLowerCase() === "media") {
+        data = await strapi.entityService.update(
+          "api::media.media",
+          id,
+          {
+            data: { deleted: true },
+          }
+        );
+      }
+      ctx.body = data;
 
     } catch (err) {
       console.log("error", err);
