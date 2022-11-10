@@ -68,6 +68,7 @@ export default {
               },
             ],
           },
+          deleted: false
         },
       });
       const libraryCount = await strapi.query("api::media.media").findMany({
@@ -91,6 +92,7 @@ export default {
               },
             ],
           },
+          deleted: false
         },
       });
 
@@ -211,6 +213,7 @@ export default {
         },
         where: {
           uniqueId: ctx.params.uniqueId,
+          deleted: false
         },
       });
       const libraryItems = place.media_associates.filter(
@@ -260,6 +263,7 @@ export default {
         },
         where: {
           uniqueId: ctx.params.uniqueId,
+          deleted: false
         },
       });
       const libraryItems = data.media_associates.filter(
@@ -315,6 +319,7 @@ export default {
         },
         where: {
           uniqueId: ctx.params.uniqueId,
+          deleted: false
           // media_type: {
           //   categoryCode:  "MEDIA"
           // },
