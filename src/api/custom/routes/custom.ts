@@ -136,5 +136,14 @@ export default {
         middlewares: [],
       },
     },
+    {
+      method: "PUT",
+      path: "/custom/delete/:tab_name/:id",
+      handler: "custom.deleteType",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };

@@ -569,5 +569,85 @@ export default {
       console.log("error in keywords add-------------", err);
       ctx.body = err;
     }
+  },
+  deleteType: async (ctx, next) => {
+    try {
+      let { tab_name, id } = ctx.params;
+      let { visit_associates_id, media_associates_id, remark_headers_id, visit } = ctx.request.body;
+      let data;
+
+      if (visit_associates_id && visit_associates_id.length > 0) {
+        visit_associates_id.map(async (id: number) => {
+          await strapi.entityService.update(
+            "api::visit-associate.visit-associate",
+            id,
+            {
+              data: { deleted: true },
+            }
+          );
+        })
+      }
+
+      if (media_associates_id && media_associates_id.length > 0) {
+        media_associates_id.map(async (id: number) => {
+          await strapi.entityService.update(
+            "api::media-associate.media-associate",
+            id,
+            {
+              data: { deleted: true },
+            }
+          );
+        })
+      }
+
+      if (remark_headers_id && remark_headers_id.length > 0) {
+        remark_headers_id.map(async (id: number) => {
+          await strapi.entityService.update(
+            "api::remark-header.remark-header",
+            id,
+            {
+              data: { delete: true },
+            }
+          );
+        })
+      }
+
+      if ((visit && visit.length > 0) || tab_name.toLowerCase() === "event") {
+        visit.map(async (id: number) => {
+          data = await strapi.entityService.update(
+            "api::visit.visit",
+            id,
+            {
+              data: { deleted: true },
+            }
+          );
+        })
+      }
+
+      if (tab_name.toLowerCase() === "place") {
+        data = await strapi.entityService.update(
+          "api::place.place",
+          id,
+          {
+            data: { deleted: true },
+          }
+        );
+      }
+
+      if (tab_name.toLowerCase() === "media") {
+        data = await strapi.entityService.update(
+          "api::media.media",
+          id,
+          {
+            data: { deleted: true },
+          }
+        );
+      }
+      ctx.body = data;
+
+    } catch (err) {
+      console.log("error", err);
+      ctx.badRequest("controller error in updateRemarks", { moreDetails: err });
+    }
   }
 };

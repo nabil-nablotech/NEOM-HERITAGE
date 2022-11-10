@@ -97,7 +97,7 @@
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::media-associate.media-associate",
-      "inversedBy": "visit_unique_ids"
+      "mappedBy": "visit_unique_ids"
     }
   }
 }
