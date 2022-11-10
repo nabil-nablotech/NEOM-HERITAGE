@@ -703,8 +703,10 @@ export default {
           }
         );
       }
-      ctx.body = data;
-
+      if (data) {
+        let response = { id: data.id, msg: "Data deleted Successfully.", success: true }
+        ctx.body = response;
+      }
     } catch (err) {
       console.log("error", err);
       ctx.badRequest("controller error in updateRemarks", { moreDetails: err });
