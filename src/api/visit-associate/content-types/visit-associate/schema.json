@@ -23,6 +23,10 @@
       "relation": "oneToOne",
       "target": "api::visit.visit",
       "mappedBy": "visit_associate"
+    },
+    "deleted": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

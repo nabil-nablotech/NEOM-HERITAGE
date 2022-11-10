@@ -29,6 +29,10 @@
       "relation": "oneToOne",
       "target": "api::media.media",
       "mappedBy": "media_associate"
+    },
+    "deleted": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
