@@ -68,6 +68,7 @@ export default {
               },
             ],
           },
+          deleted: false
         },
       });
       const libraryCount = await strapi.query("api::media.media").findMany({
@@ -91,6 +92,7 @@ export default {
               },
             ],
           },
+          deleted: false
         },
       });
 
@@ -211,6 +213,7 @@ export default {
         },
         where: {
           uniqueId: ctx.params.uniqueId,
+          deleted: false
         },
       });
       const libraryItems = place.media_associates.filter(
@@ -260,6 +263,7 @@ export default {
         },
         where: {
           uniqueId: ctx.params.uniqueId,
+          deleted: false
         },
       });
       const libraryItems = data.media_associates.filter(
@@ -315,6 +319,7 @@ export default {
         },
         where: {
           uniqueId: ctx.params.uniqueId,
+          deleted: false
           // media_type: {
           //   categoryCode:  "MEDIA"
           // },
@@ -635,6 +640,61 @@ export default {
       }
 
       if (tab_name.toLowerCase() === "media") {
+        const media = await strapi.query("api::media.media").findOne({
+          populate: {
+            media_associate: {
+              populate: {
+                place_unique_ids: true,
+                visit_unique_ids: {
+                  populate: {
+                    visit_associate: {
+                      populate: {
+                        place_unique_id: true,
+                      },
+                    }
+                  }
+                },
+              },
+            },
+          },
+          where: {
+            id: id,
+          },
+        });
+
+        let media_associate_id = media.media_associate.id;
+        // let place_data = media.media_associate.place_unique_ids;
+        // let visit_data = media.media_associate.visit_unique_ids;
+        await strapi.entityService.update(
+          "api::media-associate.media-associate",
+          media_associate_id,
+          {
+            data: { deleted: true },
+          }
+        );
+        // if (place_data && place_data.length > 0) {
+        //   place_data.map(async place => {
+        //     await strapi.entityService.update(
+        //       "api::place.place",
+        //       place.id,
+        //       {
+        //         data: { deleted: true },
+        //       }
+        //     );
+        //   })
+        // }
+
+        // if (visit_data && visit_data.length > 0) {
+        //   visit_data.map(async visit => {
+        //     await strapi.entityService.update(
+        //       "api::place.place",
+        //       visit.id,
+        //       {
+        //         data: { deleted: true },
+        //       }
+        //     );
+        //   })
+        // }
         data = await strapi.entityService.update(
           "api::media.media",
           id,
@@ -643,8 +703,10 @@ export default {
           }
         );
       }
-      ctx.body = data;
-
+      if (data) {
+        let response = { id: data.id, msg: "Data deleted Successfully.", success: true }
+        ctx.body = response;
+      }
     } catch (err) {
       console.log("error", err);
       ctx.badRequest("controller error in updateRemarks", { moreDetails: err });
