@@ -182,6 +182,11 @@ export default {
       const place = await strapi.query("api::place.place").findOne({
         populate: {
           media_associates: {
+            where: {
+              media_unique_id: {
+                deleted: false,
+              }
+            },
             populate: {
               media_unique_id: {
                 populate: {
@@ -192,10 +197,20 @@ export default {
             },
           },
           visit_associates: {
+            where: {
+              visit_unique_id: {
+                deleted: false,
+              }
+            },
             populate: {
               visit_unique_id: {
                 populate: {
                   media_associates: {
+                    where: {
+                      media_unique_id: {
+                        deleted: false,
+                      }
+                    },
                     populate: {
                       media_unique_id: {
                         populate: {
@@ -261,6 +276,11 @@ export default {
             },
           },
           visit_associate: {
+            where: {
+              place_unique_id: {
+                deleted: false,
+              }
+            },
             populate: {
               place_unique_id: true,
             },
@@ -308,9 +328,19 @@ export default {
           object: true,
           media_type: true,
           media_associate: {
+            where: {
+              visit_unique_ids: {
+                deleted: false,
+              }
+            },
             populate: {
               place_unique_ids: true,
               visit_unique_ids: {
+                where: {
+                  place_unique_id: {
+                    deleted: false,
+                  }
+                },
                 populate: {
                   visit_associate: {
                     populate: {
