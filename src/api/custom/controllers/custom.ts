@@ -42,14 +42,18 @@ export default {
     try {
       const placeCount = await strapi
         .query("api::place.place")
-        .count({ where: {
-          deleted: false
-        } });
+        .count({
+          where: {
+            deleted: false
+          }
+        });
       const visitCount = await strapi
         .query("api::visit.visit")
-        .count({ where: {
-          deleted: false
-        } });
+        .count({
+          where: {
+            deleted: false
+          }
+        });
 
       const mediaCount = await strapi.query("api::media.media").findMany({
         where: {
@@ -661,144 +665,199 @@ export default {
       }
     } catch (err) {
       console.log("error", err);
-      ctx.badRequest("controller error in updateRemarks", { moreDetails: err });
+      ctx.badRequest("controller error in deleteType function", { moreDetails: err });
     }
   },
 }
 
 let getPlace = async (id: number) => {
-  return await strapi.query("api::place.place").findOne({
-    populate: {
-      media_associates: true,
-      visit_associates: {
-        populate: {
-          visit_unique_id: true,
+  try {
+    return await strapi.query("api::place.place").findOne({
+      populate: {
+        media_associates: true,
+        visit_associates: {
+          populate: {
+            visit_unique_id: true,
+          },
         },
+        remark_headers: true
       },
-      remark_headers: true
-    },
-    where: {
-      id: id
-    },
-  });
+      where: {
+        id: id
+      },
+    });
+  } catch (err) {
+    console.log("error in getPlace function", err);
+    return err;
+  }
 }
 
 let getVisit = async (id: number) => {
-  return await strapi.query("api::visit.visit").findOne({
-    populate: {
-      media_associates: true,
-      visit_associate: true,
-      remark_headers: true
-    },
-    where: {
-      id: id
-    },
-  });
+  try {
+    return await strapi.query("api::visit.visit").findOne({
+      populate: {
+        media_associates: true,
+        visit_associate: true,
+        remark_headers: true
+      },
+      where: {
+        id: id
+      },
+    });
+  } catch (err) {
+    console.log("error in getVisit function", err);
+    return err;
+  }
 }
 
 let getMedia = async (id: number) => {
-  return await strapi.query("api::media.media").findOne({
-    populate: {
-      media_associate: {
-        populate: {
-          place_unique_ids: true,
-          visit_unique_ids: {
-            populate: {
-              visit_associate: {
-                populate: {
-                  place_unique_id: true,
-                },
+  try {
+    return await strapi.query("api::media.media").findOne({
+      populate: {
+        media_associate: {
+          populate: {
+            place_unique_ids: true,
+            visit_unique_ids: {
+              populate: {
+                visit_associate: {
+                  populate: {
+                    place_unique_id: true,
+                  },
+                }
               }
-            }
+            },
           },
         },
       },
-    },
-    where: {
-      id: id,
-    },
-  });
+      where: {
+        id: id,
+      },
+    });
+  } catch (err) {
+    console.log("error in getMedia function", err);
+    return err;
+  }
 }
 
 let updateRemarks = async (remark_headers: any) => {
-  if (remark_headers && remark_headers.length > 0) {
-    return remark_headers.map(async (remark_header: any) => {
-      return await strapi.entityService.update(
-        "api::remark-header.remark-header",
-        remark_header.id,
-        {
-          data: { delete: true },
-        }
-      );
-    })
+  try {
+    if (remark_headers && remark_headers.length > 0) {
+      return remark_headers.map(async (remark_header: any) => {
+        return await strapi.entityService.update(
+          "api::remark-header.remark-header",
+          remark_header.id,
+          {
+            data: { delete: true },
+          }
+        );
+      })
+    }
+  } catch (err) {
+    console.log("error in updateRemarks function", err);
+    return err;
   }
 }
 
 let updateMediaAssociate = async (media_associates: any) => {
-  if (media_associates && media_associates.length > 0) {
-    return media_associates.map(async (media_associate: any) => {
-      return await deleteMediaAssociate(media_associate.id);
-    })
+  try {
+    if (media_associates && media_associates.length > 0) {
+      return media_associates.map(async (media_associate: any) => {
+        return await deleteMediaAssociate(media_associate.id);
+      })
+    }
+  } catch (err) {
+    console.log("error in updateMediaAssociate function", err);
+    return err;
   }
 }
 
 let updateVisitAssociate = async (visit_associates: any, updateVisit: Boolean) => {
-  if (visit_associates && visit_associates.length > 0) {
-    return visit_associates.map(async (visit_associate: any) => {
-      if (updateVisit) deleteVisit(visit_associate.visit_unique_id.id);
-      return await deleteVisitAssociate(visit_associate.id)
-    })
+  try {
+    if (visit_associates && visit_associates.length > 0) {
+      return visit_associates.map(async (visit_associate: any) => {
+        if (updateVisit) deleteVisit(visit_associate.visit_unique_id.id);
+        return await deleteVisitAssociate(visit_associate.id)
+      })
+    }
+  } catch (err) {
+    console.log("error in updateVisitAssociate function", err);
+    return err;
   }
 }
 
 let deleteVisit = async (id: number) => {
-  return await strapi.entityService.update(
-    "api::visit.visit",
-    id,
-    {
-      data: { deleted: true },
-    }
-  );
+  try {
+    return await strapi.entityService.update(
+      "api::visit.visit",
+      id,
+      {
+        data: { deleted: true },
+      }
+    );
+  } catch (err) {
+    console.log("error in deleteVisit function", err);
+    return err;
+  }
 }
 
 let deletePlace = async (id: number) => {
-  return await strapi.entityService.update(
-    "api::place.place",
-    id,
-    {
-      data: { deleted: true },
-    }
-  );
+  try {
+    return await strapi.entityService.update(
+      "api::place.place",
+      id,
+      {
+        data: { deleted: true },
+      }
+    );
+  } catch (err) {
+    console.log("error in deletePlace function", err);
+    return err;
+  }
 }
 
 let deleteMediaAssociate = async (id: number) => {
-  return await strapi.entityService.update(
-    "api::media-associate.media-associate",
-    id,
-    {
-      data: { deleted: true },
-    }
-  );
+  try {
+    return await strapi.entityService.update(
+      "api::media-associate.media-associate",
+      id,
+      {
+        data: { deleted: true },
+      }
+    );
+  } catch (err) {
+    console.log("error in deleteMediaAssociate function", err);
+    return err;
+  }
 }
 
 let deleteVisitAssociate = async (id: number) => {
-  return await strapi.entityService.update(
-    "api::visit-associate.visit-associate",
-    id,
-    {
-      data: { deleted: true },
-    }
-  );
+  try {
+    return await strapi.entityService.update(
+      "api::visit-associate.visit-associate",
+      id,
+      {
+        data: { deleted: true },
+      }
+    );
+  } catch (err) {
+    console.log("error in deleteVisitAssociate function", err);
+    return err;
+  }
 }
 
 let deleteMedia = async (id: number) => {
-  return await strapi.entityService.update(
-    "api::media.media",
-    id,
-    {
-      data: { deleted: true },
-    }
-  );
+  try {
+    return await strapi.entityService.update(
+      "api::media.media",
+      id,
+      {
+        data: { deleted: true },
+      }
+    );
+  } catch (err) {
+    console.log("error in deleteMedia function", err);
+    return err;
+  }
 }
 
 
