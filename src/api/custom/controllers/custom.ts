@@ -246,6 +246,11 @@ export default {
       const data = await strapi.query("api::visit.visit").findOne({
         populate: {
           media_associates: {
+            where: {
+              media_unique_id: {
+                deleted: false,
+              }
+            },
             populate: {
               media_unique_id: {
                 populate: {
