@@ -42,10 +42,14 @@ export default {
     try {
       const placeCount = await strapi
         .query("api::place.place")
-        .count({ where: {} });
+        .count({ where: {
+          deleted: false
+        } });
       const visitCount = await strapi
         .query("api::visit.visit")
-        .count({ where: {} });
+        .count({ where: {
+          deleted: false
+        } });
 
       const mediaCount = await strapi.query("api::media.media").findMany({
         where: {
@@ -219,7 +223,11 @@ export default {
       const libraryItems = place.media_associates.filter(
         (x) => x.media_unique_id.media_type[0].categoryCode === "LIBRARY"
       );
+      const mediaItems = place.media_associates.filter(
+        (x) => x.media_unique_id.media_type[0].categoryCode === "MEDIA"
+      );
       place.libraryItems = libraryItems;
+      place.mediaItems = mediaItems;
       ctx.body = place;
     } catch (err) {
       console.log("error in place details-------------", err);
