@@ -3,9 +3,8 @@
  */
 import qs from "qs";
 import * as fs from 'fs';
-import * as createCSV from 'csv-writer';
 import { fetchPLaces } from "../../../config/connection";
-import { Parser } from "json2csv";
+import { stringify } from "csv-stringify";
 
 export default {
   changePassword: async (ctx, next) => {
@@ -172,21 +171,23 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-      
-      const fields = Object.keys(data[0]);
-      const csvWriter = createCSV.createObjectCsvWriter({
-        path: './public/places.csv',
-        header: fields
-    });
-      // const opts = { fields,withBom:true,delimiter:"," };
-      // const parser = new Parser(opts);
-      // const csv = parser.parse(data);
-    csvWriter.writeRecords(data)
-    .then(() => {
-        console.log('...Done');
-    });
 
+      var dir = `./public/downloads/places_${Date.now()}`
+      if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+    }
 
+    const writableStream = fs.createWriteStream(`${dir}/places_${Date.now()}.csv`);
+    const fields = Object.keys(data[0]);
+    const stringifier = stringify({ header: true, columns: fields });
+    for (let i = 0; i < data.length; i++) {
+      stringifier.write(data[i]);
+    }
+    stringifier.pipe(writableStream);
+    fs.copyFile('./public/place_one.jpg', `${dir}/place_one.jpg`, (err) => {
+      if (err) 
+          throw err;
+    });
       ctx.body = data;
     } catch (err) {
       console.log("error in getEvents", err);
