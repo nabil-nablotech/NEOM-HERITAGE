@@ -340,19 +340,19 @@ export default {
           object: true,
           media_type: true,
           media_associate: {
-            where: {
-              visit_unique_ids: {
-                deleted: false,
-              }
-            },
+            // where: {
+            //   visit_unique_ids: {
+            //     deleted: false,
+            //   }
+            // },
             populate: {
               place_unique_ids: true,
               visit_unique_ids: {
-                where: {
-                  place_unique_id: {
-                    deleted: false,
-                  }
-                },
+                // where: {
+                //   place_unique_id: {
+                //     deleted: false,
+                //   }
+                // },
                 populate: {
                   visit_associate: {
                     populate: {
