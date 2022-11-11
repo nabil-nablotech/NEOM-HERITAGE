@@ -336,19 +336,19 @@ export default {
           object: true,
           media_type: true,
           media_associate: {
-            where: {
-              visit_unique_ids: {
-                deleted: false,
-              }
-            },
+            // where: {
+            //   visit_unique_ids: {
+            //     deleted: false,
+            //   }
+            // },
             populate: {
               place_unique_ids: true,
               visit_unique_ids: {
-                where: {
-                  place_unique_id: {
-                    deleted: false,
-                  }
-                },
+                // where: {
+                //   place_unique_id: {
+                //     deleted: false,
+                //   }
+                // },
                 populate: {
                   visit_associate: {
                     populate: {
@@ -736,7 +736,7 @@ export default {
       }
 
       if (tab_name.toLowerCase() === "place") {
-
+        console.log('inside tab place', id)
         const place = await strapi.query("api::place.place").findOne({
           populate: {
             media_associates: true,
@@ -808,6 +808,7 @@ export default {
         );
       }
 
+      console.log('id... in media', id, tab_name);
       if (tab_name.toLowerCase() === "media") {
         const media = await strapi.query("api::media.media").findOne({
           populate: {
@@ -830,17 +831,19 @@ export default {
             id: id,
           },
         });
-
-        let media_associate_id = media.media_associate.id;
-        // let place_data = media.media_associate.place_unique_ids;
-        // let visit_data = media.media_associate.visit_unique_ids;
-        await strapi.entityService.update(
-          "api::media-associate.media-associate",
-          media_associate_id,
-          {
-            data: { deleted: true },
-          }
-        );
+        console.log('media.media_associate', media.media_associate)
+        if (media.media_associate) {
+          let media_associate_id = media.media_associate.id;
+          // let place_data = media.media_associate.place_unique_ids;
+          // let visit_data = media.media_associate.visit_unique_ids;
+          await strapi.entityService.update(
+            "api::media-associate.media-associate",
+            media_associate_id,
+            {
+              data: { deleted: true },
+            }
+          );
+        }
         // if (place_data && place_data.length > 0) {
         //   place_data.map(async place => {
         //     await strapi.entityService.update(
