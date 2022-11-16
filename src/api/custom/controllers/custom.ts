@@ -2,9 +2,8 @@
  * A set of functions called "actions" for `custom`
  */
  import qs from "qs";
- import * as fs from 'fs';
  import { fetchPLaces } from "../../../config/connection";
- import { stringify } from "csv-stringify";
+ import { genrateEventsCSV, genrateMediaCSV, genratePlacesCSV } from "../services/custom";
 
 export default {
   changePassword: async (ctx, next) => {
@@ -179,26 +178,10 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-
-      var dir = `./public/downloads/places_${Date.now()}`
-      if (!fs.existsSync(dir)){
-        fs.mkdirSync(dir);
-      }
-
-    const writableStream = fs.createWriteStream(`${dir}/places_${Date.now()}.csv`);
-    const fields = Object.keys(data[0]);
-    const stringifier = stringify({ header: true, columns: fields });
-    for (let i = 0; i < data.length; i++) {
-      stringifier.write(data[i]);
-    }
-    stringifier.pipe(writableStream);
-    fs.copyFile('./public/place_one.jpg', `${dir}/place_one.jpg`, (err) => {
-      if (err) 
-          throw err;
-    });
+      await genratePlacesCSV(data, ctx.query?.isAssets);
       ctx.body = data;
     } catch (err) {
-      console.log("error in getEvents", err);
+      console.log("error in getPlaces", err);
       ctx.body = err;
     }
   },
@@ -278,7 +261,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-
+      await genrateEventsCSV(data, ctx.query?.isAssets);
       ctx.body = data;
     } catch (err) {
       console.log("error in getEvents", err);
@@ -343,7 +326,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-
+      await genrateMediaCSV(data, ctx.query?.isAssets);
       ctx.body = data;
     } catch (err) {
       console.log("error in getMedias", err);
