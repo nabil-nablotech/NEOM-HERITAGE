@@ -407,6 +407,7 @@ export default {
               }
             },
           },
+          orderBy: { createdAt: 'desc' }
         });
 
       let remark_details_group = {
