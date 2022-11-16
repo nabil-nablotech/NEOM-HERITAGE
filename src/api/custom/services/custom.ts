@@ -1,7 +1,6 @@
 /**
  * custom service.
  */
- import qs from "qs";
  import * as fs from 'fs';
  import { stringify } from "csv-stringify";
  import { zip } from 'zip-a-folder';

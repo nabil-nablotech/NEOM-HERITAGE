@@ -1,9 +1,9 @@
 /**
  * A set of functions called "actions" for `custom`
  */
- import qs from "qs";
- import { fetchPLaces } from "../../../config/connection";
- import { genrateEventsCSV, genrateMediaCSV, genratePlacesCSV } from "../services/custom";
+import qs from "qs";
+import { fetchPLaces } from "../../../config/connection";
+import { genrateEventsCSV, genrateMediaCSV, genratePlacesCSV } from "../services/custom";
 
 export default {
   changePassword: async (ctx, next) => {
@@ -181,7 +181,7 @@ export default {
       await genratePlacesCSV(data, ctx.query?.isAssets);
       ctx.body = data;
     } catch (err) {
-      console.log("error in getPlaces", err);
+      console.log("error in getEvents", err);
       ctx.body = err;
     }
   },
@@ -408,6 +408,7 @@ export default {
               }
             },
           },
+          orderBy: { createdAt: 'desc' }
         });
 
       let remark_details_group = {
