@@ -626,6 +626,56 @@ export default {
     }
   },
 
+  updateFeatureImage: async (ctx, next) => {
+    let uniqueId = ctx.params.uniqueId;
+    const place = await strapi.query("api::place.place").findOne({
+      populate: {
+        media_associates: {
+          where: {
+            deleted: false
+          },
+          populate: {
+            media_unique_id: {
+              where: {
+                featuredImage: true
+              },
+              populate: {
+                object: true,
+                media_type: true,
+              },
+            },
+          },
+        },
+      },
+      where: {
+        uniqueId: uniqueId,
+        deleted: false
+      },
+    });
+    let feturedImage = place.media_associates.filter(media => {
+      if (media.media_unique_id != null) return media.media_unique_id;
+    })
+    if (feturedImage.length > 0) {
+      await strapi.entityService.update(
+        "api::media.media",
+        feturedImage[0].media_unique_id.id,
+        {
+          data: { featuredImage: false },
+        }
+      );
+    }
+    if (ctx.request.body.media_id) {
+      await strapi.entityService.update(
+        "api::media.media",
+        ctx.request.body.media_id,
+        {
+          data: { featuredImage: true },
+        }
+      );
+    }
+    ctx.body = place;
+  },
+
   deleteType: async (ctx, next) => {
     try {
       let { tab_name, id } = ctx.params;
