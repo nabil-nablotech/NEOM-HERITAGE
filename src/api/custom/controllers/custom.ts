@@ -628,7 +628,14 @@ export default {
 
   updateFeatureImage: async (ctx, next) => {
     let uniqueId = ctx.params.uniqueId;
-    const place = await strapi.query("api::place.place").findOne({
+    let apiUrl: string;
+    if (ctx.request.body.type.toLowerCase() === "event") {
+      apiUrl = "api::visit.visit";
+    }
+    else if (ctx.request.body.type.toLowerCase() === "place") {
+      apiUrl = "api::place.place";
+    }
+    let data = await strapi.query(apiUrl).findOne({
       populate: {
         media_associates: {
           where: {
@@ -652,9 +659,11 @@ export default {
         deleted: false
       },
     });
-    let feturedImage = place.media_associates.filter(media => {
+
+    let feturedImage = data.media_associates.filter(media => {
       if (media.media_unique_id != null) return media.media_unique_id;
     })
+
     if (feturedImage.length > 0) {
       await strapi.entityService.update(
         "api::media.media",
@@ -673,7 +682,7 @@ export default {
         }
       );
     }
-    ctx.body = place;
+    ctx.body = { id: data.id, msg: "Featured Image Set Successfully.", success: true };
   },
 
   deleteType: async (ctx, next) => {
