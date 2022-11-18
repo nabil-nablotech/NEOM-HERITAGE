@@ -3,7 +3,7 @@
  */
 import qs from "qs";
 import { fetchPLaces } from "../../../config/connection";
-//import { genrateEventsCSV, genrateMediaCSV, genratePlacesCSV } from "../services/custom";
+import { genrateEventsCSV, genrateMediaCSV, genratePlacesCSV } from "../services/custom";
 
 export default {
   changePassword: async (ctx, next) => {
@@ -179,7 +179,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-      //await genratePlacesCSV(data, ctx.query?.isAssets);
+      await genratePlacesCSV(data, ctx.query?.isAssets);
       ctx.body = data;
     } catch (err) {
       console.log("error in getEvents", err);
@@ -264,7 +264,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-      // await genrateEventsCSV(data, ctx.query?.isAssets);
+      await genrateEventsCSV(data, ctx.query?.isAssets);
       ctx.body = data;
     } catch (err) {
       console.log("error in getEvents", err);
@@ -331,7 +331,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-      // await genrateMediaCSV(data, ctx.query?.isAssets);
+      await genrateMediaCSV(data, ctx.query?.isAssets);
       ctx.body = data;
     } catch (err) {
       console.log("error in getMedias", err);
