@@ -147,7 +147,7 @@ export default {
       const fieldCodes = await strapi
         .query("api::field-code.field-code")
         .findMany({});
-      fielOptions.map((x, i) => {
+      fieldOptions.map((x, i) => {
         x.value =
           (x.translation.locale.length > 0 && x.translation.locale[0]?.value) ||
           "";
