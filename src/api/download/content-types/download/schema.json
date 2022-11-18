@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "downloads",
+  "info": {
+    "singularName": "download",
+    "pluralName": "downloads",
+    "displayName": "Download"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "filePath": {
+      "type": "string"
+    },
+    "dataCount": {
+      "type": "integer"
+    },
+    "fileCount": {
+      "type": "integer"
+    },
+    "libraryCount": {
+      "type": "integer"
+    },
+    "visitCount": {
+      "type": "integer"
+    },
+    "token": {
+      "type": "string"
+    }
+  }
+}
