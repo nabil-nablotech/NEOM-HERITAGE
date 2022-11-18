@@ -204,6 +204,7 @@ export default {
                 },
               },
             },
+            orderBy: { updatedAt: 'desc' }
           },
           visit_associates: {
             where: {
@@ -233,6 +234,7 @@ export default {
                 },
               },
             },
+            orderBy: { updatedAt: 'desc' }
           },
         },
         where: {
@@ -287,6 +289,7 @@ export default {
                 },
               },
             },
+            orderBy: { updatedAt: 'desc' }
           },
           visit_associate: {
             where: {
@@ -297,6 +300,7 @@ export default {
             populate: {
               place_unique_id: true,
             },
+            orderBy: { updatedAt: 'desc' }
           },
         },
         where: {
