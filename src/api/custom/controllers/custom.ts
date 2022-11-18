@@ -120,7 +120,7 @@ export default {
 
   refinedSearchOptions: async (ctx, next) => {
     try {
-      const fielOptions = await strapi
+      const fieldOptions = await strapi
         .query("api::field-option.field-option")
         .findMany({
           populate: {
@@ -142,6 +142,7 @@ export default {
               },
             },
           },
+          orderBy: { name: "asc" }
         });
       const fieldCodes = await strapi
         .query("api::field-code.field-code")
@@ -158,7 +159,7 @@ export default {
 
       let searchOption = {};
       fieldCodes.map((x) => {
-        searchOption[x.name] = fielOptions.filter(
+        searchOption[x.name] = fieldOptions.filter(
           (y) => y.field_code.name === x.name
         );
         return searchOption;
@@ -263,7 +264,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-     // await genrateEventsCSV(data, ctx.query?.isAssets);
+      // await genrateEventsCSV(data, ctx.query?.isAssets);
       ctx.body = data;
     } catch (err) {
       console.log("error in getEvents", err);
@@ -330,7 +331,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-     // await genrateMediaCSV(data, ctx.query?.isAssets);
+      // await genrateMediaCSV(data, ctx.query?.isAssets);
       ctx.body = data;
     } catch (err) {
       console.log("error in getMedias", err);
