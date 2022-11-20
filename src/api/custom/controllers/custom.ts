@@ -3,6 +3,7 @@
  */
 import qs from "qs";
 import { fetchPLaces } from "../../../config/connection";
+import { genrateEventsCSV, genrateMediaCSV, genratePlacesCSV } from "../services/custom";
 
 export default {
   changePassword: async (ctx, next) => {
@@ -119,7 +120,7 @@ export default {
 
   refinedSearchOptions: async (ctx, next) => {
     try {
-      const fielOptions = await strapi
+      const fieldOptions = await strapi
         .query("api::field-option.field-option")
         .findMany({
           populate: {
@@ -141,11 +142,12 @@ export default {
               },
             },
           },
+          orderBy: { name: "asc" }
         });
       const fieldCodes = await strapi
         .query("api::field-code.field-code")
         .findMany({});
-      fielOptions.map((x, i) => {
+      fieldOptions.map((x, i) => {
         x.value =
           (x.translation.locale.length > 0 && x.translation.locale[0]?.value) ||
           "";
@@ -157,7 +159,7 @@ export default {
 
       let searchOption = {};
       fieldCodes.map((x) => {
-        searchOption[x.name] = fielOptions.filter(
+        searchOption[x.name] = fieldOptions.filter(
           (y) => y.field_code.name === x.name
         );
         return searchOption;
@@ -177,7 +179,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-
+      await genratePlacesCSV(data, ctx.query?.isAssets);
       ctx.body = data;
     } catch (err) {
       console.log("error in getEvents", err);
@@ -203,6 +205,7 @@ export default {
                 },
               },
             },
+            orderBy: { updatedAt: 'desc' }
           },
           visit_associates: {
             where: {
@@ -232,6 +235,7 @@ export default {
                 },
               },
             },
+            orderBy: { updatedAt: 'desc' }
           },
         },
         where: {
@@ -260,7 +264,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-
+      await genrateEventsCSV(data, ctx.query?.isAssets);
       ctx.body = data;
     } catch (err) {
       console.log("error in getEvents", err);
@@ -286,6 +290,7 @@ export default {
                 },
               },
             },
+            orderBy: { updatedAt: 'desc' }
           },
           visit_associate: {
             where: {
@@ -296,6 +301,7 @@ export default {
             populate: {
               place_unique_id: true,
             },
+            orderBy: { updatedAt: 'desc' }
           },
         },
         where: {
@@ -325,7 +331,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-
+      await genrateMediaCSV(data, ctx.query?.isAssets);
       ctx.body = data;
     } catch (err) {
       console.log("error in getMedias", err);
@@ -407,6 +413,7 @@ export default {
               }
             },
           },
+          orderBy: { createdAt: 'desc' }
         });
 
       let remark_details_group = {
@@ -622,6 +629,65 @@ export default {
       console.log("error in keywords add-------------", err);
       ctx.body = err;
     }
+  },
+
+  updateFeatureImage: async (ctx, next) => {
+    let uniqueId = ctx.params.uniqueId;
+    let apiUrl: string;
+    if (ctx.request.body.type.toLowerCase() === "event") {
+      apiUrl = "api::visit.visit";
+    }
+    else if (ctx.request.body.type.toLowerCase() === "place") {
+      apiUrl = "api::place.place";
+    }
+    let data = await strapi.query(apiUrl).findOne({
+      populate: {
+        media_associates: {
+          where: {
+            deleted: false
+          },
+          populate: {
+            media_unique_id: {
+              where: {
+                featuredImage: true
+              },
+              populate: {
+                object: true,
+                media_type: true,
+              },
+            },
+          },
+        },
+      },
+      where: {
+        uniqueId: uniqueId,
+        deleted: false
+      },
+    });
+
+    let feturedImage = data.media_associates.filter(media => {
+      if (media.media_unique_id != null) return media.media_unique_id;
+    })
+
+    if (feturedImage.length > 0) {
+      await strapi.entityService.update(
+        "api::media.media",
+        feturedImage[0].media_unique_id.id,
+        {
+          data: { featuredImage: false },
+        }
+      );
+    }
+    if (ctx.request.body.media_id) {
+      await strapi.entityService.update(
+        "api::media.media",
+        ctx.request.body.media_id,
+        {
+          data: { featuredImage: true },
+        }
+      );
+    }
+    ctx.body = { id: data.id, msg: "Featured Image Set Successfully.", success: true };
   },
 
   deleteType: async (ctx, next) => {
