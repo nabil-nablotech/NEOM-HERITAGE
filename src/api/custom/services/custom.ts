@@ -93,8 +93,10 @@ const insertDataToDB = async(title, filePath, dataCount, fileCount, libraryCount
         let mediaUrl = mediaData.object.url;
         if(mediaData.media_type[0].categoryCode === 'LIBRARY'){
             libraryStringifier.write(mediaData);
+            libraryCount=libraryCount+1;
         }else{
             mediaStringifier.write(mediaData);
+            fileCount=fileCount+1;
         }
         if(isAssets==='true' && fs.existsSync(`./public${mediaUrl}`)){
           fs.copyFile(`./public${mediaUrl}`, `${dir}/assets/${mediaUrl.replaceAll('/uploads/','')}`, (err) => {
@@ -169,8 +171,10 @@ const insertDataToDB = async(title, filePath, dataCount, fileCount, libraryCount
         let mediaUrl = mediaData.object.url;
         if(mediaData.media_type[0].categoryCode === 'LIBRARY'){
             libraryStringifier.write(mediaData);
+            libraryCount=libraryCount+1;
         }else{
             mediaStringifier.write(mediaData);
+            fileCount=fileCount+1;
         }
         if(isAssets==='true' && fs.existsSync(`./public${mediaUrl}`)){
           fs.copyFile(`./public${mediaUrl}`, `${dir}/assets/${mediaUrl.replaceAll('/uploads/','')}`, (err) => {

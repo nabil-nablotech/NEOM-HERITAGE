@@ -80,7 +80,6 @@ ssl
 .idea
 nbproject
 public/uploads/*
-public/downloads/*
 !public/uploads/.gitkeep
 
 ############################
