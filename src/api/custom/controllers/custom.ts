@@ -179,7 +179,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-      await genratePlacesCSV(ctx.query.isSelect==="true"?data.filter((item)=>ctx.query.selectedKey.includes(item.id.toString())):data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
+      await genratePlacesCSV(ctx.query.isSelect === "true" ? data.filter((item) => ctx.query.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
       ctx.body = data;
     } catch (err) {
       console.log("error in getEvents", err);
@@ -264,7 +264,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-      await genrateEventsCSV(ctx.query.isSelect==="true"?data.filter((item)=>ctx.query.selectedKey.includes(item.id.toString())):data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
+      await genrateEventsCSV(ctx.query.isSelect === "true" ? data.filter((item) => ctx.query.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
       ctx.body = data;
     } catch (err) {
       console.log("error in getEvents", err);
@@ -331,7 +331,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-      await genrateMediaCSV(ctx.query.isSelect==="true"?data.filter((item)=>ctx.query.selectedKey.includes(item.id.toString())):data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
+      await genrateMediaCSV(ctx.query.isSelect === "true" ? data.filter((item) => ctx.query.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
       ctx.body = data;
     } catch (err) {
       console.log("error in getMedias", err);
@@ -701,7 +701,7 @@ export default {
         let media_associates = visit.media_associates;
         let remark_headers = visit.remark_headers;
         updateRemarks(remark_headers);
-        updateMediaAssociate(media_associates);
+        updateMediaAssociate(media_associates, true);
         updateVisitAssociate(visit_associates, false);
         data = await deleteVisit(id);
       }
@@ -713,7 +713,7 @@ export default {
         let remark_headers = place.remark_headers;
         updateRemarks(remark_headers);
         updateVisitAssociate(visit_associates, true);
-        updateMediaAssociate(media_associates);
+        updateMediaAssociate(media_associates, false);
         data = await deletePlace(id);
       }
 
@@ -740,7 +740,13 @@ let getPlace = async (id: number) => {
   try {
     return await strapi.query("api::place.place").findOne({
       populate: {
-        media_associates: true,
+        media_associates: {
+          populate: {
+            media_unique_id: true,
+            visit_unique_ids: true,
+            place_unique_ids: true
+          }
+        },
         visit_associates: {
           populate: {
             visit_unique_id: true,
@@ -762,7 +768,13 @@ let getVisit = async (id: number) => {
   try {
     return await strapi.query("api::visit.visit").findOne({
       populate: {
-        media_associates: true,
+        media_associates: {
+          populate: {
+            media_unique_id: true,
+            visit_unique_ids: true,
+            place_unique_ids: true
+          }
+        },
         visit_associate: true,
         remark_headers: true
       },
@@ -824,10 +836,19 @@ let updateRemarks = async (remark_headers: any) => {
   }
 }
 
-let updateMediaAssociate = async (media_associates: any) => {
+let updateMediaAssociate = async (media_associates: any, updateVisit: Boolean) => {
   try {
     if (media_associates && media_associates.length > 0) {
       return media_associates.map(async (media_associate: any) => {
+        if (updateVisit) {
+          if (media_associate.visit_unique_ids.length == 1 && media_associate.place_unique_ids.length == 0) {
+            deleteMedia(media_associate.media_unique_id.id)
+          }
+        } else {
+          if (media_associate.visit_unique_ids.length == 1 && media_associate.place_unique_ids.length == 1) {
+            deleteMedia(media_associate.media_unique_id.id)
+          }
+        }
         return await deleteMediaAssociate(media_associate.id);
       })
     }
