@@ -179,7 +179,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-      await genratePlacesCSV(ctx.query.isSelect === "true" ? data.filter((item) => ctx.query.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
+      await genratePlacesCSV(ctx.query.isSelect === "true" && ctx.query?.selectedKey!==undefined ? data.filter((item) => ctx.query.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
       ctx.body = data;
     } catch (err) {
       console.log("error in getEvents", err);
@@ -264,7 +264,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-      await genrateEventsCSV(ctx.query.isSelect === "true" ? data.filter((item) => ctx.query.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
+      await genrateEventsCSV(ctx.query.isSelect === "true" && ctx.query?.selectedKey!==undefined ? data.filter((item) => ctx.query?.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
       ctx.body = data;
     } catch (err) {
       console.log("error in getEvents", err);
@@ -331,7 +331,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-      await genrateMediaCSV(ctx.query.isSelect === "true" ? data.filter((item) => ctx.query.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
+      await genrateMediaCSV(ctx.query.isSelect === "true" && ctx.query?.selectedKey!==undefined ? data.filter((item) => ctx.query.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
       ctx.body = data;
     } catch (err) {
       console.log("error in getMedias", err);
