@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "defaults",
+  "info": {
+    "singularName": "default",
+    "pluralName": "defaults",
+    "displayName": "default"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "email": {
+      "type": "string"
+    },
+    "mapToken": {
+      "type": "string"
+    },
+    "pageLimit": {
+      "type": "integer"
+    },
+    "sessionTimeOut": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}
