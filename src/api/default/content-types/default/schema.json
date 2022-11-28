@@ -4,25 +4,19 @@
   "info": {
     "singularName": "default",
     "pluralName": "defaults",
-    "displayName": "default"
+    "displayName": "default",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "email": {
+    "key": {
       "type": "string"
     },
-    "mapToken": {
+    "value": {
       "type": "string"
-    },
-    "pageLimit": {
-      "type": "integer"
-    },
-    "sessionTimeOut": {
-      "type": "integer",
-      "required": true
     }
   }
 }
