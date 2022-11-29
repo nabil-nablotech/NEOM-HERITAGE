@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "defaults",
+  "info": {
+    "singularName": "default",
+    "pluralName": "defaults",
+    "displayName": "default",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "key": {
+      "type": "string"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}

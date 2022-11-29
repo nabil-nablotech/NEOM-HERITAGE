@@ -43,9 +43,27 @@ export const getMediaById = async (id: number) => {
     }
   }
 
-  export const genratePlacesCSV = async (data: any, isAssets:string) => {
+const insertDataToDB = async(title, filePath, dataCount, fileCount, libraryCount, visitCount, token)=>{
+  await strapi.query('api::download.download').create(
+  {data:{
+    title: title,
+    filePath: filePath,
+    dataCount: dataCount,
+    fileCount: fileCount,
+    libraryCount: libraryCount,
+    visitCount: visitCount,
+    token:token
+  }});
+}
+
+
+  export const genratePlacesCSV = async (data: any, isAssets:string, token:string) => {
     try {
       var dir = `./public/downloads/places_${Date.now()}`
+      var dataCount=0;
+      var fileCount=0;
+      var libraryCount=0;
+      var visitCount=0;
       if (!fs.existsSync(dir)){
         fs.mkdirSync(dir);
         if(isAssets==='true'){
@@ -68,14 +86,17 @@ export const getMediaById = async (id: number) => {
     const visitStringifier = stringify({ header: true, columns: visitFields });
     for (let i = 0; i < data.length; i++) {
       stringifier.write(data[i]);
+      dataCount=dataCount+1;
       //media associate
       for (let j = 0; j < data[i].media_associates.length; j++) {
         let mediaData = await getMediaById(data[i].media_associates[j].id);
         let mediaUrl = mediaData.object.url;
         if(mediaData.media_type[0].categoryCode === 'LIBRARY'){
             libraryStringifier.write(mediaData);
+            libraryCount=libraryCount+1;
         }else{
             mediaStringifier.write(mediaData);
+            fileCount=fileCount+1;
         }
         if(isAssets==='true' && fs.existsSync(`./public${mediaUrl}`)){
           fs.copyFile(`./public${mediaUrl}`, `${dir}/assets/${mediaUrl.replaceAll('/uploads/','')}`, (err) => {
@@ -88,6 +109,7 @@ export const getMediaById = async (id: number) => {
       for (let j = 0; j < data[i].visit_associates.length; j++) {
         let visitData = await getVisitById(data[i].visit_associates[j].id);
         visitStringifier.write(visitData);
+        visitCount=visitCount+1
         if(isAssets==='true'){
             for(let k = 0; k < visitData.media_associates.length ;k++){
                 let mediaData = await getMediaById(visitData.media_associates[k].id);
@@ -107,6 +129,10 @@ export const getMediaById = async (id: number) => {
     await mediaStringifier.pipe(writableStreamMedia);
     await visitStringifier.pipe(writableStreamVisit);
     await zip(dir, `${dir}.zip`);
+
+    //inserting into data base
+    await insertDataToDB("Places", `${dir}.zip`.split("/public")[1], dataCount, fileCount, libraryCount, visitCount, token);
+
     // await fs.rmSync(dir);
         return true;
     } catch (err) {
@@ -115,9 +141,13 @@ export const getMediaById = async (id: number) => {
     }
   }
 
-  export const genrateEventsCSV = async (data: any, isAssets:string) => {
+  export const genrateEventsCSV = async (data: any, isAssets:string, token:string) => {
     try {
       var dir = `./public/downloads/visits_${Date.now()}`
+      var dataCount=0;
+      var fileCount=0;
+      var libraryCount=0;
+      var visitCount=0;
       if (!fs.existsSync(dir)){
         fs.mkdirSync(dir);
         if(isAssets==='true'){
@@ -135,13 +165,16 @@ export const getMediaById = async (id: number) => {
     const mediaStringifier = stringify({ header: true, columns: mediaFields });
     for (let i = 0; i < data.length; i++) {
       stringifier.write(data[i]);
+      dataCount=dataCount+1;
       for (let j = 0; j < data[i].media_associates.length; j++) {
         let mediaData = await getMediaById(data[i].media_associates[j].id);
         let mediaUrl = mediaData.object.url;
         if(mediaData.media_type[0].categoryCode === 'LIBRARY'){
             libraryStringifier.write(mediaData);
+            libraryCount=libraryCount+1;
         }else{
             mediaStringifier.write(mediaData);
+            fileCount=fileCount+1;
         }
         if(isAssets==='true' && fs.existsSync(`./public${mediaUrl}`)){
           fs.copyFile(`./public${mediaUrl}`, `${dir}/assets/${mediaUrl.replaceAll('/uploads/','')}`, (err) => {
@@ -155,6 +188,7 @@ export const getMediaById = async (id: number) => {
     await libraryStringifier.pipe(writableStreamLibrary);
     await mediaStringifier.pipe(writableStreamMedia);
     await zip(dir, `${dir}.zip`);
+    await insertDataToDB("Visit", `${dir}.zip`.split("/public")[1], dataCount, fileCount, libraryCount, visitCount, token);
     return true;
     } catch (err) {
       console.log("error in getVisit function", err);
@@ -162,9 +196,13 @@ export const getMediaById = async (id: number) => {
     }
   }
 
-  export const genrateMediaCSV = async (data: any, isAssets:string) => {
+  export const genrateMediaCSV = async (data: any, isAssets:string, token:string) => {
     try {
       var dir = `./public/downloads/media_${Date.now()}`
+      var dataCount=0;
+      var fileCount=0;
+      var libraryCount=0;
+      var visitCount=0;
       if (!fs.existsSync(dir)){
         fs.mkdirSync(dir);
         if(isAssets==='true'){
@@ -178,6 +216,7 @@ export const getMediaById = async (id: number) => {
 
     for (let i = 0; i < data.length; i++) {
       stringifier.write(data[i]);
+      dataCount=dataCount+1;
     }
     await stringifier.pipe(writableStream);
     
@@ -193,6 +232,7 @@ export const getMediaById = async (id: number) => {
       }
     }
         await zip(dir, `${dir}.zip`);
+        await insertDataToDB("Media", `${dir}.zip`.split("/public")[1], dataCount, fileCount, libraryCount, visitCount, token);
         return true;
     } catch (err) {
       console.log("error in getVisit function", err);

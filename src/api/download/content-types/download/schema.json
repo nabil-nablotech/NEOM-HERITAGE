@@ -4,16 +4,15 @@
   "info": {
     "singularName": "download",
     "pluralName": "downloads",
-    "displayName": "Download"
+    "displayName": "download"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
     "title": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "filePath": {
       "type": "string"

@@ -98,6 +98,9 @@
       "relation": "manyToMany",
       "target": "api::media-associate.media-associate",
       "mappedBy": "visit_unique_ids"
+    },
+    "otherAssessment": {
+      "type": "string"
     }
   }
 }
