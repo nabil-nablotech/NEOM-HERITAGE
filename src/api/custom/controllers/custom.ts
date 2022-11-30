@@ -347,11 +347,7 @@ export default {
           media_type: true,
           media_associate: {
             where: {
-              $or: [{visit_unique_ids: {
-                deleted: false,
-              }}, {visit_unique_ids: {
-                deleted: false,
-              }}]
+              deleted: false
             },
             populate: {
               place_unique_ids: {
