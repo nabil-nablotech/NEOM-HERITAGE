@@ -179,7 +179,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-      await genratePlacesCSV(ctx.query.isSelect === "true" && ctx.query?.selectedKey!==undefined ? data.filter((item) => ctx.query.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
+      await genratePlacesCSV(ctx.query.isSelect === "true" && ctx.query?.selectedKey !== undefined ? data.filter((item) => ctx.query.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
       ctx.body = data;
     } catch (err) {
       console.log("error in getEvents", err);
@@ -264,7 +264,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-      await genrateEventsCSV(ctx.query.isSelect === "true" && ctx.query?.selectedKey!==undefined ? data.filter((item) => ctx.query?.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
+      await genrateEventsCSV(ctx.query.isSelect === "true" && ctx.query?.selectedKey !== undefined ? data.filter((item) => ctx.query?.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
       ctx.body = data;
     } catch (err) {
       console.log("error in getEvents", err);
@@ -331,7 +331,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-      await genrateMediaCSV(ctx.query.isSelect === "true" && ctx.query?.selectedKey!==undefined ? data.filter((item) => ctx.query.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
+      await genrateMediaCSV(ctx.query.isSelect === "true" && ctx.query?.selectedKey !== undefined ? data.filter((item) => ctx.query.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.header.authorization.split(" ")[1]);
       ctx.body = data;
     } catch (err) {
       console.log("error in getMedias", err);
@@ -845,7 +845,7 @@ let updateMediaAssociate = async (media_associates: any, updateVisit: Boolean) =
             deleteMedia(media_associate.media_unique_id.id)
           }
         } else {
-          if (media_associate.visit_unique_ids.length == 1 && media_associate.place_unique_ids.length == 1) {
+          if (media_associate.visit_unique_ids.length <= 1 && media_associate.place_unique_ids.length <= 1) {
             deleteMedia(media_associate.media_unique_id.id)
           }
         }
