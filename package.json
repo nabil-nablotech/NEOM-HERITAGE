@@ -19,6 +19,7 @@
     "@strapi/provider-upload-aws-s3": "^4.5.2",
     "@strapi/provider-upload-local": "^4.4.5",
     "@strapi/strapi": "4.3.2",
+    "aws-sdk": "^2.1265.0",
     "csv-stringify": "^6.2.1",
     "mysql": "^2.18.1",
     "patch-package": "^6.4.7",

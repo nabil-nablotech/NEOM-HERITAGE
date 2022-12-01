@@ -4,8 +4,36 @@
  import * as fs from 'fs';
  import { stringify } from "csv-stringify";
  import { zip } from 'zip-a-folder';
+ var AWS = require('aws-sdk');
+ AWS.config.update(
+  {
+    accessKeyId: process.env.S3_ACCESS_KEY_ID,
+    secretAccessKey: process.env.S3_ACCESS_SECRET,
+  }
+);
+var s3 = new AWS.S3();
 
-export default () => ({});
+export const downloadFromS3 = async (pathToSave, mediaUrl) => {
+  try {
+    await s3.getObject(
+      { Bucket: process.env.S3_BUCKET, Key: mediaUrl },
+      function (error, data) {
+        if (error != null) {
+          console.log("Download Error At ===>", mediaUrl);
+        } else {
+          if(!fs.existsSync(`${pathToSave}${mediaUrl}`)){
+            fs.writeFileSync(`${pathToSave}${mediaUrl}`,data.Body)
+          }
+        }
+      }
+    );
+    return true
+  } catch (err) {
+    console.log("Download Error At ===>", mediaUrl);
+    return err;
+  }
+}
+
 export const getMediaById = async (id: number) => {
     try {
       return await strapi.query("api::media.media").findOne({
@@ -43,21 +71,24 @@ export const getMediaById = async (id: number) => {
     }
   }
 
-const insertDataToDB = async(title, filePath, dataCount, fileCount, libraryCount, visitCount, token)=>{
-  await strapi.query('api::download.download').create(
-  {data:{
+const updateDataToDB = async(title, filePath, dataCount, fileCount, libraryCount, visitCount, id)=>{
+  await strapi.query('api::download.download').update(
+  {  where: {
+    id:id
+  },
+    data:{
     title: title,
     filePath: filePath,
     dataCount: dataCount,
     fileCount: fileCount,
     libraryCount: libraryCount,
     visitCount: visitCount,
-    token:token
+    status:'Completed'
   }});
 }
 
 
-  export const genratePlacesCSV = async (data: any, isAssets:string, token:string) => {
+  export const genratePlacesCSV = async (data: any, isAssets:string, id:string) => {
     try {
       var dir = `./public/downloads/places_${Date.now()}`
       var dataCount=0;
@@ -88,9 +119,9 @@ const insertDataToDB = async(title, filePath, dataCount, fileCount, libraryCount
       stringifier.write(data[i]);
       dataCount=dataCount+1;
       //media associate
-      for (let j = 0; j < data[i].media_associates.length; j++) {
-        let mediaData = await getMediaById(data[i].media_associates[j].id);
-        let mediaUrl = mediaData.object.url;
+      await data[i].media_associates.forEach(async (data)=>{
+        let mediaData = await getMediaById(data.id);
+        let mediaUrl = mediaData?.object?.url?.split('/')[3];
         if(mediaData.media_type[0].categoryCode === 'LIBRARY'){
             libraryStringifier.write(mediaData);
             libraryCount=libraryCount+1;
@@ -98,41 +129,36 @@ const insertDataToDB = async(title, filePath, dataCount, fileCount, libraryCount
             mediaStringifier.write(mediaData);
             fileCount=fileCount+1;
         }
-        if(isAssets==='true' && fs.existsSync(`./public${mediaUrl}`)){
-          fs.copyFile(`./public${mediaUrl}`, `${dir}/assets/${mediaUrl.replaceAll('/uploads/','')}`, (err) => {
-          if (err) 
-            throw err;
-          });
+        if(isAssets==='true'){
+          await downloadFromS3(`${dir}/assets/`, mediaUrl);
       }
-      }
-      //visit associate
-      for (let j = 0; j < data[i].visit_associates.length; j++) {
-        let visitData = await getVisitById(data[i].visit_associates[j].id);
+    })
+      await data[i].visit_associates.forEach(async(data)=>{
+        let visitData = await getVisitById(data.id);
         visitStringifier.write(visitData);
         visitCount=visitCount+1
         if(isAssets==='true'){
             for(let k = 0; k < visitData.media_associates.length ;k++){
                 let mediaData = await getMediaById(visitData.media_associates[k].id);
-                let mediaUrl = mediaData.object.url;
-                  if(fs.existsSync(`./public${mediaUrl}`)){
-                    fs.copyFile(`./public${mediaUrl}`, `${dir}/assets/${mediaUrl.replaceAll('/uploads/','')}`, (err) => {
-                    if (err) 
-                      throw err;
-                    });
-                }
+                let mediaUrl = mediaData?.object?.url?.split('/')[3];
+                await downloadFromS3(`${dir}/assets/`, mediaUrl);
             }
         }
-      }
+      })
     }
     await stringifier.pipe(writableStreamPlace);
     await libraryStringifier.pipe(writableStreamLibrary);
     await mediaStringifier.pipe(writableStreamMedia);
     await visitStringifier.pipe(writableStreamVisit);
-    await zip(dir, `${dir}.zip`);
-
-    //inserting into data base
-    await insertDataToDB("Places", `${dir}.zip`.split("/public")[1], dataCount, fileCount, libraryCount, visitCount, token);
-
+    if(isAssets==='true'){
+      await setTimeout(async function() {
+        await zip(dir, `${dir}.zip`);
+        await updateDataToDB("Places", `${dir}.zip`.split("/public")[1], dataCount, fileCount, libraryCount, visitCount, id);
+      }, 60000);
+    }else{
+      await zip(dir, `${dir}.zip`);
+      await updateDataToDB("Places", `${dir}.zip`.split("/public")[1], dataCount, fileCount, libraryCount, visitCount, id);
+    }
     // await fs.rmSync(dir);
         return true;
     } catch (err) {
@@ -141,7 +167,7 @@ const insertDataToDB = async(title, filePath, dataCount, fileCount, libraryCount
     }
   }
 
-  export const genrateEventsCSV = async (data: any, isAssets:string, token:string) => {
+  export const genrateEventsCSV = async (data: any, isAssets:string, id:string) => {
     try {
       var dir = `./public/downloads/visits_${Date.now()}`
       var dataCount=0;
@@ -163,12 +189,12 @@ const insertDataToDB = async(title, filePath, dataCount, fileCount, libraryCount
     const stringifier = stringify({ header: true, columns: eventsFields });
     const libraryStringifier = stringify({ header: true, columns: mediaFields });
     const mediaStringifier = stringify({ header: true, columns: mediaFields });
-    for (let i = 0; i < data.length; i++) {
-      stringifier.write(data[i]);
+    await data.forEach(async(data)=>{
+      stringifier.write(data);
       dataCount=dataCount+1;
-      for (let j = 0; j < data[i].media_associates.length; j++) {
-        let mediaData = await getMediaById(data[i].media_associates[j].id);
-        let mediaUrl = mediaData.object.url;
+      await data.media_associates.forEach(async (data)=>{
+        let mediaData = await getMediaById(data.id);
+        let mediaUrl = mediaData?.object?.url?.split('/')[3];
         if(mediaData.media_type[0].categoryCode === 'LIBRARY'){
             libraryStringifier.write(mediaData);
             libraryCount=libraryCount+1;
@@ -176,19 +202,23 @@ const insertDataToDB = async(title, filePath, dataCount, fileCount, libraryCount
             mediaStringifier.write(mediaData);
             fileCount=fileCount+1;
         }
-        if(isAssets==='true' && fs.existsSync(`./public${mediaUrl}`)){
-          fs.copyFile(`./public${mediaUrl}`, `${dir}/assets/${mediaUrl.replaceAll('/uploads/','')}`, (err) => {
-          if (err) 
-            throw err;
-          });
+        if(isAssets==='true'){
+          await downloadFromS3(`${dir}/assets/`, mediaUrl);
         }
-      }
-    }
+      })
+    })
     await stringifier.pipe(writableStreamPlace);
     await libraryStringifier.pipe(writableStreamLibrary);
     await mediaStringifier.pipe(writableStreamMedia);
-    await zip(dir, `${dir}.zip`);
-    await insertDataToDB("Visit", `${dir}.zip`.split("/public")[1], dataCount, fileCount, libraryCount, visitCount, token);
+    if(isAssets==='true'){
+        await setTimeout(async function() {
+          await zip(dir, `${dir}.zip`);
+          await updateDataToDB("Visit", `${dir}.zip`.split("/public")[1], dataCount, fileCount, libraryCount, visitCount, id);
+        }, 60000); 
+    }else{
+      await zip(dir, `${dir}.zip`);
+      await updateDataToDB("Visit", `${dir}.zip`.split("/public")[1], dataCount, fileCount, libraryCount, visitCount, id);
+    }    
     return true;
     } catch (err) {
       console.log("error in getVisit function", err);
@@ -196,7 +226,7 @@ const insertDataToDB = async(title, filePath, dataCount, fileCount, libraryCount
     }
   }
 
-  export const genrateMediaCSV = async (data: any, isAssets:string, token:string) => {
+  export const genrateMediaCSV = async (data: any, isAssets:string, id:string) => {
     try {
       var dir = `./public/downloads/media_${Date.now()}`
       var dataCount=0;
@@ -214,25 +244,24 @@ const insertDataToDB = async(title, filePath, dataCount, fileCount, libraryCount
     const fields = Object.keys(data[0]);
     const stringifier = stringify({ header: true, columns: fields });
 
-    for (let i = 0; i < data.length; i++) {
-      stringifier.write(data[i]);
+    await data.forEach(async (data)=>{
+      stringifier.write(data);
       dataCount=dataCount+1;
-    }
+    })
     await stringifier.pipe(writableStream);
-    
     if(isAssets==='true'){
-      for (let i = 0; i < data.length; i++) {
-        let mediaLink = data[i].object.url;
-        if(fs.existsSync(`./public/${mediaLink}`)){
-            fs.copyFile(`./public/${mediaLink}`, `${dir}/assets/${mediaLink.replaceAll("/uploads","")}`, (err) => {
-                if (err) 
-                    throw err;
-                });
-        }
-      }
-    }
+      await data.forEach(async (data)=>{
+        let mediaLink = data.object?.url?.split('/')[3];
+        await downloadFromS3(`${dir}/assets/`, mediaLink);
+      })
+      await setTimeout(async function() {
         await zip(dir, `${dir}.zip`);
-        await insertDataToDB("Media", `${dir}.zip`.split("/public")[1], dataCount, fileCount, libraryCount, visitCount, token);
+        await updateDataToDB("Media", `${dir}.zip`.split("/public")[1], dataCount, fileCount, libraryCount, visitCount, id);
+      }, 60000);
+    }else{
+      await zip(dir, `${dir}.zip`);
+      await updateDataToDB("Media", `${dir}.zip`.split("/public")[1], dataCount, fileCount, libraryCount, visitCount, id);
+    }
         return true;
     } catch (err) {
       console.log("error in getVisit function", err);
