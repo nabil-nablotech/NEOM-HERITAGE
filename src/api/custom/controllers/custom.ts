@@ -845,7 +845,7 @@ let updateMediaAssociate = async (media_associates: any, updateVisit: Boolean) =
             deleteMedia(media_associate.media_unique_id.id)
           }
         } else {
-          if (media_associate.visit_unique_ids.length == 1 && media_associate.place_unique_ids.length == 1) {
+          if (media_associate.visit_unique_ids.length <= 1 && media_associate.place_unique_ids.length <= 1) {
             deleteMedia(media_associate.media_unique_id.id)
           }
         }
