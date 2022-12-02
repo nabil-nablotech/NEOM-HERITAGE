@@ -145,5 +145,14 @@ export default {
         middlewares: [],
       },
     },
+    {
+      method: "PUT",
+      path: "/custom/updateFeature/:uniqueId",
+      handler: "custom.updateFeatureImage",
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };

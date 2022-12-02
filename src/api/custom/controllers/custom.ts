@@ -3,6 +3,7 @@
  */
 import qs from "qs";
 import { fetchPLaces } from "../../../config/connection";
+import { genrateEventsCSV, genrateMediaCSV, genratePlacesCSV } from "../services/custom";
 
 export default {
   changePassword: async (ctx, next) => {
@@ -119,7 +120,7 @@ export default {
 
   refinedSearchOptions: async (ctx, next) => {
     try {
-      const fielOptions = await strapi
+      const fieldOptions = await strapi
         .query("api::field-option.field-option")
         .findMany({
           populate: {
@@ -141,11 +142,12 @@ export default {
               },
             },
           },
+          orderBy: { name: "asc" }
         });
       const fieldCodes = await strapi
         .query("api::field-code.field-code")
         .findMany({});
-      fielOptions.map((x, i) => {
+      fieldOptions.map((x, i) => {
         x.value =
           (x.translation.locale.length > 0 && x.translation.locale[0]?.value) ||
           "";
@@ -157,7 +159,7 @@ export default {
 
       let searchOption = {};
       fieldCodes.map((x) => {
-        searchOption[x.name] = fielOptions.filter(
+        searchOption[x.name] = fieldOptions.filter(
           (y) => y.field_code.name === x.name
         );
         return searchOption;
@@ -177,7 +179,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-
+      await genratePlacesCSV(ctx.query.isSelect === "true" && ctx.query?.selectedKey!==undefined ? data.filter((item) => ctx.query.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.query.id);
       ctx.body = data;
     } catch (err) {
       console.log("error in getEvents", err);
@@ -203,6 +205,7 @@ export default {
                 },
               },
             },
+            orderBy: { updatedAt: 'desc' }
           },
           visit_associates: {
             where: {
@@ -232,6 +235,7 @@ export default {
                 },
               },
             },
+            orderBy: { updatedAt: 'desc' }
           },
         },
         where: {
@@ -260,7 +264,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-
+      await genrateEventsCSV(ctx.query.isSelect === "true" && ctx.query?.selectedKey!==undefined ? data.filter((item) => ctx.query?.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.query.id);
       ctx.body = data;
     } catch (err) {
       console.log("error in getEvents", err);
@@ -286,6 +290,7 @@ export default {
                 },
               },
             },
+            orderBy: { updatedAt: 'desc' }
           },
           visit_associate: {
             where: {
@@ -296,6 +301,7 @@ export default {
             populate: {
               place_unique_id: true,
             },
+            orderBy: { updatedAt: 'desc' }
           },
         },
         where: {
@@ -325,7 +331,7 @@ export default {
         where: qs.parse(ctx.query?.filter),
         orderBy: { id: 'asc' },
       });
-
+      await genrateMediaCSV(ctx.query.isSelect === "true" && ctx.query?.selectedKey!==undefined ? data.filter((item) => ctx.query.selectedKey.includes(item.id.toString())) : data, ctx.query?.isAssets, ctx.query.id);
       ctx.body = data;
     } catch (err) {
       console.log("error in getMedias", err);
@@ -340,19 +346,19 @@ export default {
           object: true,
           media_type: true,
           media_associate: {
-            // where: {
-            //   visit_unique_ids: {
-            //     deleted: false,
-            //   }
-            // },
+            where: {
+              deleted: false
+            },
             populate: {
-              place_unique_ids: true,
+              place_unique_ids: {
+                where: {
+                  deleted: false,
+                }
+              },
               visit_unique_ids: {
-                // where: {
-                //   place_unique_id: {
-                //     deleted: false,
-                //   }
-                // },
+                where: {
+                  deleted: false,
+                },
                 populate: {
                   visit_associate: {
                     populate: {
@@ -407,6 +413,7 @@ export default {
               }
             },
           },
+          orderBy: { createdAt: 'desc' }
         });
 
       let remark_details_group = {
@@ -624,6 +631,65 @@ export default {
     }
   },
 
+  updateFeatureImage: async (ctx, next) => {
+    let uniqueId = ctx.params.uniqueId;
+    let apiUrl: string;
+    if (ctx.request.body.type.toLowerCase() === "event") {
+      apiUrl = "api::visit.visit";
+    }
+    else if (ctx.request.body.type.toLowerCase() === "place") {
+      apiUrl = "api::place.place";
+    }
+    let data = await strapi.query(apiUrl).findOne({
+      populate: {
+        media_associates: {
+          where: {
+            deleted: false
+          },
+          populate: {
+            media_unique_id: {
+              where: {
+                featuredImage: true
+              },
+              populate: {
+                object: true,
+                media_type: true,
+              },
+            },
+          },
+        },
+      },
+      where: {
+        uniqueId: uniqueId,
+        deleted: false
+      },
+    });
+
+    let feturedImage = data.media_associates.filter(media => {
+      if (media.media_unique_id != null) return media.media_unique_id;
+    })
+
+    if (feturedImage.length > 0) {
+      await strapi.entityService.update(
+        "api::media.media",
+        feturedImage[0].media_unique_id.id,
+        {
+          data: { featuredImage: false },
+        }
+      );
+    }
+    if (ctx.request.body.media_id) {
+      await strapi.entityService.update(
+        "api::media.media",
+        ctx.request.body.media_id,
+        {
+          data: { featuredImage: true },
+        }
+      );
+    }
+    ctx.body = { id: data.id, msg: "Featured Image Set Successfully.", success: true };
+  },
+
   deleteType: async (ctx, next) => {
     try {
       let { tab_name, id } = ctx.params;
@@ -635,7 +701,7 @@ export default {
         let media_associates = visit.media_associates;
         let remark_headers = visit.remark_headers;
         updateRemarks(remark_headers);
-        updateMediaAssociate(media_associates);
+        updateMediaAssociate(media_associates, true);
         updateVisitAssociate(visit_associates, false);
         data = await deleteVisit(id);
       }
@@ -647,7 +713,7 @@ export default {
         let remark_headers = place.remark_headers;
         updateRemarks(remark_headers);
         updateVisitAssociate(visit_associates, true);
-        updateMediaAssociate(media_associates);
+        updateMediaAssociate(media_associates, false);
         data = await deletePlace(id);
       }
 
@@ -674,7 +740,13 @@ let getPlace = async (id: number) => {
   try {
     return await strapi.query("api::place.place").findOne({
       populate: {
-        media_associates: true,
+        media_associates: {
+          populate: {
+            media_unique_id: true,
+            visit_unique_ids: true,
+            place_unique_ids: true
+          }
+        },
         visit_associates: {
           populate: {
             visit_unique_id: true,
@@ -696,7 +768,13 @@ let getVisit = async (id: number) => {
   try {
     return await strapi.query("api::visit.visit").findOne({
       populate: {
-        media_associates: true,
+        media_associates: {
+          populate: {
+            media_unique_id: true,
+            visit_unique_ids: true,
+            place_unique_ids: true
+          }
+        },
         visit_associate: true,
         remark_headers: true
       },
@@ -758,10 +836,19 @@ let updateRemarks = async (remark_headers: any) => {
   }
 }
 
-let updateMediaAssociate = async (media_associates: any) => {
+let updateMediaAssociate = async (media_associates: any, updateVisit: Boolean) => {
   try {
     if (media_associates && media_associates.length > 0) {
       return media_associates.map(async (media_associate: any) => {
+        if (updateVisit) {
+          if (media_associate.visit_unique_ids.length == 1 && media_associate.place_unique_ids.length == 0) {
+            deleteMedia(media_associate.media_unique_id.id)
+          }
+        } else {
+          if (media_associate.visit_unique_ids.length <= 1 && media_associate.place_unique_ids.length <= 1) {
+            deleteMedia(media_associate.media_unique_id.id)
+          }
+        }
         return await deleteMediaAssociate(media_associate.id);
       })
     }
