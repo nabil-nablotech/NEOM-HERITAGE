@@ -1,0 +1,59 @@
+/*Places*/
+CREATE INDEX places_place_name_english
+ON neom.places (place_name_english);
+
+CREATE INDEX places_previous_number
+ON neom.places (previous_number);
+
+CREATE INDEX places_place_number
+ON neom.places (place_number);
+
+CREATE INDEX places_unique_id
+ON neom.places (unique_id);
+
+CREATE INDEX places_site_description
+ON neom.places (site_description);
+
+CREATE INDEX places_site_description
+ON neom.places (site_description);
+
+/*Visits*/
+CREATE INDEX visits_visit_date
+ON neom.visits (visit_date);
+
+CREATE INDEX visits_recording_team
+ON neom.visits (recording_team);
+
+CREATE INDEX visits_field_narrative
+ON neom.visits (field_narrative);
+
+CREATE INDEX visits_unique_id
+ON neom.visits (unique_id);
+
+/*Medias*/
+CREATE INDEX medias_description
+ON neom.medias (description);
+
+CREATE INDEX medias_title
+ON neom.medias (title);
+
+CREATE INDEX medias_file_name
+ON neom.medias (file_name);
+
+CREATE INDEX medias_citation
+ON neom.medias (citation);
+
+CREATE INDEX medias_video_type
+ON neom.medias (video_type);
+
+CREATE INDEX medias_featured_image
+ON neom.medias (featured_image);
+
+/*Users */
+
+CREATE INDEX up_users_last_name ON neom.up_users (last_name)
+
+CREATE INDEX up_users_first_name ON neom.up_users (first_name)
+
+CREATE INDEX up_users_email ON neom.up_users (email)
+
